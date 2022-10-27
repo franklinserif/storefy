@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "dev": "npm run start --prefix client && npm dev --prefix api"
+    "server": "npm run dev --prefix api",
+    "client": "npm run start --prefix client",
+    "dev": "npm run server & npm run client"
   },
   "name": "storefy",
   "version": "1.0.0",

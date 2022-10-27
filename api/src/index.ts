@@ -32,7 +32,8 @@ app.use(cors(options));
  * serve all static react files
  */
 
-if (CONFIG.PRODUCTION) {
+if (!CONFIG.PRODUCTION) {
+  console.log("entro");
   app.use(express.static(path.join(__dirname, "client")));
 
   /**
@@ -40,6 +41,10 @@ if (CONFIG.PRODUCTION) {
    */
   app.use("/*", (_req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "client", "index.html"));
+  });
+} else {
+  app.use("/", (_req: Request, res: Response) => {
+    res.send("dev server");
   });
 }
 
@@ -54,7 +59,7 @@ app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerSetup));
 AppDataSource.initialize()
   .then(async () => {
     app.listen(CONFIG.API_PORT, () => {
-      console.log(`server is running on PORT ${CONFIG.API_PORT}`);
+      console.log(`server is running on PORT !${CONFIG.API_PORT}`);
     });
   })
   .catch((error) => console.log(error));
