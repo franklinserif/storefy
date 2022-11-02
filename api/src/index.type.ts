@@ -16,3 +16,11 @@ export interface IUser {
   region: String;
   postalCode: Number;
 }
+
+export interface ICategory {
+  id: String;
+  name: String;
+  image: String;
+  Parent: ICategory;
+  children: ICategory[];
+}
