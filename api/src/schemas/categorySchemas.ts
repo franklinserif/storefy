@@ -1,5 +1,5 @@
 /**
- * Category schemas for validate user CRUD operation data
+ * Category schemas for validate category CRUD operation data
  * @module schemas/categorySchemas
  */
 
