@@ -53,3 +53,8 @@ export interface IPromotion {
   startDate: Date;
   endDate: Date;
 }
+
+export interface IReview {
+  id: String;
+  comment: String;
+}
