@@ -39,3 +39,8 @@ export interface IProduct {
   description: String;
   price: Number;
 }
+
+export interface IProductRating {
+  id: String;
+  rating: Number;
+}
