@@ -27,10 +27,10 @@ export class Payment {
   accountNumber: string;
 
   @Column({ name: "expire_date" })
-  expiryDate: String;
+  expiryDate: Date;
 
   @Column({ name: "payment_type" })
-  paymentType: Boolean;
+  paymentType: String;
 
   @OneToOne(() => User)
   @JoinColumn()
