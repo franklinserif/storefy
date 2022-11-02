@@ -24,3 +24,11 @@ export interface ICategory {
   Parent: ICategory;
   children: ICategory[];
 }
+
+export interface IPayment {
+  id: String;
+  provider: String;
+  accountNumber: Number;
+  expiryDate: Date;
+  paymentType: "paypal";
+}
