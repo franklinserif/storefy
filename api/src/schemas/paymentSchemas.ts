@@ -4,7 +4,7 @@
  */
 
 import joi from "joi";
-import { IPayment } from "index.type";
+import { IPayment } from "../index.type";
 
 /**
  * payment id uuid
