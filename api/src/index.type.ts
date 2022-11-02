@@ -58,3 +58,7 @@ export interface IReview {
   id: String;
   comment: String;
 }
+
+export interface IShoppinCart {
+  id: String;
+}
