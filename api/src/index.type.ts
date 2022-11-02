@@ -1,7 +1,7 @@
 export type UserRolesTypes = "customer" | "seller";
 
 export interface IUser {
-  id: string;
+  id: String;
   firstName: String;
   lastName: String;
   email: String;
