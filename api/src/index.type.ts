@@ -32,3 +32,10 @@ export interface IPayment {
   expiryDate: Date;
   paymentType: "paypal";
 }
+
+export interface IProduct {
+  id: String;
+  name: String;
+  description: String;
+  price: Number;
+}
