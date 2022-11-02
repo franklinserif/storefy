@@ -19,7 +19,7 @@ export class VariationOption {
   id: string;
 
   @Column()
-  name: string;
+  value: string;
 
   @Column()
   qty: Number;
