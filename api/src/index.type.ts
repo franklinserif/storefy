@@ -72,3 +72,9 @@ export interface IVariation {
   id: String;
   name: String;
 }
+
+export interface IVariationOption {
+  id: String;
+  value: String;
+  qty: Number;
+}
