@@ -30,7 +30,7 @@ export class User {
   lastName: string;
 
   @Column({ name: "email_address" })
-  emailAddress: string;
+  email: string;
 
   @Column({ name: "phone_number" })
   phoneNumber: string;
@@ -43,9 +43,6 @@ export class User {
 
   @Column({ name: "is_active" })
   isActive: boolean;
-
-  @Column({ name: "unit_number" })
-  unitNumber: Number;
 
   @Column({ name: "street_number" })
   streetNumber: Number;
