@@ -67,3 +67,8 @@ export interface IShoppinCartItem {
   id: String;
   qty: Number;
 }
+
+export interface IVariation {
+  id: String;
+  name: String;
+}
