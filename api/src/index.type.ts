@@ -44,3 +44,12 @@ export interface IProductRating {
   id: String;
   rating: Number;
 }
+
+export interface IPromotion {
+  id: String;
+  name: String;
+  description: String;
+  discountRate: Number;
+  startDate: Date;
+  endDate: Date;
+}
