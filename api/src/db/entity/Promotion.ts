@@ -11,11 +11,12 @@ import {
   ManyToMany,
   JoinTable,
   PrimaryGeneratedColumn,
+  BaseEntity,
 } from "typeorm";
 import { Category } from "./Category";
 
 @Entity()
-export class Promotion {
+export class Promotion extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 

@@ -13,13 +13,14 @@ import {
   ManyToMany,
   JoinTable,
   ManyToOne,
+  BaseEntity,
 } from "typeorm";
 import { Category } from "./Category";
 import { ShoppingCartItem } from "./ShoppingCartItem";
 import { VariationOption } from "./VariationOption";
 
 @Entity()
-export class Variation {
+export class Variation extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 

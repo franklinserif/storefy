@@ -11,12 +11,13 @@ import {
   Column,
   ManyToOne,
   OneToMany,
+  BaseEntity,
 } from "typeorm";
 import { ShoppingCart } from "./ShoppingCart";
 import { Variation } from "./Variation";
 
 @Entity()
-export class ShoppingCartItem {
+export class ShoppingCartItem extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 

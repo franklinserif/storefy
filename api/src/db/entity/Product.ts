@@ -13,6 +13,7 @@ import {
   JoinTable,
   OneToMany,
   ManyToOne,
+  BaseEntity,
 } from "typeorm";
 
 import { Category } from "./Category";
@@ -21,7 +22,7 @@ import { ProductRating } from "./ProductRating";
 import { Review } from "./Review";
 
 @Entity()
-export class Product {
+export class Product extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 

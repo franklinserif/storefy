@@ -10,13 +10,14 @@ import {
   UpdateDateColumn,
   Column,
   ManyToOne,
+  BaseEntity,
 } from "typeorm";
 
 import { Product } from "./Product";
 import { User } from "./User";
 
 @Entity()
-export class ProductRating {
+export class ProductRating extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 

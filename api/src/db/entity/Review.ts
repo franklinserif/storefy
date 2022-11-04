@@ -10,12 +10,13 @@ import {
   UpdateDateColumn,
   Column,
   ManyToOne,
+  BaseEntity,
 } from "typeorm";
 import { Product } from "./Product";
 import { User } from "./User";
 
 @Entity()
-export class Review {
+export class Review extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 

@@ -10,11 +10,12 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  BaseEntity,
 } from "typeorm";
 import { Variation } from "./Variation";
 
 @Entity()
-export class VariationOption {
+export class VariationOption extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 

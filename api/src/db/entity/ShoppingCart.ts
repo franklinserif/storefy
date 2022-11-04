@@ -9,11 +9,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  BaseEntity,
 } from "typeorm";
 import { ShoppingCartItem } from "./ShoppingCartItem";
 
 @Entity()
-export class ShoppingCart {
+export class ShoppingCart extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 

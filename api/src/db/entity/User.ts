@@ -12,6 +12,7 @@ import {
   OneToMany,
   OneToOne,
   JoinColumn,
+  BaseEntity,
 } from "typeorm";
 
 import { ProductRating } from "./ProductRating";
@@ -19,7 +20,7 @@ import { Review } from "./Review";
 import { ShoppingCart } from "./ShoppingCart";
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 

@@ -11,10 +11,11 @@ import {
   Column,
   TreeParent,
   TreeChildren,
+  BaseEntity,
 } from "typeorm";
 
 @Entity()
-export class Category {
+export class Category extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
