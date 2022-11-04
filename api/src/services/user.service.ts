@@ -2,8 +2,9 @@
  * user's related services for crud operations
  * @module services/userService
  */
-import { User } from "db/entity/User";
-import { IUser } from "index.type";
+import { User } from "../db/entity/User";
+import { IUser } from "../index.type";
+import removePassword from "../utils/removePassword";
 import boom from "@hapi/boom";
 import bcrypt from "bcrypt";
 
@@ -21,7 +22,9 @@ export default class UserService {
     const userData = { ...data, password: encryptedPassword };
 
     const user = await User.create(userData);
-    const { password, ...userWithoutPassword } = user;
+
+    const userWithoutPassword = removePassword(user as unknown as IUser);
+
     return userWithoutPassword;
   }
 
@@ -44,7 +47,9 @@ export default class UserService {
    */
   async findOne(id: string) {
     const user = await User.findOneBy({ id });
-
+    /**
+     * exception if user is not found
+     */
     if (!user) throw boom.notFound();
 
     return user;
@@ -58,9 +63,15 @@ export default class UserService {
    */
   async findByEmail(email: string) {
     const user = await User.findOneBy({ email });
-
+    /**
+     * exception if user is not found
+     */
     if (!user) throw boom.notFound();
-    const { password, ...userWithoutPassword } = user;
+    /**
+     * remove password from user data
+     */
+    const userWithoutPassword = removePassword(user as unknown as IUser);
+
     return userWithoutPassword;
   }
 
@@ -73,8 +84,13 @@ export default class UserService {
    */
   async update(id: string, user: Partial<IUser>) {
     const updatedUser = await User.update(id, user);
-
+    /**
+     * exception if user is not found
+     */
     if (!updatedUser) throw boom.notFound();
+    /**
+     * remove password from user data
+     */
     const { password, ...userWithoutPassword } = user;
     return userWithoutPassword;
   }
@@ -87,9 +103,13 @@ export default class UserService {
    */
   async delete(id: string) {
     const user = await this.findOne(id);
-
+    /**
+     * exception if user is not found
+     */
     if (!user) throw boom.notFound();
-
+    /**
+     * Delete user from db
+     */
     user.remove();
 
     return { message: "user was delete from db" };
