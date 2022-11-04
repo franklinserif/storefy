@@ -18,13 +18,11 @@ export default class UserService {
   async create(data: Omit<IUser, "id">) {
     // Encrypt user password
     const encryptedPassword = await bcrypt.hash(data.password, 10);
-
     const userData = { ...data, password: encryptedPassword };
 
     const user = await User.create(userData);
 
     const userWithoutPassword = removePassword(user as unknown as IUser);
-
     return userWithoutPassword;
   }
 
@@ -63,15 +61,9 @@ export default class UserService {
    */
   async findByEmail(email: string) {
     const user = await User.findOneBy({ email });
-    /**
-     * exception if user is not found
-     */
     if (!user) throw boom.notFound();
-    /**
-     * remove password from user data
-     */
-    const userWithoutPassword = removePassword(user as unknown as IUser);
 
+    const userWithoutPassword = removePassword(user as unknown as IUser);
     return userWithoutPassword;
   }
 
@@ -84,13 +76,8 @@ export default class UserService {
    */
   async update(id: string, user: Partial<IUser>) {
     const updatedUser = await User.update(id, user);
-    /**
-     * exception if user is not found
-     */
     if (!updatedUser) throw boom.notFound();
-    /**
-     * remove password from user data
-     */
+
     const { password, ...userWithoutPassword } = user;
     return userWithoutPassword;
   }
@@ -103,13 +90,8 @@ export default class UserService {
    */
   async delete(id: string) {
     const user = await this.findOne(id);
-    /**
-     * exception if user is not found
-     */
     if (!user) throw boom.notFound();
-    /**
-     * Delete user from db
-     */
+
     user.remove();
 
     return { message: "user was delete from db" };
