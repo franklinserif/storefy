@@ -1,80 +1,80 @@
 export type UserRolesTypes = "customer" | "seller";
 
 export interface IUser {
-  id: String;
-  firstName: String;
-  lastName: String;
-  email: String;
-  phoneNumber: String;
-  password: String;
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  password: string;
   roles: "admin" | "seller" | "client";
-  isActive: Boolean;
-  streetNumber: Number;
-  addressLine1: String;
-  addressLine2: String;
-  city: String;
-  region: String;
-  postalCode: Number;
+  isActive: boolean;
+  streetNumber: string;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  region: string;
+  postalCode: number;
 }
 
 export interface ICategory {
-  id: String;
-  name: String;
-  image: String;
+  id: string;
+  name: string;
+  image: string;
   Parent: ICategory;
   children: ICategory[];
 }
 
 export interface IPayment {
-  id: String;
-  provider: String;
-  accountNumber: Number;
+  id: string;
+  provider: string;
+  accountNumber: number;
   expiryDate: Date;
   paymentType: "paypal";
 }
 
 export interface IProduct {
-  id: String;
-  name: String;
-  description: String;
-  price: Number;
+  id: string;
+  name: string;
+  description: string;
+  price: number;
 }
 
 export interface IProductRating {
-  id: String;
-  rating: Number;
+  id: string;
+  rating: number;
 }
 
 export interface IPromotion {
-  id: String;
-  name: String;
-  description: String;
-  discountRate: Number;
+  id: string;
+  name: string;
+  description: string;
+  discountRate: number;
   startDate: Date;
   endDate: Date;
 }
 
 export interface IReview {
-  id: String;
-  comment: String;
+  id: string;
+  comment: string;
 }
 
 export interface IShoppinCart {
-  id: String;
+  id: string;
 }
 
 export interface IShoppinCartItem {
-  id: String;
-  qty: Number;
+  id: string;
+  qty: number;
 }
 
 export interface IVariation {
-  id: String;
-  name: String;
+  id: string;
+  name: string;
 }
 
 export interface IVariationOption {
-  id: String;
-  value: String;
-  qty: Number;
+  id: string;
+  value: string;
+  qty: number;
 }
