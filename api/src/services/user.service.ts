@@ -14,5 +14,17 @@ export default class UserService {
    * @param { Omit<IUser, "id">}  data
    * @returns {Promise<>}
    */
-  async create(data: Omit<IUser, "id">) {}
+  async create(data: Omit<IUser, "id">) {
+    // Encrypt user password
+    const encryptedPassword = await bcrypt.hash(data.password, 10);
+
+    /**
+     * Create user instance and merge data with typeORM user instance
+     */
+    const newUser = {
+      ...new User(),
+      ...data,
+      password: encryptedPassword,
+    };
+  }
 }
