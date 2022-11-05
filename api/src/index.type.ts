@@ -34,7 +34,7 @@ export interface IPayment {
   provider: string;
   accountNumber: number;
   expiryDate: Date;
-  paymentType: "paypal";
+  paymentType: string;
 }
 
 export interface IProduct {
