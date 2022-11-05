@@ -30,10 +30,10 @@ export class Product extends BaseEntity {
   name: string;
 
   @Column()
-  description: string;
+  price: number;
 
   @Column()
-  price: number;
+  description: string;
 
   @ManyToMany(() => Category)
   @JoinTable()
