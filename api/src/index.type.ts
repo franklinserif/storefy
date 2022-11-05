@@ -67,7 +67,7 @@ export interface IShoppinCart {
   id: string;
 }
 
-export interface IShoppinCartItem {
+export interface IShoppingCartItem {
   id: string;
   qty: number;
 }
