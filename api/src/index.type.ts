@@ -60,7 +60,7 @@ export interface IPromotion {
 
 export interface IReview {
   id: string;
-  comment: string;
+  comments: string;
 }
 
 export interface IShoppinCart {
