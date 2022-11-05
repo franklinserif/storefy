@@ -1,4 +1,8 @@
+import UserService from "./services/user.service";
+
 export type UserRolesTypes = "customer" | "seller";
+
+export type TUser = typeof UserService;
 
 export interface IUser {
   id: string;
@@ -77,4 +81,16 @@ export interface IVariationOption {
   id: string;
   value: string;
   qty: number;
+}
+
+export interface ISignTokens {
+  accessToken: string;
+  refresToken: string;
+}
+
+export interface IMail {
+  to: string[];
+  subject: string;
+  text: string;
+  html: string;
 }
