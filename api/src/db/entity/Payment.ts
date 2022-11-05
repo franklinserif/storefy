@@ -25,7 +25,7 @@ export class Payment extends BaseEntity {
   provider: string;
 
   @Column({ name: "account_number" })
-  accountNumber: string;
+  accountNumber: number;
 
   @Column({ name: "expire_date" })
   expiryDate: Date;
