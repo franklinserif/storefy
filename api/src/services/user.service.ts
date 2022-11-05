@@ -22,7 +22,7 @@ export default class UserService {
 
     const user = await User.create(userData);
 
-    const userWithoutPassword = removePassword(user as unknown as IUser);
+    const userWithoutPassword = removePassword(user);
     return userWithoutPassword;
   }
 
@@ -38,7 +38,7 @@ export default class UserService {
   }
 
   /**
-   * Find user by id and return user data with all fields
+   * Find user by email address withou password
    * @async
    * @param {string} id user id
    * @returns {Promise<IUser>}
@@ -50,11 +50,12 @@ export default class UserService {
      */
     if (!user) throw boom.notFound();
 
-    return user;
+    const userWithoutPassword = removePassword(user);
+    return userWithoutPassword as unknown as User;
   }
 
   /**
-   * Find user by email address withou password
+   * Find user by email address with password
    * @async
    * @param {string} email email address
    * @returns {Promise<Iuser>}
@@ -63,8 +64,7 @@ export default class UserService {
     const user = await User.findOneBy({ email });
     if (!user) throw boom.notFound();
 
-    const userWithoutPassword = removePassword(user as unknown as IUser);
-    return userWithoutPassword;
+    return user;
   }
 
   /**
