@@ -45,6 +45,9 @@ export class User extends BaseEntity {
   @Column({ name: "is_active" })
   isActive: boolean;
 
+  @Column({ name: "confirm_code" })
+  confirmCode: number;
+
   @Column({ name: "street_number" })
   streetNumber: Number;
 
