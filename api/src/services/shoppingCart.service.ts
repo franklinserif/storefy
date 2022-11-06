@@ -8,6 +8,7 @@ import { IShoppinCart } from "../index.type";
 import boom from "@hapi/boom";
 
 export default class CategoryService {
+export default class ShoppingCartService {
   /**
    * Create a shopping cart
    * @async
