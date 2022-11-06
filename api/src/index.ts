@@ -29,6 +29,11 @@ const options: cors.CorsOptions = {
 app.use(cors(options));
 
 /**
+ * API docs route
+ */
+app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerSetup));
+
+/**
  * serve all static react files
  */
 
@@ -47,11 +52,6 @@ if (!CONFIG.PRODUCTION) {
     res.send("dev server");
   });
 }
-
-/**
- * API docs route
- */
-app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerSetup));
 
 /**
  * Initialize database connection
