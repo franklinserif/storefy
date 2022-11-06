@@ -4,7 +4,7 @@
  */
 
 import joi from "joi";
-import { IShoppinCart } from "../index.type";
+import { IShoppingCart } from "../index.type";
 
 /**
  * shoppingCart id uuid
@@ -16,8 +16,8 @@ const id = joi.string().uuid();
 /**
  * shoppingcart id schema validation
  * @const
- * @type {}
+ * @type {joi.ObjectSchema<IShoppingCart>}
  */
-export const shoppingCartSchema = joi.object<IShoppinCart>({
+export const shoppingCartSchema = joi.object<IShoppingCart>({
   id: id.required(),
 });
