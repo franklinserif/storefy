@@ -65,6 +65,7 @@ export interface IReview {
 
 export interface IShoppinCart {
   id: string;
+  qty: number;
 }
 
 export interface IShoppingCartItem {
