@@ -6,17 +6,41 @@
 import { Review } from "../db/entity/Review";
 import { IReview } from "../index.type";
 import boom from "@hapi/boom";
+import ProductService from "./product.service";
+import UserService from "./user.service";
+/**
+ * contains all product methods for crud operations
+ * @const
+ * @type {ProductService}
+ */
+const productService = new ProductService();
+
+/**
+ * contains all user methods for crud operations
+ * @const
+ * @type {UserService}
+ */
+const userService = new UserService();
 
 export default class ReviewService {
   /**
    * Create a review
    * @async
+   * @param {string} userId
+   * @param {string} productId
    * @param {Omit<IReview, "id">}
    * @returns {Promise<IReview>}
    */
-  async create(data: Omit<IReview, "id">) {
+  async create(userId: string, productId: string, data: Omit<IReview, "id">) {
+    const user = await userService.findOne(userId);
+    const product = await productService.findOne(productId);
     const review = await Review.create(data as Review);
 
+    product.reviews.push(review);
+    product.save();
+    user.reviews.push(review);
+    user.save();
+    
     return review;
   }
 
