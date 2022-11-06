@@ -1,4 +1,6 @@
 import UserService from "./services/user.service";
+import joi from "joi";
+import { Response, Request, NextFunction } from "express";
 
 export type UserRolesTypes = "customer" | "seller";
 
@@ -95,3 +97,18 @@ export interface IMail {
   text: string;
   html: string;
 }
+
+export type TSchemas =
+  | joi.ObjectSchema<ICategory>
+  | joi.ObjectSchema<IPayment>
+  | joi.ObjectSchema<IProductRating>
+  | joi.ObjectSchema<IProduct>
+  | joi.ObjectSchema<IPromotion>
+  | joi.ObjectSchema<IReview>
+  | joi.ObjectSchema<IShoppinCart>
+  | joi.ObjectSchema<IShoppingCartItem>
+  | joi.ObjectSchema<IUser>
+  | joi.ObjectSchema<IVariationOption>
+  | joi.ObjectSchema<IVariation>;
+
+export type TProperty = "body" | "params";
