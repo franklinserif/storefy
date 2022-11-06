@@ -63,7 +63,7 @@ export interface IReview {
   comments: string;
 }
 
-export interface IShoppinCart {
+export interface IShoppingCart {
   id: string;
   qty: number;
 }

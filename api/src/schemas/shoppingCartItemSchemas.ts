@@ -4,7 +4,7 @@
  */
 
 import joi from "joi";
-import { IShoppinCartItem } from "../index.type";
+import { IShoppingCartItem } from "../index.type";
 
 /**
  * shoppinCartItem id uuid
@@ -23,26 +23,26 @@ const qty = joi.number();
 /**
  * shoppinCartItem creation validation schema
  * @const
- * @type {joi.ObjectSchema<IShoppinCartItem>}
+ * @type {joi.ObjectSchema<IShoppingCartItem>}
  */
-export const shoppinCartItemCreateSchema = joi.object<IShoppinCartItem>({
+export const shoppinCartItemCreateSchema = joi.object<IShoppingCartItem>({
   qty: qty.required(),
 });
 
 /**
  * shoppingCartItem update date validation schema
  * @const
- * @type {joi.ObjectSchema<IShoppinCartItem>}
+ * @type {joi.ObjectSchema<IShoppingCartItem>}
  */
-export const shoppinCartItemUpdateSchema = joi.object<IShoppinCartItem>({
+export const shoppinCartItemUpdateSchema = joi.object<IShoppingCartItem>({
   qty,
 });
 
 /**
  * shoppingCartItem id schema validation
  * @const
- * @type {joi.ObjectSchema<IShoppinCartItem>}
+ * @type {joi.ObjectSchema<IShoppingCartItem>}
  */
-export const shoppinCartItemIdSchema = joi.object<IShoppinCartItem>({
+export const shoppinCartItemIdSchema = joi.object<IShoppingCartItem>({
   id: id.required(),
 });
