@@ -26,7 +26,7 @@ export class ShoppingCartItem extends BaseEntity {
 
   @ManyToOne(
     () => ShoppingCart,
-    (shoppingCart) => shoppingCart.shoppingCartItem
+    (shoppingCart) => shoppingCart.shoppingCartItems
   )
   shoppingCart: ShoppingCart;
 
