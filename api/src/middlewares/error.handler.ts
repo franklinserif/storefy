@@ -11,16 +11,16 @@ import { TypeORMError } from "typeorm";
  * handler all boom error if it's a boom error
  * otherwise it will response with the error it self
  * @param {Boom} error
- * @param {Request} req
+ * @param {Request} _req
  * @param {Response} res
  * @param {NextFunction} _next
  * @returns {void}
  */
 export const boomErrorHandler: ErrorRequestHandler = (
   error: Boom,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ): void => {
   if (error.isBoom) {
     const { output } = error;
