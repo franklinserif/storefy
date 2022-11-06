@@ -18,7 +18,7 @@ const id = joi.string().uuid();
  * @const
  * @type {joi.StringSchema<string>}
  */
-const comment = joi.string();
+const comments = joi.string();
 
 /**
  * review creation schema validation
@@ -26,7 +26,7 @@ const comment = joi.string();
  * @type {joi.ObjectSchema<IReview>}
  */
 export const reviewCreateSchema = joi.object<IReview>({
-  comment: comment.required(),
+  comments: comments.required(),
 });
 
 /**
@@ -35,7 +35,7 @@ export const reviewCreateSchema = joi.object<IReview>({
  * @type {joi.ObjectSchema<IReview>}
  */
 export const reviewUpdateSchema = joi.object<IReview>({
-  comment,
+  comments,
 });
 
 /**
