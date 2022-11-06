@@ -6,7 +6,7 @@
 import { VariationOption } from "../db/entity/VariationOption";
 import { IVariationOption } from "../index.type";
 import boom from "@hapi/boom";
-import VariationService from "./varieton.service";
+import VariationService from "./variation.service";
 
 /**
  * constain all methods related to variation crud operation
