@@ -6,16 +6,28 @@
 import { ProductRating } from "../db/entity/ProductRating";
 import { IProductRating } from "../index.type";
 import boom from "@hapi/boom";
+import UserService from "./user.service";
+
+/**
+ * User service for crud operations
+ * @const
+ * @type {UserService}
+ */
+const userService = new UserService();
 
 export default class ProductRatingService {
   /**
    * Create a product rating
    * @async
+   * @param {string} userId
    * @param {Omit<IProductRating, "id">}
    * @returns {Promise<IProductRating>}
    */
-  async create(data: Omit<IProductRating, "id">) {
+  async create(userId: string, data: Omit<IProductRating, "id">) {
+    const user = await userService.findOne(userId);
     const productRating = await ProductRating.create(data);
+
+    user.productRating.push(productRating);
 
     return productRating;
   }
