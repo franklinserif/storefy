@@ -7,7 +7,6 @@ import { ShoppingCart } from "../db/entity/ShoppingCart";
 import { IShoppinCart } from "../index.type";
 import boom from "@hapi/boom";
 
-export default class CategoryService {
 export default class ShoppingCartService {
   /**
    * Create a shopping cart
@@ -16,7 +15,7 @@ export default class ShoppingCartService {
    * @returns {Promise<IShoppinCart>}
    */
   async create(data: Omit<IShoppinCart, "id">) {
-    const shoppingCart = await ShoppingCart.create(data);
+    const shoppingCart = await ShoppingCart.create(data as ShoppingCart);
 
     return shoppingCart;
   }
