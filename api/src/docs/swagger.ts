@@ -6,11 +6,11 @@ const swaggerDefinition: OAS3Definition = {
     title: "Storefy API documentation",
     version: "1.0.0",
     description:
-      "Storefy backend api, this is the main docs for the Storefy server api, it contains all the information to connect to the api, all routes and schemas",
+      "Storefy backend api, this is the main docs for the storefy server api, it contains all the information to connect to the api, all endpoints and schemas",
   },
   servers: [
     {
-      url: "http://localhost:3000/api/v1",
+      url: "http://localhost:4000",
     },
   ],
   components: {
