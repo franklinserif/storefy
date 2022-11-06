@@ -105,7 +105,7 @@ export type TSchemas =
   | joi.ObjectSchema<IProduct>
   | joi.ObjectSchema<IPromotion>
   | joi.ObjectSchema<IReview>
-  | joi.ObjectSchema<IShoppinCart>
+  | joi.ObjectSchema<IShoppingCart>
   | joi.ObjectSchema<IShoppingCartItem>
   | joi.ObjectSchema<IUser>
   | joi.ObjectSchema<IVariationOption>
