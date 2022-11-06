@@ -37,7 +37,7 @@ export class Promotion extends BaseEntity {
 
   @ManyToMany(() => Category)
   @JoinTable()
-  category: Category[];
+  categories: Category[];
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;
