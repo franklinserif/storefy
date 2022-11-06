@@ -13,6 +13,7 @@ import {
   BaseEntity,
 } from "typeorm";
 import { Variation } from "./Variation";
+import { ShoppingCartItem } from "./ShoppingCartItem";
 
 @Entity()
 export class VariationOption extends BaseEntity {
@@ -24,6 +25,12 @@ export class VariationOption extends BaseEntity {
 
   @Column()
   qty: Number;
+
+  @ManyToOne(
+    () => ShoppingCartItem,
+    (shoppingCartItem) => shoppingCartItem.variationOptions
+  )
+  shoppingCartItem: ShoppingCartItem;
 
   @ManyToOne(() => Variation, (variation) => variation.variationOptions)
   variation: Variation;
