@@ -6,16 +6,30 @@
 import { ShoppingCartItem } from "../db/entity/ShoppingCartItem";
 import { IShoppingCartItem } from "../index.type";
 import boom from "@hapi/boom";
+import ShoppingCartService from "./shoppingCart.service";
+
+/**
+ * contains all related methods for shopping cart crud operation
+ * @const
+ * @type {ShopppingCartService}
+ */
+const shoppingCartService = new ShoppingCartService();
 
 export default class ShoppingCartItemService {
   /**
    * Create a shopping cart item
    * @async
+   * @param {string} shoppingCartId
    * @param {Omit<IShoppingCartItem, "id">}
    * @returns {Promise<IShoppingCartItem>}
    */
-  async create(data: Omit<IShoppingCartItem, "id">) {
+  async create(shoppingCartId: string, data: Omit<IShoppingCartItem, "id">) {
+    const shoppingCart = await shoppingCartService.findOne(shoppingCartId);
     const shoppingCartItem = await ShoppingCartItem.create(data);
+
+    shoppingCart.shoppingCartItems.push(shoppingCartItem);
+    shoppingCart.qty > 0 ? (shoppingCart.qty = +1) : (shoppingCart.qty = 1);
+    shoppingCart.save();
 
     return shoppingCartItem;
   }
@@ -63,12 +77,19 @@ export default class ShoppingCartItemService {
   /**
    * Remove shopping cart item from db
    * @async
-   * @param {string} id shopping cart item id
+   * @param {string} shoppingCartId
+   * @param {string} shoppinCartItemId shopping cart item id
    * @returns {Promise<boolean>}
    */
-  async delete(id: string) {
-    const shoppingCartItem = await this.findOne(id);
+  async delete(shoppingCartId: string, shoppinCartItemId: string) {
+    const shoppingCart = await shoppingCartService.findOne(shoppingCartId);
+    const shoppingCartItem = await this.findOne(shoppinCartItemId);
 
+    shoppingCart.shoppingCartItems = shoppingCart.shoppingCartItems.filter(
+      (item) => item.id !== shoppingCartItem.id
+    );
+    shoppingCart.qty = shoppingCart.qty - 1;
+    shoppingCart.save();
     shoppingCartItem.remove();
 
     return true;
