@@ -12,11 +12,9 @@ import {
   OneToMany,
   ManyToMany,
   JoinTable,
-  ManyToOne,
   BaseEntity,
 } from "typeorm";
 import { Category } from "./Category";
-import { ShoppingCartItem } from "./ShoppingCartItem";
 import { VariationOption } from "./VariationOption";
 
 @Entity()
@@ -32,12 +30,6 @@ export class Variation extends BaseEntity {
     (variationOption) => variationOption.variation
   )
   variationOptions: VariationOption[];
-
-  @ManyToOne(
-    () => ShoppingCartItem,
-    (shoppingCartItem) => shoppingCartItem.variations
-  )
-  shoppingCartItem: ShoppingCartItem;
 
   @ManyToMany(() => Category)
   @JoinTable()

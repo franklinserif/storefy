@@ -14,7 +14,7 @@ import {
   BaseEntity,
 } from "typeorm";
 import { ShoppingCart } from "./ShoppingCart";
-import { Variation } from "./Variation";
+import { VariationOption } from "./VariationOption";
 
 @Entity()
 export class ShoppingCartItem extends BaseEntity {
@@ -30,8 +30,11 @@ export class ShoppingCartItem extends BaseEntity {
   )
   shoppingCart: ShoppingCart;
 
-  @OneToMany(() => Variation, (variation) => variation.shoppingCartItem)
-  variations: Variation[];
+  @OneToMany(
+    () => VariationOption,
+    (variationOption) => variationOption.shoppingCartItem
+  )
+  variationOptions: VariationOption[];
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;
