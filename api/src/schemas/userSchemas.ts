@@ -74,14 +74,14 @@ const streetNumber = joi.number();
 /**
  * user default address
  * @const
- * @type {joi.StringSchema<string>
+ * @type {joi.StringSchema<string>}
  */
 const addressLine1 = joi.string();
 
 /**
  * user second address
  * @const
- * @type {joi.StringSchema<string>
+ * @type {joi.StringSchema<string>}
  */
 const addressLine2 = joi.string();
 
