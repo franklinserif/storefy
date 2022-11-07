@@ -22,7 +22,7 @@ export class ShoppingCartItem extends BaseEntity {
   id: string;
 
   @Column()
-  qty: Number;
+  qty: number;
 
   @ManyToOne(
     () => ShoppingCart,
