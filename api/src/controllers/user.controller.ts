@@ -1,6 +1,6 @@
 /**
  * user controllers for handler request
- * @module controllers/userController
+ * @module controllers/userControllers
  */
 
 import { Request, Response, NextFunction } from "express";
