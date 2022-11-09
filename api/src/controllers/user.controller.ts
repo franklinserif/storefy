@@ -4,7 +4,7 @@
  */
 
 import { Request, Response, NextFunction } from "express";
-import { IUser } from "index.type";
+import { IUser } from "../index.type";
 import UserService from "../services/user.service";
 
 /**
@@ -68,11 +68,15 @@ export async function userUpdateController(
   res: Response,
   next: NextFunction
 ) {
-  const { id } = req.params;
-  const data: Partial<IUser> = req.body;
-  const userUpdated = await userService.update(id, data);
+  try {
+    const { id } = req.params;
+    const data: Partial<IUser> = req.body;
+    const userUpdated = await userService.update(id, data);
 
-  res.status(201).json(userUpdated);
+    res.status(201).json(userUpdated);
+  } catch (error) {
+    next(error);
+  }
 }
 
 /**
