@@ -1,6 +1,5 @@
 import UserService from "./services/user.service";
 import joi from "joi";
-import { Response, Request, NextFunction } from "express";
 
 export type UserRolesTypes = "customer" | "seller";
 
