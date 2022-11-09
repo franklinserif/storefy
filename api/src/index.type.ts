@@ -98,6 +98,17 @@ export interface IMail {
   html: string;
 }
 
+export interface IChangeUserPassword {
+  email: string;
+  code: number;
+  password: string;
+}
+
+export interface IConfirmCode {
+  code: string;
+  email: string;
+}
+
 export type TSchemas =
   | joi.ObjectSchema<ICategory>
   | joi.ObjectSchema<IPayment>
@@ -109,6 +120,9 @@ export type TSchemas =
   | joi.ObjectSchema<IShoppingCartItem>
   | joi.ObjectSchema<IUser>
   | joi.ObjectSchema<IVariationOption>
-  | joi.ObjectSchema<IVariation>;
+  | joi.ObjectSchema<IVariation>
+  | joi.ObjectSchema<{ email: string }>
+  | joi.ObjectSchema<IConfirmCode>
+  | joi.ObjectSchema<IChangeUserPassword>;
 
 export type TProperty = "body" | "params";
