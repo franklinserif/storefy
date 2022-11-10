@@ -20,6 +20,8 @@ import { Category } from "./Category";
 import { Variation } from "./Variation";
 import { ProductRating } from "./ProductRating";
 import { Review } from "./Review";
+import { ProductConfiguration } from "./ProductConfiguration";
+import { WishList } from "./WishList";
 
 @Entity()
 export class Product extends BaseEntity {
@@ -43,11 +45,20 @@ export class Product extends BaseEntity {
   @JoinTable()
   variations: Variation[];
 
-  @ManyToOne(() => Review, (review) => review.product)
+  @OneToMany(() => Review, (review) => review.product)
   reviews: Review[];
 
   @OneToMany(() => ProductRating, (productRating) => productRating.product)
-  productRating: ProductRating[];
+  productsRating: ProductRating[];
+
+  @OneToMany(
+    () => ProductConfiguration,
+    (productConfiguration) => productConfiguration.product
+  )
+  productsConfiguration: ProductConfiguration[];
+
+  @ManyToOne(() => WishList, (wishList) => wishList.products)
+  wishList: WishList;
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;
