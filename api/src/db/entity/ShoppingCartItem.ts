@@ -10,11 +10,12 @@ import {
   UpdateDateColumn,
   Column,
   ManyToOne,
-  OneToMany,
+  OneToOne,
+  JoinColumn,
   BaseEntity,
 } from "typeorm";
 import { ShoppingCart } from "./ShoppingCart";
-import { VariationOption } from "./VariationOption";
+import { ProductConfiguration } from "./ProductConfiguration";
 
 @Entity()
 export class ShoppingCartItem extends BaseEntity {
@@ -30,11 +31,9 @@ export class ShoppingCartItem extends BaseEntity {
   )
   shoppingCart: ShoppingCart;
 
-  @OneToMany(
-    () => VariationOption,
-    (variationOption) => variationOption.shoppingCartItem
-  )
-  variationOptions: VariationOption[];
+  @OneToOne(() => ProductConfiguration)
+  @JoinColumn()
+  ProductConfiguration: ProductConfiguration;
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;
