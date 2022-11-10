@@ -4,7 +4,7 @@
  */
 
 import joi from "joi";
-import { IUser } from "index.type";
+import { IUser, IChangeUserPassword, IConfirmCode } from "index.type";
 
 /**
  * user id - uuid
@@ -107,6 +107,12 @@ const region = joi.string();
 const postalCode = joi.string();
 
 /**
+ * user confirm code
+ * @const
+ */
+const code = joi.number();
+
+/**
  * user create schema validation
  * @const
  * @type {joi.ObjectSchema<IUser>}
@@ -153,4 +159,34 @@ export const userUpdateSchema = joi.object<IUser>({
  */
 export const userIdSchema = joi.object<IUser>({
   id,
+});
+
+/**
+ * user email schema validation
+ * @const
+ * @type {joi.ObjectSchema<{email: string;}>}
+ */
+export const userEmailSchema = joi.object<{ email: string }>({
+  email: email.required(),
+});
+
+/**
+ * user confirm code schema validation
+ * @const
+ * @type {joi.ObjectSchema<IConfirmCode>}
+ */
+export const userConfirmCodeSchema = joi.object<IConfirmCode>({
+  email: email.required(),
+  code: code.required(),
+});
+
+/**
+ * user change password schema validation
+ * @const
+ * @type {joi.ObjectSchema<IChangeUserPassword>}
+ */
+export const userChangePasswordSchema = joi.object<IChangeUserPassword>({
+  email: email.required(),
+  code: code.required(),
+  password: password.required(),
 });
