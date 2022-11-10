@@ -39,7 +39,9 @@ export default class ShoppingCartItemService {
   ) {
     const shoppingCart = await shoppingCartService.findOne(shoppingCartId);
 
-    const shoppingCartItem = await ShoppingCartItem.create(data);
+    const shoppingCartItem = await ShoppingCartItem.create();
+
+    shoppingCartItem.qty = data.qty;
 
     for (const id of variationOptionsId) {
       const variationOption = await variationOptionService.findOne(id);
