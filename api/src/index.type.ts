@@ -43,6 +43,8 @@ export interface IProduct {
   name: string;
   description: string;
   price: number;
+  sizes: string[];
+  colors: string[];
 }
 
 export interface IProductRating {
@@ -72,17 +74,9 @@ export interface IShoppingCart {
 export interface IShoppingCartItem {
   id: string;
   qty: number;
-}
-
-export interface IVariation {
-  id: string;
-  name: string;
-}
-
-export interface IVariationOption {
-  id: string;
-  value: string;
-  qty: number;
+  price: number;
+  size: string;
+  color: string;
 }
 
 export interface ISignTokens {
@@ -118,8 +112,6 @@ export type TSchemas =
   | joi.ObjectSchema<IShoppingCart>
   | joi.ObjectSchema<IShoppingCartItem>
   | joi.ObjectSchema<IUser>
-  | joi.ObjectSchema<IVariationOption>
-  | joi.ObjectSchema<IVariation>
   | joi.ObjectSchema<{ email: string }>
   | joi.ObjectSchema<IConfirmCode>
   | joi.ObjectSchema<IChangeUserPassword>;

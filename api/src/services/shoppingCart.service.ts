@@ -4,7 +4,7 @@
  */
 
 import { ShoppingCart } from "../db/entity/ShoppingCart";
-import { IShoppinCart } from "../index.type";
+import { IShoppingCart } from "../index.type";
 import boom from "@hapi/boom";
 
 export default class ShoppingCartService {
@@ -14,7 +14,7 @@ export default class ShoppingCartService {
    * @param {Omit<IShoppinCart, "id">}
    * @returns {Promise<IShoppinCart>}
    */
-  async create(data: Omit<IShoppinCart, "id">) {
+  async create(data: Omit<IShoppingCart, "id">) {
     const shoppingCart = await ShoppingCart.create(data as ShoppingCart);
 
     return shoppingCart;
@@ -52,7 +52,7 @@ export default class ShoppingCartService {
    * @param {Partial<IShoppinCart>} data to update
    * @returns {Promise<IShoppinCart>}
    */
-  async update(id: string, data: Partial<IShoppinCart>) {
+  async update(id: string, data: Partial<IShoppingCart>) {
     const updatedShoppingCart = await ShoppingCart.update(id, data);
 
     if (!updatedShoppingCart) throw boom.notFound();

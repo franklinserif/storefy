@@ -46,16 +46,10 @@ import {
 } from "./shoppingCartItem.swagger.schemas";
 
 import {
-  variationCreateSchema,
-  variationUpdateSchema,
-  variationIdSchema,
-} from "./variation.swagger.schemas";
-
-import {
-  variationOptionsCreateSchema,
-  variationOptionsUpdateSchema,
-  variationOptionsIdSchema,
-} from "./variationOptions.swagger.schemas";
+  productCreateSchema,
+  productUpdateSchema,
+  productIdSchema,
+} from "./product.swagger.schemas";
 
 const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.0",
@@ -78,6 +72,9 @@ const swaggerDefinition: OAS3Definition = {
       },
     },
     schemas: {
+      productCreateSchema,
+      productUpdateSchema,
+      productIdSchema,
       createUserSchema,
       userUpdateSchema,
       userIdSchema,
@@ -102,12 +99,7 @@ const swaggerDefinition: OAS3Definition = {
       shoppingCartItemCreateSchema,
       shoppingCartItemUpdateSchema,
       shoppingCartItemIdSchema,
-      variationCreateSchema,
-      variationUpdateSchema,
-      variationIdSchema,
-      variationOptionsCreateSchema,
-      variationOptionsUpdateSchema,
-      variationOptionsIdSchema,
+
       /*   createUserSchema: {
         type: "object",
         required: [

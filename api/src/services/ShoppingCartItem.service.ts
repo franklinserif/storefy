@@ -7,7 +7,6 @@ import { ShoppingCartItem } from "../db/entity/ShoppingCartItem";
 import { IShoppingCartItem } from "../index.type";
 import boom from "@hapi/boom";
 import ShoppingCartService from "./shoppingCart.service";
-import VariationOptionService from "./variationOption.service";
 
 /**
  * contains all related methods for shopping cart crud operation
@@ -16,37 +15,20 @@ import VariationOptionService from "./variationOption.service";
  */
 const shoppingCartService = new ShoppingCartService();
 
-/**
- * contains all related methos for variation option service crud operation
- * @const
- * @type {VariationOptionService}
- */
-const variationOptionService = new VariationOptionService();
-
 export default class ShoppingCartItemService {
   /**
    * Create a shopping cart item
    * @async
    * @param {string} shoppingCartId
-   * @param {string[]} variationOptionsId
    * @param {Omit<IShoppingCartItem, "id">}
    * @returns {Promise<IShoppingCartItem>}
    */
-  async create(
-    shoppingCartId: string,
-    variationOptionsId: string[],
-    data: Omit<IShoppingCartItem, "id">
-  ) {
+  async create(shoppingCartId: string, data: Omit<IShoppingCartItem, "id">) {
     const shoppingCart = await shoppingCartService.findOne(shoppingCartId);
 
     const shoppingCartItem = await ShoppingCartItem.create();
 
     shoppingCartItem.qty = data.qty;
-
-    for (const id of variationOptionsId) {
-      const variationOption = await variationOptionService.findOne(id);
-      shoppingCartItem.variationOptions.push(variationOption);
-    }
 
     shoppingCartItem.save();
 
@@ -54,6 +36,11 @@ export default class ShoppingCartItemService {
     shoppingCart.qty > 0 ? (shoppingCart.qty = +1) : (shoppingCart.qty = 1);
     shoppingCart.save();
 
+    const prices = shoppingCart.shoppingCartItems.map((item) => item.price);
+
+    shoppingCart.total = prices.reduce((prev, current) => prev + current, 0);
+
+    shoppingCart.save();
     return shoppingCartItem;
   }
 
@@ -112,8 +99,14 @@ export default class ShoppingCartItemService {
       (item) => item.id !== shoppingCartItem.id
     );
     shoppingCart.qty = shoppingCart.qty - 1;
-    shoppingCart.save();
+
     shoppingCartItem.remove();
+
+    const prices = shoppingCart.shoppingCartItems.map((item) => item.price);
+
+    shoppingCart.total = prices.reduce((prev, current) => prev + current, 0);
+
+    shoppingCart.save();
 
     return true;
   }
