@@ -24,7 +24,7 @@ export class ProductRating extends BaseEntity {
   @Column()
   rating: Number;
 
-  @ManyToOne(() => Product, (product) => product.productRating)
+  @ManyToOne(() => Product, (product) => product.productsRating)
   product: Product;
 
   @ManyToOne(() => User, (user) => user.productRating)
