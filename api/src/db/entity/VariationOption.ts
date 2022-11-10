@@ -13,7 +13,6 @@ import {
   BaseEntity,
 } from "typeorm";
 import { Variation } from "./Variation";
-import { ShoppingCartItem } from "./ShoppingCartItem";
 
 @Entity()
 export class VariationOption extends BaseEntity {
