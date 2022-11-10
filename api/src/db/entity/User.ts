@@ -18,6 +18,7 @@ import {
 import { ProductRating } from "./ProductRating";
 import { Review } from "./Review";
 import { ShoppingCart } from "./ShoppingCart";
+import { WishList } from "./WishList";
 
 @Entity()
 export class User extends BaseEntity {
@@ -72,9 +73,12 @@ export class User extends BaseEntity {
   @OneToMany(() => Review, (review) => review.user)
   reviews: Review[];
 
-  @OneToOne(() => ShoppingCart)
+  @OneToMany(() => ShoppingCart, (shopingCart) => shopingCart.user)
+  shoppingCarts: ShoppingCart[];
+
+  @OneToOne(() => WishList)
   @JoinColumn()
-  shoppingCart: ShoppingCart;
+  wishList: WishList;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
