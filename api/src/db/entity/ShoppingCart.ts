@@ -9,10 +9,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  ManyToOne,
   BaseEntity,
   Column,
 } from "typeorm";
 import { ShoppingCartItem } from "./ShoppingCartItem";
+import { User } from "./User";
 
 @Entity()
 export class ShoppingCart extends BaseEntity {
@@ -21,6 +23,12 @@ export class ShoppingCart extends BaseEntity {
 
   @Column()
   qty: number;
+
+  @Column()
+  total: number;
+
+  @ManyToOne(() => User, (user) => user.shoppingCarts)
+  user: User;
 
   @OneToMany(
     () => ShoppingCartItem,
