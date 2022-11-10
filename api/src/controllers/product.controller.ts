@@ -15,6 +15,28 @@ import ProductService from "../services/product.service";
 const productService = new ProductService();
 
 /**
+ * create product controller
+ * @async
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ */
+export async function createProductController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const data: Omit<IProduct, "id"> = req.body;
+    const product = await productService.create(data);
+
+    res.status(200).json(product);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
  * get all products controller
  * @async
  * @param {Request} _req
@@ -63,7 +85,7 @@ export async function getProductController(
  * @param {Response} res
  * @param {NextFunction} next
  */
-export async function categoryProductController(
+export async function updateProductController(
   req: Request,
   res: Response,
   next: NextFunction
