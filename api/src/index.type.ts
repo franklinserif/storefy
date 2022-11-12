@@ -109,6 +109,11 @@ export interface IConfirmCode {
   email: string;
 }
 
+export interface IWishList {
+  productId: string;
+  wishListId: string;
+}
+
 export type TSchemas =
   | joi.ObjectSchema<ICategory>
   | joi.ObjectSchema<IPayment>
@@ -121,6 +126,8 @@ export type TSchemas =
   | joi.ObjectSchema<IUser>
   | joi.ObjectSchema<{ email: string }>
   | joi.ObjectSchema<IConfirmCode>
-  | joi.ObjectSchema<IChangeUserPassword>;
+  | joi.ObjectSchema<IChangeUserPassword>
+  | joi.ObjectSchema<IWishList>
+  | joi.ObjectSchema<{ id: string }>;
 
 export type TProperty = "body" | "params";

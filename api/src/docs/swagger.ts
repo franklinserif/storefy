@@ -51,6 +51,8 @@ import {
   productIdSchema,
 } from "./product.swagger.schemas";
 
+import { addOrRemoveProductSchema } from "./wishList.swagger.schemas";
+
 const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.0",
   info: {
@@ -99,6 +101,7 @@ const swaggerDefinition: OAS3Definition = {
       shoppingCartItemCreateSchema,
       shoppingCartItemUpdateSchema,
       shoppingCartItemIdSchema,
+      addOrRemoveProductSchema,
 
       /*   createUserSchema: {
         type: "object",

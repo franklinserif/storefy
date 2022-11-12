@@ -8,7 +8,6 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  Column,
   OneToMany,
   BaseEntity,
 } from "typeorm";
@@ -19,9 +18,6 @@ import { Product } from "./Product";
 export class WishList extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
-
-  @Column()
-  rating: Number;
 
   @OneToMany(() => Product, (products) => products.wishList)
   products: Product[];
