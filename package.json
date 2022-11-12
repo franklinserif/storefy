@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "server": "npm run dev --prefix api",
+    "client": "npm run start --prefix client",
+    "dev": "npm run server & npm run client"
+  },
+  "name": "storefy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:franklinserif/storefy.git",
+  "author": "Franklin Rodriguez <franklinserif@gmail.com>",
+  "license": "MIT"
+}
