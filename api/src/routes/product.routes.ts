@@ -44,7 +44,7 @@ const router = express.Router();
  *        '200':
  *          description: response with a lit of product.
  *        '401':
- *          description: user not found or unauthorized.
+ *          description: product not found or unauthorized.
  *      security:
  *       - bearerAuth: []
  */
@@ -70,7 +70,7 @@ router.get("/", getProductsController);
  *        '200':
  *          description: get product by id.
  *        '401':
- *          description: user not found or unauthorized.
+ *          description: product not found or unauthorized.
  *      security:
  *       - bearerAuth: []
  */
@@ -98,7 +98,7 @@ router.get(
  *        '200':
  *          description: response with the product information .
  *        '401':
- *          description: user not found or unauthorized.
+ *          description: product not found or unauthorized.
  *      security:
  *       - bearerAuth: []
  */
@@ -133,7 +133,7 @@ router.post(
  *        '201':
  *          description: response with product information .
  *        '401':
- *          description: user not found or unauthorized.
+ *          description: product not found or unauthorized.
  *      security:
  *       - bearerAuth: []
  */
@@ -199,7 +199,7 @@ router.delete(
  *        '201':
  *          description: response with product information .
  *        '401':
- *          description: user not found or unauthorized.
+ *          description: product not found or unauthorized.
  *      security:
  *       - bearerAuth: []
  */
