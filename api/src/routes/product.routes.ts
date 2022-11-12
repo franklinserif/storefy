@@ -19,6 +19,7 @@ import {
   createProductController,
   updateProductController,
   productDeleteController,
+  addCategoryToProductController,
 } from "../controllers/product.controller";
 
 import express from "express";
@@ -206,5 +207,5 @@ router.patch(
   "/:id",
   validatorHandler(productIdSchema, "params"),
   validatorHandler(categoryIdSchema, "body"),
-  updateProductController
+  addCategoryToProductController
 );
