@@ -57,6 +57,29 @@ export async function getPromotionController(
 }
 
 /**
+ * create promotion controller
+ * @async
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ */
+export async function createPromotionController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const id = req.params as unknown as string;
+    const data: Omit<IPromotion, "id"> = req.body;
+    const productRating = await promotionService.create(id, data);
+
+    res.status(200).json(productRating);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
  * promotion update controller
  * @async
  * @param {Request} req

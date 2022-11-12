@@ -57,6 +57,29 @@ export async function getPaymentController(
 }
 
 /**
+ * create payment controller
+ * @async
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ */
+export async function createPaymentController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const id = req.params as unknown as string;
+    const data: Omit<IPayment, "id"> = req.body;
+    const payment = await paymentService.create(id, data);
+
+    res.status(200).json(payment);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
  * payment update controller
  * @async
  * @param {Request} req

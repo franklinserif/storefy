@@ -57,6 +57,29 @@ export async function getShoppingCartItemController(
 }
 
 /**
+ * create shopping cart item controller
+ * @async
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ */
+export async function createShoppingCartItemController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const id = req.params as unknown as string;
+    const data: Omit<IShoppingCartItem, "id"> = req.body;
+    const product = await shoppingCartItemService.create(id, data);
+
+    res.status(200).json(product);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
  * shopping Cart Item update controller
  * @async
  * @param {Request} req

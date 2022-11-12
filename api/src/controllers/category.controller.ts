@@ -57,6 +57,28 @@ export async function getCategoryController(
 }
 
 /**
+ * create category controller
+ * @async
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ */
+export async function createCategoryController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const data: Omit<ICategory, "id"> = req.body;
+    const category = await categoryService.create(data);
+
+    res.status(200).json(category);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
  * category update controller
  * @async
  * @param {Request} req

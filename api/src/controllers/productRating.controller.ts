@@ -57,6 +57,32 @@ export async function getProductRatingController(
 }
 
 /**
+ * create product Rating controller
+ * @async
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ */
+export async function createProductRatingController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { productId, userId, ...data } = req.body;
+    const productRating = await productRatingService.create(
+      userId as unknown as string,
+      productId as unknown as string,
+      data as unknown as Omit<IProductRating, "id">
+    );
+
+    res.status(200).json(productRating);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
  * product rating update controller
  * @async
  * @param {Request} req

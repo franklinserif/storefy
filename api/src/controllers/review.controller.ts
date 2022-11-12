@@ -57,6 +57,31 @@ export async function getReviewController(
 }
 
 /**
+ * create promotion controller
+ * @async
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ */
+export async function createReviewController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { productId, userId, ...data } = req.body;
+    const productRating = await reviewService.create(
+      userId as unknown as string,
+      productId as unknown as string,
+      data as unknown as Omit<IReview, "id">
+    );
+    res.status(200).json(productRating);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
  * review update controller
  * @async
  * @param {Request} req
