@@ -35,7 +35,7 @@ export default class ProductRatingService {
   async create(
     userId: string,
     productId: string,
-    data: Omit<IProductRating, "id">
+    data: Omit<IProductRating, "id" | "userId" | "productId">
   ) {
     const user = await userService.findOne(userId);
     const productRating = await ProductRating.create(data);

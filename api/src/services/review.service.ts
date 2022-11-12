@@ -31,7 +31,11 @@ export default class ReviewService {
    * @param {Omit<IReview, "id">}
    * @returns {Promise<IReview>}
    */
-  async create(userId: string, productId: string, data: Omit<IReview, "id">) {
+  async create(
+    userId: string,
+    productId: string,
+    data: Omit<IReview, "id" | "productId" | "userId">
+  ) {
     const user = await userService.findOne(userId);
     const product = await productService.findOne(productId);
     const review = await Review.create(data as Review);
@@ -40,7 +44,7 @@ export default class ReviewService {
     product.save();
     user.reviews.push(review);
     user.save();
-    
+
     return review;
   }
 

@@ -9,7 +9,7 @@ import {
   productCreateSchema,
   productUpdateSchema,
   productIdSchema,
-} from "../schemas/productSchema";
+} from "../schemas/productSchemas";
 
 import { categoryIdSchema } from "../schemas/categorySchemas";
 

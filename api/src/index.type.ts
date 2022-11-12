@@ -49,6 +49,8 @@ export interface IProduct {
 
 export interface IProductRating {
   id: string;
+  productId: string;
+  userId: string;
   rating: number;
 }
 
@@ -63,16 +65,21 @@ export interface IPromotion {
 
 export interface IReview {
   id: string;
+  productId: string;
+  userId: string;
   comments: string;
 }
 
 export interface IShoppingCart {
   id: string;
   qty: number;
+  total: number;
 }
 
 export interface IShoppingCartItem {
   id: string;
+  productId: string;
+  shoppingCartId: string;
   qty: number;
   price: number;
   size: string;

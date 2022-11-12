@@ -6,17 +6,27 @@
 import { ShoppingCart } from "../db/entity/ShoppingCart";
 import { IShoppingCart } from "../index.type";
 import boom from "@hapi/boom";
+import UserService from "./user.service";
+
+/**
+ * user service for crud operations related to users
+ * @const
+ * @type {UserService}
+ */
+const userService = new UserService();
 
 export default class ShoppingCartService {
   /**
    * Create a shopping cart
    * @async
-   * @param {Omit<IShoppinCart, "id">}
+   * @param {string} userId
+   * @param {Omit<IShoppinCart, "id">} data
    * @returns {Promise<IShoppinCart>}
    */
-  async create(data: Omit<IShoppingCart, "id">) {
+  async create(userId: string, data: Omit<IShoppingCart, "id">) {
+    const user = await userService.findOne(userId);
     const shoppingCart = await ShoppingCart.create(data as ShoppingCart);
-
+    user.shoppingCarts.push(shoppingCart);
     return shoppingCart;
   }
 

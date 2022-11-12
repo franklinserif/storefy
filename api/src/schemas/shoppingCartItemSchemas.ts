@@ -14,6 +14,20 @@ import { IShoppingCartItem } from "../index.type";
 const id = joi.string().uuid();
 
 /**
+ * product id uuid
+ * @const
+ * @type {joi.StringSchema<string>}
+ */
+const productId = joi.string().uuid();
+
+/**
+ * shoppinCart id uuid
+ * @const
+ * @type {joi.StringSchema<string>}
+ */
+const shoppingCartId = joi.string().uuid();
+
+/**
  * shoppinCartItem qty quatity
  * @const
  * @type {joi.NumberSchema<number>}
@@ -48,6 +62,8 @@ const color = joi.string();
  */
 export const shoppinCartItemCreateSchema = joi.object<IShoppingCartItem>({
   qty: qty.required(),
+  productId: productId.required(),
+  shoppingCartId: shoppingCartId.required(),
   price: price.required(),
   size: size.required(),
   color: color.required(),

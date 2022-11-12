@@ -5,10 +5,25 @@
 
 export const shoppingCartItemCreateSchema = {
   type: "object",
-  required: ["qty"],
+  required: ["qty", "productId", "shoppinCartItem", "price", "size", "color"],
   properties: {
     qty: {
       type: "number",
+    },
+    productId: {
+      type: "string",
+    },
+    shoppingCartId: {
+      type: "string",
+    },
+    price: {
+      type: "number",
+    },
+    size: {
+      type: "string",
+    },
+    color: {
+      type: "string",
     },
   },
 };
@@ -18,6 +33,21 @@ export const shoppingCartItemUpdateSchema = {
   properties: {
     qty: {
       type: "number",
+    },
+    productId: {
+      type: "string",
+    },
+    shoppingCartId: {
+      type: "string",
+    },
+    price: {
+      type: "number",
+    },
+    size: {
+      type: "string",
+    },
+    color: {
+      type: "string",
     },
   },
 };

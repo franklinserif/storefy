@@ -73,7 +73,7 @@ export async function createProductRatingController(
     const productRating = await productRatingService.create(
       userId as unknown as string,
       productId as unknown as string,
-      data as unknown as Omit<IProductRating, "id">
+      data as unknown as Omit<IProductRating, "id" | "productId" | "userId">
     );
 
     res.status(200).json(productRating);

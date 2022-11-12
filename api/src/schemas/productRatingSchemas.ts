@@ -21,12 +21,28 @@ const id = joi.string().uuid();
 const rating = joi.number();
 
 /**
+ * product id
+ * @const
+ * @type {joi.StringSchema<string>}
+ */
+const productId = joi.string().uuid();
+
+/**
+ * product id
+ * @const
+ * @type {joi.StringSchema<string>}
+ */
+const userId = joi.string().uuid();
+
+/**
  * product rating creation schema validation
  * @const
  * @type {joi.ObjectSchema<IProductRating>}
  */
 export const productRatingCreateSchema = joi.object<IProductRating>({
-  rating,
+  productId: productId.required(),
+  userId: userId.required(),
+  rating: rating.required(),
 });
 
 /**
@@ -34,7 +50,7 @@ export const productRatingCreateSchema = joi.object<IProductRating>({
  * @const
  * @type {joi.ObjectSchema<IProductRating>}
  */
-export const productRatingDataSchema = joi.object<IProductRating>({
+export const productRatingUpdateSchema = joi.object<IProductRating>({
   rating,
 });
 

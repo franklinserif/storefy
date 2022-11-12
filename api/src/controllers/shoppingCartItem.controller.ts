@@ -69,11 +69,17 @@ export async function createShoppingCartItemController(
   next: NextFunction
 ) {
   try {
-    const id = req.params as unknown as string;
-    const data: Omit<IShoppingCartItem, "id"> = req.body;
-    const product = await shoppingCartItemService.create(id, data);
+    const { productId, shoppingCartId, ...data } = req.body;
+    const shoppinCartItem = await shoppingCartItemService.create(
+      productId as unknown as string,
+      shoppingCartId as unknown as string,
+      data as unknown as Omit<
+        IShoppingCartItem,
+        "id" | "productId" | "shoppinCartId"
+      >
+    );
 
-    res.status(200).json(product);
+    res.status(200).json(shoppinCartItem);
   } catch (error) {
     next(error);
   }

@@ -5,10 +5,16 @@
 
 export const productRatingCreateSchema = {
   type: "object",
-  required: ["rating"],
+  required: ["rating", "productId", "userId"],
   properties: {
     rating: {
       type: "number",
+    },
+    productId: {
+      type: "string",
+    },
+    userId: {
+      type: "string",
     },
   },
 };
@@ -18,6 +24,12 @@ export const productRatingUpdateSchema = {
   properties: {
     rating: {
       type: "number",
+    },
+    productId: {
+      type: "string",
+    },
+    userId: {
+      type: "string",
     },
   },
 };

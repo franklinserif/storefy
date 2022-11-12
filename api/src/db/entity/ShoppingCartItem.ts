@@ -13,6 +13,7 @@ import {
   BaseEntity,
 } from "typeorm";
 import { ShoppingCart } from "./ShoppingCart";
+import { Product } from "./Product";
 
 @Entity()
 export class ShoppingCartItem extends BaseEntity {
@@ -36,6 +37,9 @@ export class ShoppingCartItem extends BaseEntity {
     (shoppingCart) => shoppingCart.shoppingCartItems
   )
   shoppingCart: ShoppingCart;
+
+  @ManyToOne(() => Product, (product) => product.shoppingCartItems)
+  product: Product;
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;

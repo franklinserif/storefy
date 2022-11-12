@@ -3,28 +3,12 @@
  * @module docs/userSwaggerSchemas
  */
 
-export const createUserSchema = {
+export const changeUserPasswordSchema = {
   type: "object",
-  required: [
-    "firstName",
-    "lastName",
-    "email",
-    "password",
-    "roles",
-    "phoneNumber",
-    "streetNumber",
-    "addressLine1",
-    "addressLine2",
-    "city",
-    "region",
-    "postalCode",
-  ],
+  required: ["code", "email", "password"],
   properties: {
-    firstName: {
-      type: "string",
-    },
-    lastName: {
-      type: "string",
+    code: {
+      type: "number",
     },
     email: {
       type: "string",
@@ -32,29 +16,27 @@ export const createUserSchema = {
     password: {
       type: "string",
     },
-    roles: {
-      type: "string",
-    },
-    streetNumber: {
-      type: "string",
-    },
-    addressLine1: {
-      type: "string",
-    },
-    addressLine2: {
-      type: "string",
-    },
+  },
+};
 
-    phoneNumber: {
+export const confirmCodeUserSchema = {
+  type: "object",
+  required: ["code", "email"],
+  properties: {
+    code: {
+      type: "number",
+    },
+    email: {
       type: "string",
     },
-    city: {
-      type: "string",
-    },
-    region: {
-      type: "string",
-    },
-    postalCode: {
+  },
+};
+
+export const createCodeUserSchema = {
+  type: "object",
+  required: ["email"],
+  properties: {
+    email: {
       type: "string",
     },
   },

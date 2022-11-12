@@ -7,6 +7,14 @@ import { ShoppingCartItem } from "../db/entity/ShoppingCartItem";
 import { IShoppingCartItem } from "../index.type";
 import boom from "@hapi/boom";
 import ShoppingCartService from "./shoppingCart.service";
+import ProductService from "./product.service";
+
+/**
+ * contains all related methods for product crud operation
+ * @const
+ * @type {ShopppingCartService}
+ */
+const productService = new ProductService();
 
 /**
  * contains all related methods for shopping cart crud operation
@@ -19,19 +27,28 @@ export default class ShoppingCartItemService {
   /**
    * Create a shopping cart item
    * @async
+   * @param {string} productId
    * @param {string} shoppingCartId
    * @param {Omit<IShoppingCartItem, "id">}
    * @returns {Promise<IShoppingCartItem>}
    */
-  async create(shoppingCartId: string, data: Omit<IShoppingCartItem, "id">) {
+  async create(
+    productId: string,
+    shoppingCartId: string,
+    data: Omit<IShoppingCartItem, "id" | "productId" | "shoppinCartId">
+  ) {
+    const product = await productService.findOne(productId);
+
     const shoppingCart = await shoppingCartService.findOne(shoppingCartId);
 
     const shoppingCartItem = await ShoppingCartItem.create();
 
     shoppingCartItem.qty = data.qty;
 
-    shoppingCartItem.save();
+    product.shoppingCartItems.push(shoppingCartItem);
+    product.save();
 
+    shoppingCartItem.save();
     shoppingCart.shoppingCartItems.push(shoppingCartItem);
     shoppingCart.qty > 0 ? (shoppingCart.qty = +1) : (shoppingCart.qty = 1);
     shoppingCart.save();

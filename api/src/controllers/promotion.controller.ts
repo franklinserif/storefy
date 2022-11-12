@@ -71,9 +71,9 @@ export async function createPromotionController(
   try {
     const id = req.params as unknown as string;
     const data: Omit<IPromotion, "id"> = req.body;
-    const productRating = await promotionService.create(id, data);
+    const promotion = await promotionService.create(id, data);
 
-    res.status(200).json(productRating);
+    res.status(200).json(promotion);
   } catch (error) {
     next(error);
   }
@@ -109,7 +109,7 @@ export async function promotionUpdateController(
  * @param {Response} res
  * @param {NextFunction} next
  */
-export async function categoryDeleteController(
+export async function promotionDeleteController(
   req: Request,
   res: Response,
   next: NextFunction

@@ -73,7 +73,7 @@ export async function createReviewController(
     const productRating = await reviewService.create(
       userId as unknown as string,
       productId as unknown as string,
-      data as unknown as Omit<IReview, "id">
+      data as unknown as Omit<IReview, "id" | "productId" | "userId">
     );
     res.status(200).json(productRating);
   } catch (error) {

@@ -69,8 +69,9 @@ export async function createShoppingCartController(
   next: NextFunction
 ) {
   try {
+    const id = req.params as unknown as string;
     const data: Omit<IShoppingCart, "id"> = req.body;
-    const shoppingCart = await shoppingCartService.create(data);
+    const shoppingCart = await shoppingCartService.create(id, data);
 
     res.status(200).json(shoppingCart);
   } catch (error) {
