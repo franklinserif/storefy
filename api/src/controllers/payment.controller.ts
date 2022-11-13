@@ -69,7 +69,7 @@ export async function createPaymentController(
   next: NextFunction
 ) {
   try {
-    const id = req.params as unknown as string;
+    const { id } = req.params;
     const data: Omit<IPayment, "id"> = req.body;
     const payment = await paymentService.create(id, data);
 
