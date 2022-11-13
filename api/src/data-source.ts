@@ -8,9 +8,8 @@ import { Promotion } from "./db/entity/Promotion";
 import { Review } from "./db/entity/Review";
 import { ShoppingCart } from "./db/entity/ShoppingCart";
 import { ShoppingCartItem } from "./db/entity/ShoppingCartItem";
-import { Variation } from "./db/entity/Variation";
-import { VariationOption } from "./db/entity/VariationOption";
 import { Product } from "./db/entity/Product";
+import { ProductModel } from "./db/entity/ProductModel";
 import CONFIG from "./config";
 
 export const AppDataSource = new DataSource({
@@ -31,9 +30,8 @@ export const AppDataSource = new DataSource({
     Review,
     ShoppingCart,
     ShoppingCartItem,
-    Variation,
-    VariationOption,
     Product,
+    ProductModel,
   ],
   migrations: [],
   subscribers: [],
