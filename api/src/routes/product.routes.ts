@@ -75,7 +75,7 @@ router.get("/", getProductsController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(productIdSchema, "params"),
   getProductController
 );
