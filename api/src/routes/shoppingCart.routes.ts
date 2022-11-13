@@ -9,7 +9,7 @@ import {
   shoppingCartIdSchema,
   shoppingCartCreateSchema,
   shoppingCartUpdateSchema,
-} from "../schemas/shoppinCartSchemas";
+} from "../schemas/shoppingCartSchemas";
 
 import {
   getShoppingCartsController,
