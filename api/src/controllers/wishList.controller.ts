@@ -121,7 +121,7 @@ export async function wishListDeleteController(
   next: NextFunction
 ) {
   try {
-    const id = req.params as unknown as string;
+    const { id } = req.params;
     const rta = await wishListService.delete(id);
 
     res.status(201).json(rta);

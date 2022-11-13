@@ -27,8 +27,9 @@ export async function createProductController(
   next: NextFunction
 ) {
   try {
+    const { id: userId } = req.params;
     const data: Omit<IProduct, "id"> = req.body;
-    const product = await productService.create(data);
+    const product = await productService.create(userId, data);
 
     res.status(200).json(product);
   } catch (error) {
@@ -135,8 +136,12 @@ export async function addCategoryToProductController(
   next: NextFunction
 ) {
   try {
-    const { productId, categoryId } = req.body;
-    const rta = await productService.addCategory(productId, categoryId);
+    const { id } = req.params;
+    const { id: categoryId } = req.body;
+    const rta = await productService.addCategory(
+      id,
+      categoryId as unknown as string
+    );
 
     res.status(201).json(rta);
   } catch (error) {

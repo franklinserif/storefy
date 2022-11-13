@@ -19,6 +19,7 @@ import { ProductRating } from "./ProductRating";
 import { Review } from "./Review";
 import { ShoppingCart } from "./ShoppingCart";
 import { WishList } from "./WishList";
+import { Product } from "./Product";
 
 @Entity()
 export class User extends BaseEntity {
@@ -66,6 +67,9 @@ export class User extends BaseEntity {
 
   @Column({ name: "postal_code" })
   postalCode: Number;
+
+  @OneToMany(() => Product, (product) => product.user)
+  products: Product[];
 
   @OneToMany(() => ProductRating, (ProductRating) => ProductRating.user)
   productRating: ProductRating[];

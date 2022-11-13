@@ -6,6 +6,7 @@
 import { Product } from "../db/entity/Product";
 import { IProduct } from "../index.type";
 import CategoryService from "./category.service";
+import UserService from "./user.service";
 import boom from "@hapi/boom";
 
 /**
@@ -15,15 +16,27 @@ import boom from "@hapi/boom";
  */
 const categoryService = new CategoryService();
 
+/**
+ * contain all methods related to product services
+ * @const
+ * @type {UserService}
+ */
+const userService = new UserService();
+
 export default class ProductService {
   /**
    * Create a product
    * @async
+   * @param {string} userId
    * @param {Omit<IProduct, "id">}
    * @returns {Promise<IProduct>}
    */
-  async create(data: Omit<IProduct, "id">) {
+  async create(userId: string, data: Omit<IProduct, "id">) {
+    const user = await userService.findOne(userId);
     const product = await Product.create(data as Product);
+
+    user.products.push(product);
+    user.save();
 
     return product;
   }
