@@ -72,7 +72,6 @@ export interface IReview {
 
 export interface IShoppingCart {
   id: string;
-  qty: number;
   total: number;
 }
 
