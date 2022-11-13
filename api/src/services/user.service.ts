@@ -7,6 +7,13 @@ import { IUser } from "../index.type";
 import removePassword from "../utils/removePassword";
 import boom from "@hapi/boom";
 import bcrypt from "bcrypt";
+import AuthService from "./auth.service";
+
+/**
+ * service related to authentication crud operations
+ * @const
+ */
+const authService = new AuthService();
 
 export default class UserService {
   /**
@@ -18,9 +25,10 @@ export default class UserService {
   async create(data: Omit<IUser, "id">) {
     // Encrypt user password
     const encryptedPassword = await bcrypt.hash(data.password, 10);
-    const userData = { ...data, password: encryptedPassword };
+    const userData = { ...data, password: encryptedPassword, isActive: false };
 
     const user = await User.create(userData);
+    await authService.createCode(data.email);
 
     const userWithoutPassword = removePassword(user);
     return userWithoutPassword;
