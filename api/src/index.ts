@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import { boomErrorHandler } from "./middlewares/error.handler";
 import swaggerUi from "swagger-ui-express";
 import swaggerSetup from "./docs/swagger";
 import CONFIG from "./config";
@@ -28,6 +29,7 @@ const options: cors.CorsOptions = {
 };
 
 app.use(cors(options));
+app.use(boomErrorHandler);
 
 /**
  * API docs route
