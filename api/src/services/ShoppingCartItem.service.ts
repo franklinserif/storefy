@@ -105,7 +105,7 @@ export default class ShoppingCartItemService {
    * Remove shopping cart item from db
    * @async
    * @param {string} shoppingCartId
-   * @param {string} shoppinCartItemId shopping cart item id
+   * @param {string} shoppinCartItemId
    * @returns {Promise<boolean>}
    */
   async delete(shoppingCartId: string, shoppinCartItemId: string) {
