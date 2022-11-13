@@ -20,6 +20,7 @@ import { Review } from "./Review";
 import { ShoppingCart } from "./ShoppingCart";
 import { WishList } from "./WishList";
 import { Product } from "./Product";
+import { Payment } from "./Payment";
 
 @Entity()
 export class User extends BaseEntity {
@@ -68,7 +69,9 @@ export class User extends BaseEntity {
   @Column({ name: "postal_code" })
   postalCode: Number;
 
-  @OneToMany(() => Product, (product) => product.user)
+  @OneToMany(() => Product, (product) => product.user, {
+    cascade: ["remove"],
+  })
   products: Product[];
 
   @OneToMany(() => ProductRating, (ProductRating) => ProductRating.user)
@@ -77,12 +80,22 @@ export class User extends BaseEntity {
   @OneToMany(() => Review, (review) => review.user)
   reviews: Review[];
 
-  @OneToMany(() => ShoppingCart, (shopingCart) => shopingCart.user)
+  @OneToMany(() => ShoppingCart, (shopingCart) => shopingCart.user, {
+    cascade: ["remove"],
+  })
   shoppingCarts: ShoppingCart[];
 
-  @OneToOne(() => WishList)
+  @OneToOne(() => WishList, {
+    cascade: ["remove"],
+  })
   @JoinColumn()
   wishList: WishList;
+
+  @OneToOne(() => Payment, {
+    cascade: ["remove"],
+  })
+  @JoinColumn()
+  payment: Payment;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
