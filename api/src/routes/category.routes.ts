@@ -72,7 +72,7 @@ router.get("/", getCategoriesController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(categoryIdSchema, "params"),
   getCategoryController
 );
