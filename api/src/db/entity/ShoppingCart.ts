@@ -22,9 +22,6 @@ export class ShoppingCart extends BaseEntity {
   id: string;
 
   @Column()
-  qty: number;
-
-  @Column()
   total: number;
 
   @ManyToOne(() => User, (user) => user.shoppingCarts)
