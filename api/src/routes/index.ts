@@ -3,7 +3,7 @@
  * @module routes/index
  */
 
-import express, { Application, Express } from "express";
+import express, { Application } from "express";
 
 import authRoutes from "./auth.routes";
 import categoryRoutes from "./category.routes";
