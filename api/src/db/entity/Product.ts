@@ -21,6 +21,7 @@ import { ProductRating } from "./ProductRating";
 import { Review } from "./Review";
 import { WishList } from "./WishList";
 import { ShoppingCartItem } from "./ShoppingCartItem";
+import { User } from "./User";
 
 @Entity()
 export class Product extends BaseEntity {
@@ -60,6 +61,9 @@ export class Product extends BaseEntity {
 
   @ManyToOne(() => WishList, (wishList) => wishList.products)
   wishList: WishList;
+
+  @ManyToOne(() => User, (user) => user.products)
+  user: User;
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;
