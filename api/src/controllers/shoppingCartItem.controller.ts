@@ -124,7 +124,8 @@ export async function shoppingCartItemDeleteController(
   next: NextFunction
 ) {
   try {
-    const { shoppingCartId, shoppingCartItemId } = req.params;
+    const { id: shoppingCartItemId } = req.params;
+    const { id: shoppingCartId } = req.body;
     const rta = await shoppingCartItemService.delete(
       shoppingCartId,
       shoppingCartItemId
