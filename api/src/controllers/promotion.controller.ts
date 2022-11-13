@@ -69,7 +69,7 @@ export async function createPromotionController(
   next: NextFunction
 ) {
   try {
-    const id = req.params as unknown as string;
+    const { id } = req.params;
     const data: Omit<IPromotion, "id"> = req.body;
     const promotion = await promotionService.create(id, data);
 
