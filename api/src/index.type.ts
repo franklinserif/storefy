@@ -75,6 +75,13 @@ export interface IShoppingCart {
   total: number;
 }
 
+export interface IProductModel {
+  id: string;
+  size: string[];
+  colors: string[];
+  qty: number;
+}
+
 export interface IShoppingCartItem {
   id: string;
   productId: string;
