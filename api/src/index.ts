@@ -6,6 +6,7 @@ import swaggerUi from "swagger-ui-express";
 import swaggerSetup from "./docs/swagger";
 import CONFIG from "./config";
 import path from "path";
+import routeInit from "./routes";
 import { AppDataSource } from "./data-source";
 
 const app: Application = express();
@@ -52,6 +53,8 @@ if (!CONFIG.PRODUCTION) {
     res.send("dev server");
   });
 }
+
+routeInit(app);
 
 /**
  * Initialize database connection
