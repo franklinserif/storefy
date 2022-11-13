@@ -11,6 +11,7 @@ import {
   productIdSchema,
 } from "../schemas/productSchemas";
 
+import { userIdSchema } from "../schemas/userSchemas";
 import { categoryIdSchema } from "../schemas/categorySchemas";
 
 import {
@@ -103,7 +104,8 @@ router.get(
  *       - bearerAuth: []
  */
 router.post(
-  "/",
+  "/:id",
+  validatorHandler(userIdSchema, "body"),
   validatorHandler(productCreateSchema, "body"),
   createProductController
 );
