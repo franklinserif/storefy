@@ -21,7 +21,7 @@ export default class PaymentService {
    * @async
    * @param {string} userId
    * @param {Omit<IPayment, "id">}
-   * @returns {Promise<IPayment>}
+   * @returns {Promise<IPayment>} Promise
    */
   async create(userId: string, data: Omit<IPayment, "id">) {
     const user = await userService.findOne(userId);
@@ -48,7 +48,8 @@ export default class PaymentService {
    * Find payment by id
    * @async
    * @param {string} id payment id
-   * @returns {Promise<IPayment>}
+   * @throws {Error} not found
+   * @returns {Promise<IPayment>} Promise
    */
   async findOne(id: string) {
     const payment = await Payment.findOneBy({ id });
@@ -63,7 +64,8 @@ export default class PaymentService {
    * @async
    * @param {string} id payment id
    * @param {Partial<IPayment>} data to update
-   * @returns {Promise<IPayment>}
+   * @throws {Error} not found
+   * @returns {Promise<IPayment>} Promise
    */
   async update(id: string, data: Partial<IPayment>) {
     const updatedPayment = await Payment.update(id, data);
@@ -77,7 +79,8 @@ export default class PaymentService {
    * Remove payment from db
    * @async
    * @param {string} id payment id
-   * @returns {Promise<boolean>}
+   * @throws {Error} not found
+   * @returns {Promise<boolean>} Promise
    */
   async delete(id: string) {
     const payment = await this.findOne(id);

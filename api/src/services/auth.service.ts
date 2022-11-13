@@ -26,7 +26,8 @@ export default class AuthService {
    * @async
    * @param {string} email address
    * @param {string} password
-   * @returns {Promise<IUser>}
+   * @throws {Error} unauthorized
+   * @returns {Promise<IUser>} Promise
    */
   async getUser(email: string, password: string) {
     const user = await userService.findByEmail(email);
@@ -42,7 +43,7 @@ export default class AuthService {
    * Signs tokens for user auth
    * @async
    * @param {IUser} user
-   * @returns {Promise<ISignTokens>}
+   * @returns {Promise<ISignTokens>} Promise
    */
   async signTokens(user: IUser) {
     const payload = {
@@ -77,7 +78,8 @@ export default class AuthService {
    * Generate random code for user auth
    * @async
    * @param {string} email user email address
-   * @returns {Promise<string>}
+   * @throws {Error} unauthorized
+   * @returns {Promise<string>} Promise
    */
   async createCode(email: string) {
     const confirmCode = generateRandomCode();
@@ -101,7 +103,8 @@ export default class AuthService {
    * @async
    * @param {string} email user email address
    * @param {number} confirmCode
-   * @returns {Promise<User>}
+   * @throws {Error} unauthorized
+   * @returns {Promise<User>} Promise
    */
   async confirmCode(email: string, confirmCode: number) {
     const user = await userService.findByEmail(email);
@@ -125,6 +128,7 @@ export default class AuthService {
    * @param {string} email user email address
    * @param {number} confirmCode
    * @param {string} password user new password
+   * @throws {Error} unauthorized
    * @returns {Promise<boolean>}
    */
   async changeUserPassword(

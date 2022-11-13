@@ -12,7 +12,7 @@ export default class CategoryService {
    * Create a category
    * @async
    * @param {Omit<ICategory, "id">}
-   * @returns {Promise<ICategory>}
+   * @returns {Promise<ICategory>} Promise
    */
   async create(data: Omit<ICategory, "id">) {
     const category = await Category.create(data);
@@ -23,7 +23,7 @@ export default class CategoryService {
   /**
    * Find all a category
    * @async
-   * @returns {Promise<ICategory>}
+   * @returns {Promise<ICategory>} Promise
    */
   async findAll() {
     const categories = await Category.find();
@@ -35,7 +35,8 @@ export default class CategoryService {
    * Find category by id
    * @async
    * @param {string} id category id
-   * @returns {Promise<ICategory>}
+   * @throws {Error} not found
+   * @returns {Promise<ICategory>} Promise
    */
   async findOne(id: string) {
     const category = await Category.findOneBy({ id });
@@ -50,7 +51,8 @@ export default class CategoryService {
    * @async
    * @param {string} id category id
    * @param {Partial<ICategory>} data to update
-   * @returns {Promise<ICategory>}
+   * @throws {Error} not found
+   * @returns {Promise<ICategory>} Promise
    */
   async update(id: string, data: Partial<ICategory>) {
     const updatedCategory = await Category.update(id, data);
@@ -64,7 +66,8 @@ export default class CategoryService {
    * Remove category from db
    * @async
    * @param {string} id category id
-   * @returns {Promise<boolean>}
+   * @throws {Error} not found
+   * @returns {Promise<boolean>} Promise
    */
   async delete(id: string) {
     const category = await this.findOne(id);
