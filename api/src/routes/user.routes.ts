@@ -137,3 +137,5 @@ router.delete(
   validatorHandler(userIdSchema, "params"),
   userDeleteController
 );
+
+export default router;

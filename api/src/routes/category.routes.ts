@@ -170,3 +170,5 @@ router.delete(
   validatorHandler(categoryIdSchema, "params"),
   categoryDeleteController
 );
+
+export default router;

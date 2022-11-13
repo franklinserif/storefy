@@ -209,3 +209,5 @@ router.patch(
   validatorHandler(categoryIdSchema, "body"),
   addCategoryToProductController
 );
+
+export default router;

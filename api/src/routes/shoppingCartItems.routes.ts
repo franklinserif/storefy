@@ -173,3 +173,5 @@ router.delete(
   validatorHandler(shoppingCartIdSchema, "body"),
   shoppingCartItemDeleteController
 );
+
+export default router;

@@ -170,3 +170,5 @@ router.delete(
   validatorHandler(paymentIdSchema, "params"),
   paymentDeleteController
 );
+
+export default router;
