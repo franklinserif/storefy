@@ -4,7 +4,7 @@
  */
 
 import joi from "joi";
-import { ICategory } from "index.type";
+import { ICategory } from "../index.type";
 
 /**
  * category id uuid
