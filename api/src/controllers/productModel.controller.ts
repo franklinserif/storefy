@@ -85,7 +85,7 @@ export async function createProductModelController(
  * @param res
  * @param next
  */
-export async function paymentUpdateController(
+export async function productModelUpdateController(
   req: Request,
   res: Response,
   next: NextFunction
