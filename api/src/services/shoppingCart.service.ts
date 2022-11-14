@@ -25,8 +25,14 @@ export default class ShoppingCartService {
    */
   async create(userId: string, data: Omit<IShoppingCart, "id">) {
     const user = await userService.findOne(userId);
-    const shoppingCart = await ShoppingCart.create(data as ShoppingCart);
+    const shoppingCart = ShoppingCart.create();
+
+    shoppingCart.total = data.total;
     user.shoppingCarts.push(shoppingCart);
+
+    await shoppingCart.save();
+    await user.save();
+
     return shoppingCart;
   }
 
@@ -36,7 +42,9 @@ export default class ShoppingCartService {
    * @returns {Promise<IShoppinCart>}
    */
   async findAll() {
-    const shoppingCart = await ShoppingCart.find();
+    const shoppingCart = await ShoppingCart.find({
+      relations: ["shoppingCartItems", "shoppingCartItems.productModel"],
+    });
 
     return shoppingCart;
   }
@@ -79,7 +87,7 @@ export default class ShoppingCartService {
   async delete(id: string) {
     const shoppingCart = await this.findOne(id);
 
-    shoppingCart.remove();
+    await shoppingCart.remove();
 
     return true;
   }
