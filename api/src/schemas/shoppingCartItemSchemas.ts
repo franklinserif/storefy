@@ -64,9 +64,6 @@ export const shoppinCartItemCreateSchema = joi.object<IShoppingCartItem>({
   qty: qty.required(),
   productId: productId.required(),
   shoppingCartId: shoppingCartId.required(),
-  price: price.required(),
-  size: size.required(),
-  color: color.required(),
 });
 
 /**
@@ -76,9 +73,6 @@ export const shoppinCartItemCreateSchema = joi.object<IShoppingCartItem>({
  */
 export const shoppinCartItemUpdateSchema = joi.object<IShoppingCartItem>({
   qty,
-  price,
-  size,
-  color,
 });
 
 /**
