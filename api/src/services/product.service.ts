@@ -33,10 +33,10 @@ export default class ProductService {
    */
   async create(userId: string, data: Omit<IProduct, "id">) {
     const user = await userService.findOne(userId);
-    const product = await Product.create(data as Product);
+    const product = Product.create(data);
 
     user.products.push(product);
-    user.save();
+    await user.save();
 
     return product;
   }
@@ -90,7 +90,7 @@ export default class ProductService {
   async delete(id: string) {
     const product = await this.findOne(id);
 
-    product.remove();
+    await product.remove();
 
     return true;
   }
@@ -106,7 +106,7 @@ export default class ProductService {
     const category = await categoryService.findOne(categoryId);
 
     product.categories.push(category);
-    product.save();
+    await product.save();
 
     return true;
   }
