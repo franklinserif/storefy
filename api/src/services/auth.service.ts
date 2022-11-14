@@ -84,7 +84,7 @@ export default class AuthService {
 
     const user = await userService.findByEmail(email);
     user.confirmCode = confirmCode;
-    user.save();
+    await user.save();
 
     sendMail({
       to: [email],
@@ -113,7 +113,7 @@ export default class AuthService {
     if (!user.isActive) {
       user.isActive = true;
       user.confirmCode = 0;
-      user.save();
+      await user.save();
     }
 
     return user;
@@ -137,7 +137,7 @@ export default class AuthService {
     const newPasswordEncryted = await bcrypt.hash(password, 10);
 
     user.password = newPasswordEncryted;
-    user.save();
+    await user.save();
 
     return true;
   }
