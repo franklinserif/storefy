@@ -39,7 +39,7 @@ export class ProductModel extends BaseEntity {
 
   @OneToMany(
     () => ShoppingCartItem,
-    (shoppingCartItem) => shoppingCartItem.product
+    (shoppingCartItem) => shoppingCartItem.productModel
   )
   shoppingCartItems: ShoppingCartItem[];
 
