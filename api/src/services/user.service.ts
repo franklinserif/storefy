@@ -100,7 +100,7 @@ export default class UserService {
     const user = await this.findOne(id);
     if (!user) throw boom.notFound();
 
-    user.remove();
+    await user.remove();
 
     return { message: "user was delete from db" };
   }
