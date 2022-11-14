@@ -72,8 +72,15 @@ export interface IReview {
 
 export interface IShoppingCart {
   id: string;
-  qty: number;
   total: number;
+}
+
+export interface IProductModel {
+  id: string;
+  price: number;
+  sizes: string[];
+  colors: string[];
+  qty: number;
 }
 
 export interface IShoppingCartItem {

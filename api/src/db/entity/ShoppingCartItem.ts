@@ -8,29 +8,16 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  Column,
   ManyToOne,
   BaseEntity,
 } from "typeorm";
 import { ShoppingCart } from "./ShoppingCart";
-import { Product } from "./Product";
+import { ProductModel } from "./ProductModel";
 
 @Entity()
 export class ShoppingCartItem extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
-
-  @Column()
-  qty: number;
-
-  @Column()
-  size: string;
-
-  @Column()
-  price: number;
-
-  @Column()
-  color: string;
 
   @ManyToOne(
     () => ShoppingCart,
@@ -38,8 +25,11 @@ export class ShoppingCartItem extends BaseEntity {
   )
   shoppingCart: ShoppingCart;
 
-  @ManyToOne(() => Product, (product) => product.shoppingCartItems)
-  product: Product;
+  @ManyToOne(
+    () => ProductModel,
+    (productModel) => productModel.shoppingCartItems
+  )
+  product: ProductModel;
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;

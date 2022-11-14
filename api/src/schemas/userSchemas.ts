@@ -4,7 +4,7 @@
  */
 
 import joi from "joi";
-import { IUser, IChangeUserPassword, IConfirmCode } from "index.type";
+import { IUser, IChangeUserPassword, IConfirmCode } from "../index.type";
 
 /**
  * user id - uuid

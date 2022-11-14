@@ -4,7 +4,7 @@
  */
 
 import joi from "joi";
-import { IProduct } from "index.type";
+import { IProduct } from "../index.type";
 
 /**
  * product id uuid

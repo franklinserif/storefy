@@ -2,10 +2,12 @@ import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import { boomErrorHandler } from "./middlewares/error.handler";
 import swaggerUi from "swagger-ui-express";
 import swaggerSetup from "./docs/swagger";
 import CONFIG from "./config";
 import path from "path";
+import routeInit from "./routes";
 import { AppDataSource } from "./data-source";
 
 const app: Application = express();
@@ -27,6 +29,7 @@ const options: cors.CorsOptions = {
 };
 
 app.use(cors(options));
+app.use(boomErrorHandler);
 
 /**
  * API docs route
@@ -52,6 +55,8 @@ if (!CONFIG.PRODUCTION) {
     res.send("dev server");
   });
 }
+
+routeInit(app);
 
 /**
  * Initialize database connection

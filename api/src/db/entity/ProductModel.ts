@@ -1,6 +1,6 @@
 /**
- * Module of the entity shopping cart
- * @module entity/ShoppingCart
+ * Module of the entity Product
+ * @module entity/Product
  */
 
 import {
@@ -8,28 +8,38 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  Column,
   OneToMany,
   ManyToOne,
   BaseEntity,
-  Column,
 } from "typeorm";
+
+import { Product } from "./Product";
 import { ShoppingCartItem } from "./ShoppingCartItem";
-import { User } from "./User";
 
 @Entity()
-export class ShoppingCart extends BaseEntity {
+export class ProductModel extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
-  total: number;
+  qty: number;
 
-  @ManyToOne(() => User, (user) => user.shoppingCarts)
-  user: User;
+  @Column()
+  price: number;
+
+  @Column()
+  sizes: string[];
+
+  @Column()
+  colors: string[];
+
+  @ManyToOne(() => Product, (product) => product.productsModels)
+  product: Product;
 
   @OneToMany(
     () => ShoppingCartItem,
-    (shoppingCartItem) => shoppingCartItem.shoppingCart
+    (shoppingCartItem) => shoppingCartItem.product
   )
   shoppingCartItems: ShoppingCartItem[];
 

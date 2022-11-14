@@ -170,3 +170,5 @@ router.delete(
   validatorHandler(promotionIdSchema, "params"),
   promotionDeleteController
 );
+
+export default router;

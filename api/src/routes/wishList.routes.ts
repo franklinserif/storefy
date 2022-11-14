@@ -161,3 +161,5 @@ router.delete(
   validatorHandler(wishListIdSchema, "params"),
   wishListDeleteController
 );
+
+export default router;

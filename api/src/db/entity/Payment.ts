@@ -9,12 +9,8 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Column,
-  OneToOne,
-  JoinColumn,
   BaseEntity,
 } from "typeorm";
-
-import { User } from "./User";
 
 @Entity()
 export class Payment extends BaseEntity {
@@ -32,10 +28,6 @@ export class Payment extends BaseEntity {
 
   @Column({ name: "payment_type" })
   paymentType: String;
-
-  @OneToOne(() => User)
-  @JoinColumn()
-  user: User;
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;

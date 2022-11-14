@@ -170,3 +170,5 @@ router.delete(
   validatorHandler(reviewIdSchema, "params"),
   reviewDeleteController
 );
+
+export default router;

@@ -72,7 +72,7 @@ router.get("/", getCategoriesController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(categoryIdSchema, "params"),
   getCategoryController
 );
@@ -170,3 +170,5 @@ router.delete(
   validatorHandler(categoryIdSchema, "params"),
   categoryDeleteController
 );
+
+export default router;

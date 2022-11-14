@@ -170,3 +170,5 @@ router.delete(
   validatorHandler(productRatingIdSchema, "params"),
   productRatingDeleteController
 );
+
+export default router;
