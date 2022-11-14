@@ -32,10 +32,10 @@ export default class CategoryService {
    */
   async create(userId: string) {
     const user = await userService.findOne(userId);
-    const wishList = await WishList.create();
+    const wishList = WishList.create();
 
     user.wishList = wishList;
-    user.save();
+    await user.save();
 
     return wishList;
   }
@@ -66,7 +66,7 @@ export default class CategoryService {
     const wishList = await this.findOne(wishListId);
 
     wishList.products.push(product);
-    wishList.save();
+    await wishList.save();
 
     return wishList;
   }
@@ -86,7 +86,7 @@ export default class CategoryService {
       (item) => item.id != product.id
     );
 
-    wishList.save();
+    await wishList.save();
 
     return wishList;
   }
@@ -100,7 +100,7 @@ export default class CategoryService {
   async delete(id: string) {
     const wishList = await this.findOne(id);
 
-    wishList.remove();
+    await wishList.remove();
 
     return true;
   }
