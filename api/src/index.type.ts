@@ -88,9 +88,6 @@ export interface IShoppingCartItem {
   productId: string;
   shoppingCartId: string;
   qty: number;
-  price: number;
-  size: string;
-  color: string;
 }
 
 export interface ISignTokens {
