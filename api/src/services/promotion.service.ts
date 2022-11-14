@@ -28,7 +28,7 @@ export default class PromotionService {
     const promotion = await Promotion.create(data);
 
     promotion.categories.push(category);
-    promotion.save();
+    await promotion.save();
 
     return promotion;
   }
@@ -82,7 +82,7 @@ export default class PromotionService {
   async delete(id: string) {
     const promotion = await this.findOne(id);
 
-    promotion.remove();
+    await promotion.remove();
 
     return true;
   }
@@ -100,7 +100,8 @@ export default class PromotionService {
     promotion.categories = promotion.categories.filter(
       (category) => category.id !== categoryId
     );
-    promotion.save();
+
+    await promotion.save();
 
     return promotion;
   }
