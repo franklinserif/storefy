@@ -69,7 +69,7 @@ export default class CategoryService {
   async delete(id: string) {
     const category = await this.findOne(id);
 
-    category.remove();
+    await category.remove();
 
     return true;
   }
