@@ -77,7 +77,8 @@ export interface IShoppingCart {
 
 export interface IProductModel {
   id: string;
-  size: string[];
+  price: number;
+  sizes: string[];
   colors: string[];
   qty: number;
 }
