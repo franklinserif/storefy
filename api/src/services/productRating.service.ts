@@ -38,13 +38,13 @@ export default class ProductRatingService {
     data: Omit<IProductRating, "id" | "userId" | "productId">
   ) {
     const user = await userService.findOne(userId);
-    const productRating = await ProductRating.create(data);
+    const productRating = ProductRating.create(data);
     const product = await productService.findOne(productId);
 
     productRating.product = product;
-    productRating.save();
+    await productRating.save();
     user.productRating.push(productRating);
-    user.save();
+    await user.save();
 
     return productRating;
   }
@@ -98,7 +98,7 @@ export default class ProductRatingService {
   async delete(id: string) {
     const productRating = await this.findOne(id);
 
-    productRating.remove();
+    await productRating.remove();
 
     return true;
   }
