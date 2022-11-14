@@ -7,14 +7,14 @@ import { ShoppingCartItem } from "../db/entity/ShoppingCartItem";
 import { IShoppingCartItem } from "../index.type";
 import boom from "@hapi/boom";
 import ShoppingCartService from "./shoppingCart.service";
-import ProductService from "./product.service";
+import ProductModelService from "./productModel.service";
 
 /**
  * contains all related methods for product crud operation
  * @const
  * @type {ShopppingCartService}
  */
-const productService = new ProductService();
+const productModelService = new ProductModelService();
 
 /**
  * contains all related methods for shopping cart crud operation
@@ -27,33 +27,34 @@ export default class ShoppingCartItemService {
   /**
    * Create a shopping cart item
    * @async
-   * @param {string} productId
+   * @param {string} productModelId
    * @param {string} shoppingCartId
    * @param {Omit<IShoppingCartItem, "id">}
    * @returns {Promise<IShoppingCartItem>}
    */
   async create(
-    productId: string,
+    productModelId: string,
     shoppingCartId: string,
     data: Omit<IShoppingCartItem, "id" | "productId" | "shoppinCartId">
   ) {
-    const product = await productService.findOne(productId);
-
+    const productModel = await productModelService.findOne(productModelId);
     const shoppingCart = await shoppingCartService.findOne(shoppingCartId);
-
     const shoppingCartItem = await ShoppingCartItem.create();
 
     shoppingCartItem.qty = data.qty;
+    await shoppingCartItem.save();
 
-    product.shoppingCartItems.push(shoppingCartItem);
-    product.save();
-
-    shoppingCartItem.save();
+    productModel.shoppingCartItems.push(shoppingCartItem);
     shoppingCart.shoppingCartItems.push(shoppingCartItem);
-    shoppingCart.qty > 0 ? (shoppingCart.qty = +1) : (shoppingCart.qty = 1);
-    shoppingCart.save();
+    await productModel.save();
 
-    const prices = shoppingCart.shoppingCartItems.map((item) => item.price);
+    /**
+     * list of shoppingCartItem related to this shopping cart
+     */
+    const prices = shoppingCart.shoppingCartItems.map(
+      (shoppingCartItem) =>
+        shoppingCartItem.productModel.price * shoppingCartItem.qty
+    );
 
     shoppingCart.total = prices.reduce((prev, current) => prev + current, 0);
 
@@ -115,15 +116,13 @@ export default class ShoppingCartItemService {
     shoppingCart.shoppingCartItems = shoppingCart.shoppingCartItems.filter(
       (item) => item.id !== shoppingCartItem.id
     );
-    shoppingCart.qty = shoppingCart.qty - 1;
 
-    shoppingCartItem.remove();
+    shoppingCart.total =
+      shoppingCart.total -
+      shoppingCartItem.productModel.price * shoppingCartItem.qty;
 
-    const prices = shoppingCart.shoppingCartItems.map((item) => item.price);
-
-    shoppingCart.total = prices.reduce((prev, current) => prev + current, 0);
-
-    shoppingCart.save();
+    await shoppingCartItem.remove();
+    await shoppingCart.save();
 
     return true;
   }
