@@ -10,6 +10,7 @@ import {
   UpdateDateColumn,
   ManyToOne,
   BaseEntity,
+  Column,
 } from "typeorm";
 import { ShoppingCart } from "./ShoppingCart";
 import { ProductModel } from "./ProductModel";
@@ -18,6 +19,9 @@ import { ProductModel } from "./ProductModel";
 export class ShoppingCartItem extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
+
+  @Column()
+  qty: number;
 
   @ManyToOne(
     () => ShoppingCart,
@@ -29,7 +33,7 @@ export class ShoppingCartItem extends BaseEntity {
     () => ProductModel,
     (productModel) => productModel.shoppingCartItems
   )
-  product: ProductModel;
+  productModel: ProductModel;
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;
