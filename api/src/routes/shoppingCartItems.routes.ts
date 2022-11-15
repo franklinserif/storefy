@@ -11,7 +11,7 @@ import {
   shoppinCartItemIdSchema,
 } from "../schemas/shoppingCartItemSchemas";
 
-import { shoppingCartIdSchema } from "schemas/shoppingCartSchemas";
+import { shoppingCartIdSchema } from "../schemas/shoppingCartSchemas";
 
 import {
   getShoppingCartItemsController,
