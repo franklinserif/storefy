@@ -40,13 +40,7 @@ const colors = joi.array().items(joi.string());
  * product model creation validation schema
  * @const
  */
-export const productModelCreateSchema = joi.object<IProductModel>({});
-
-/**
- * product model update data validation schema
- * @const
- */
-export const productModelUpdateSchema = joi.object<IProductModel>({
+export const productModelCreateSchema = joi.object<IProductModel>({
   qty: qty.required(),
   price: price.required(),
   sizes: sizes.required(),
@@ -54,12 +48,20 @@ export const productModelUpdateSchema = joi.object<IProductModel>({
 });
 
 /**
- * product model id validation schema
+ * product model update data validation schema
  * @const
  */
-export const productModelIdSchema = joi.object<IProductModel>({
+export const productModelUpdateSchema = joi.object<IProductModel>({
   qty,
   price,
   sizes,
   colors,
+});
+
+/**
+ * product model id validation schema
+ * @const
+ */
+export const productModelIdSchema = joi.object<IProductModel>({
+  id,
 });
