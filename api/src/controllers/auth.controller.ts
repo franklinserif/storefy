@@ -3,7 +3,7 @@
  * @module controllers/authenticationControllers
  */
 import { Request, Response, NextFunction } from "express";
-import { IUser } from "index.type";
+import { IUser } from "../index.type";
 import AuthService from "../services/auth.service";
 
 /**
