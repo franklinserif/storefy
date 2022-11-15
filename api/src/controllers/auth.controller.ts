@@ -57,7 +57,7 @@ export async function signupController(
 ) {
   try {
     const data = req.body;
-    const user = await userService.create(data);
+    const user = await authService.create(data);
 
     res.status(200).json(user);
   } catch (error) {
