@@ -10,6 +10,7 @@ import { ShoppingCart } from "./db/entity/ShoppingCart";
 import { ShoppingCartItem } from "./db/entity/ShoppingCartItem";
 import { Product } from "./db/entity/Product";
 import { ProductModel } from "./db/entity/ProductModel";
+import { WishList } from "./db/entity/WishList";
 import CONFIG from "./config";
 
 export const AppDataSource = new DataSource({
@@ -32,6 +33,7 @@ export const AppDataSource = new DataSource({
     ShoppingCartItem,
     Product,
     ProductModel,
+    WishList,
   ],
   migrations: [],
   subscribers: [],
