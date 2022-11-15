@@ -4,7 +4,6 @@
  */
 
 import { WishList } from "../db/entity/WishList";
-import { IWishList } from "../index.type";
 import boom from "@hapi/boom";
 import UserService from "./user.service";
 import ProductService from "./product.service";
