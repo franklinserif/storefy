@@ -7,7 +7,7 @@ import {
   Entity,
 } from "typeorm";
 import { ProductModel } from "./ProductModel";
-import { VariationOption } from "./VariationOptions";
+import { VariationOption } from "./VariationOption";
 
 @Entity()
 export class Variation extends BaseEntity {
