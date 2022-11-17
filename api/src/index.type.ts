@@ -118,6 +118,16 @@ export interface IWishList {
   wishListId: string;
 }
 
+export interface IVariation {
+  id: string;
+  name: string;
+}
+
+export interface IVariationOption {
+  id: string;
+  value: string;
+}
+
 export type TSchemas =
   | joi.ObjectSchema<ICategory>
   | joi.ObjectSchema<IPayment>
