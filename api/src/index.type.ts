@@ -128,6 +128,16 @@ export interface IVariationOption {
   value: string;
 }
 
+export interface IVariationCreate {
+  name: string;
+  values: string[];
+}
+
+export interface IProductModelCreate {
+  productModel: IProductModel;
+  variations: IVariationCreate[];
+}
+
 export type TSchemas =
   | joi.ObjectSchema<ICategory>
   | joi.ObjectSchema<IPayment>
