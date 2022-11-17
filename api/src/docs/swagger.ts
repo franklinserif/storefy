@@ -51,6 +51,16 @@ import {
   productIdSchema,
 } from "./product.swagger.schemas";
 
+import {
+  variationCreateSchema,
+  variationUpdateSchema,
+} from "./variation.swagger.schemas";
+
+import {
+  variationOptionCreateSchema,
+  variationOptionUpdateSchema,
+} from "./variationOption.swagger.schemas";
+
 import { addOrRemoveProductSchema } from "./wishList.swagger.schemas";
 
 const swaggerDefinition: OAS3Definition = {
@@ -102,6 +112,10 @@ const swaggerDefinition: OAS3Definition = {
       shoppingCartItemUpdateSchema,
       shoppingCartItemIdSchema,
       addOrRemoveProductSchema,
+      variationCreateSchema,
+      variationUpdateSchema,
+      variationOptionCreateSchema,
+      variationOptionUpdateSchema,
 
       /*   createUserSchema: {
         type: "object",
