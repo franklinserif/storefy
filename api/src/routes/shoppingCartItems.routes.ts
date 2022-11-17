@@ -74,7 +74,7 @@ router.get("/", getShoppingCartItemsController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(shoppinCartItemIdSchema, "params"),
   getShoppingCartItemController
 );
