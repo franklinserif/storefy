@@ -38,6 +38,6 @@ export const variationOptionUpdateSchema = joi.object<IVariationOption>({
  * variation option id validation schema
  * @const
  */
-export const variationIdSchema = joi.object<IVariationOption>({
+export const variationOptionIdSchema = joi.object<IVariationOption>({
   id: id.required(),
 });
