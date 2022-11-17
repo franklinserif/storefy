@@ -29,12 +29,6 @@ export class ProductModel extends BaseEntity {
   @Column()
   price: number;
 
-  @Column({ array: true })
-  sizes: string;
-
-  @Column({ array: true })
-  colors: string;
-
   @ManyToOne(() => Product, (product) => product.productsModels)
   product: Product;
 
