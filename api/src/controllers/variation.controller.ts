@@ -20,7 +20,7 @@ const variationService = new VariationService();
  * @param res
  * @param next
  */
-export async function getVariationController(
+export async function getVariationsController(
   _req: Request,
   res: Response,
   next: NextFunction
@@ -40,7 +40,7 @@ export async function getVariationController(
  * @param res
  * @param next
  */
-export async function getPaymentController(
+export async function getVariationController(
   req: Request,
   res: Response,
   next: NextFunction
@@ -62,7 +62,7 @@ export async function getPaymentController(
  * @param res
  * @param next
  */
-export async function createPaymentController(
+export async function createVariationController(
   req: Request,
   res: Response,
   next: NextFunction
@@ -85,7 +85,7 @@ export async function createPaymentController(
  * @param res
  * @param next
  */
-export async function paymentUpdateController(
+export async function variationUpdateController(
   req: Request,
   res: Response,
   next: NextFunction
@@ -108,7 +108,7 @@ export async function paymentUpdateController(
  * @param res
  * @param next
  */
-export async function paymentDeleteController(
+export async function variationDeleteController(
   req: Request,
   res: Response,
   next: NextFunction
