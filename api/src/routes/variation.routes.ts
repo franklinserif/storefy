@@ -92,7 +92,7 @@ router.get(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/paymentCreateSchema"
+ *                $ref: "#/components/schemas/variationCreateSchema"
  *      responses:
  *        '200':
  *          description: response with the variation information .
@@ -128,7 +128,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/paymentUpdateSchema"
+ *                $ref: "#/components/schemas/variationUpdateSchema"
  *      responses:
  *        '201':
  *          description: response with variation information .
