@@ -16,6 +16,7 @@ import {
 
 import { Product } from "./Product";
 import { ShoppingCartItem } from "./ShoppingCartItem";
+import { Variation } from "./Variation";
 
 @Entity()
 export class ProductModel extends BaseEntity {
@@ -42,6 +43,9 @@ export class ProductModel extends BaseEntity {
     (shoppingCartItem) => shoppingCartItem.productModel
   )
   shoppingCartItems: ShoppingCartItem[];
+
+  @OneToMany(() => Variation, (variation) => variation.productModel)
+  variations: Variation[];
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;
