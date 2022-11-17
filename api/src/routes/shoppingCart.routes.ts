@@ -9,7 +9,7 @@ import {
   shoppingCartIdSchema,
   shoppingCartCreateSchema,
   shoppingCartUpdateSchema,
-} from "../schemas/shoppinCartSchemas";
+} from "../schemas/shoppingCartSchemas";
 
 import {
   getShoppingCartsController,
@@ -72,7 +72,7 @@ router.get("/", getShoppingCartsController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(shoppingCartIdSchema, "params"),
   getShoppingCartController
 );
@@ -178,3 +178,5 @@ router.delete(
   validatorHandler(shoppingCartIdSchema, "params"),
   shoppingCartDeleteController
 );
+
+export default router;

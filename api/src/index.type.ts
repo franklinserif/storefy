@@ -72,8 +72,15 @@ export interface IReview {
 
 export interface IShoppingCart {
   id: string;
-  qty: number;
   total: number;
+}
+
+export interface IProductModel {
+  id: string;
+  price: number;
+  sizes: string[];
+  colors: string[];
+  qty: number;
 }
 
 export interface IShoppingCartItem {
@@ -81,9 +88,6 @@ export interface IShoppingCartItem {
   productId: string;
   shoppingCartId: string;
   qty: number;
-  price: number;
-  size: string;
-  color: string;
 }
 
 export interface ISignTokens {
@@ -112,6 +116,16 @@ export interface IConfirmCode {
 export interface IWishList {
   productId: string;
   wishListId: string;
+}
+
+export interface IVariation {
+  id: string;
+  name: string;
+}
+
+export interface IVariationOption {
+  id: string;
+  value: string;
 }
 
 export type TSchemas =

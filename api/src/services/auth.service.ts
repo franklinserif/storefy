@@ -5,6 +5,7 @@
  */
 
 import { IUser } from "../index.type";
+import { User } from "../db/entity/User";
 import boom from "@hapi/boom";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -21,6 +22,26 @@ import sendMail from "../utils/mail";
 const userService = new UserService();
 
 export default class AuthService {
+  /**
+   * Insert a new record into the db in the user's table
+   * @async
+   * @param { Omit<IUser, "id">}  data
+   * @returns {Promise<IUser>}
+   */
+  async create(data: Omit<IUser, "id">) {
+    // Encrypt user password
+    const encryptedPassword = await bcrypt.hash(data.password, 10);
+    const userData = { ...data, password: encryptedPassword, isActive: false };
+
+    const user = User.create(userData);
+
+    await user.save();
+    await this.createCode(data.email);
+
+    const userWithoutPassword = removePassword(user);
+    return userWithoutPassword;
+  }
+
   /**
    * Verify if the user exist and if password is correct
    * @async
@@ -86,7 +107,7 @@ export default class AuthService {
 
     const user = await userService.findByEmail(email);
     user.confirmCode = confirmCode;
-    user.save();
+    await user.save();
 
     sendMail({
       to: [email],
@@ -116,7 +137,7 @@ export default class AuthService {
     if (!user.isActive) {
       user.isActive = true;
       user.confirmCode = 0;
-      user.save();
+      await user.save();
     }
 
     return user;
@@ -141,7 +162,7 @@ export default class AuthService {
     const newPasswordEncryted = await bcrypt.hash(password, 10);
 
     user.password = newPasswordEncryted;
-    user.save();
+    await user.save();
 
     return true;
   }

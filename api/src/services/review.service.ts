@@ -38,12 +38,12 @@ export default class ReviewService {
   ) {
     const user = await userService.findOne(userId);
     const product = await productService.findOne(productId);
-    const review = await Review.create(data as Review);
+    const review = Review.create(data as Review);
 
     product.reviews.push(review);
-    product.save();
+    await product.save();
     user.reviews.push(review);
-    user.save();
+    await user.save();
 
     return review;
   }
@@ -97,7 +97,7 @@ export default class ReviewService {
   async delete(id: string) {
     const review = await this.findOne(id);
 
-    review.remove();
+    await review.remove();
 
     return true;
   }

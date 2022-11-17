@@ -72,7 +72,7 @@ router.get("/", getProductsRatingsController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(productRatingIdSchema, "params"),
   getProductRatingController
 );
@@ -170,3 +170,5 @@ router.delete(
   validatorHandler(productRatingIdSchema, "params"),
   productRatingDeleteController
 );
+
+export default router;

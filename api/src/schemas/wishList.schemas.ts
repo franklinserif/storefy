@@ -4,7 +4,7 @@
  */
 
 import joi from "joi";
-import { IWishList } from "index.type";
+import { IWishList } from "../index.type";
 
 /**
  * wishList id uuid

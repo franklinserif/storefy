@@ -11,6 +11,8 @@ import {
   paymentIdSchema,
 } from "../schemas/paymentSchemas";
 
+import { userIdSchema } from "../schemas/userSchemas";
+
 import {
   getPaymentController,
   getPaymentsController,
@@ -72,7 +74,7 @@ router.get("/", getPaymentsController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(paymentIdSchema, "params"),
   getPaymentController
 );
@@ -100,7 +102,8 @@ router.get(
  *       - bearerAuth: []
  */
 router.post(
-  "/",
+  "/:id",
+  validatorHandler(userIdSchema, "params"),
   validatorHandler(paymentCreateSchema, "body"),
   createPaymentController
 );
@@ -170,3 +173,5 @@ router.delete(
   validatorHandler(paymentIdSchema, "params"),
   paymentDeleteController
 );
+
+export default router;

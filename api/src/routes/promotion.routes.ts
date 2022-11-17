@@ -72,7 +72,7 @@ router.get("/", getPromotionsController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(promotionIdSchema, "params"),
   getPromotionController
 );
@@ -170,3 +170,5 @@ router.delete(
   validatorHandler(promotionIdSchema, "params"),
   promotionDeleteController
 );
+
+export default router;

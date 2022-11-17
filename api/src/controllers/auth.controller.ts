@@ -3,9 +3,8 @@
  * @module controllers/authenticationControllers
  */
 import { Request, Response, NextFunction } from "express";
-import { IUser } from "index.type";
+import { IUser } from "../index.type";
 import AuthService from "../services/auth.service";
-import UserService from "../services/user.service";
 
 /**
  * auth service for crud operations in db
@@ -13,13 +12,6 @@ import UserService from "../services/user.service";
  * @type {AuthService}
  */
 const authService = new AuthService();
-
-/**
- * user sevice for crud operations in db
- * @const
- * @type {UserService}
- */
-const userService = new UserService();
 
 /**
  * handle all signin request
@@ -57,7 +49,7 @@ export async function signupController(
 ) {
   try {
     const data = req.body;
-    const user = await userService.create(data);
+    const user = await authService.create(data);
 
     res.status(200).json(user);
   } catch (error) {

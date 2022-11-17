@@ -27,8 +27,8 @@ export default class PaymentService {
     const user = await userService.findOne(userId);
     const payment = await Payment.create(data);
 
-    payment.user = user;
-    payment.save();
+    user.payment = payment;
+    await user.save();
 
     return payment;
   }
@@ -85,7 +85,7 @@ export default class PaymentService {
   async delete(id: string) {
     const payment = await this.findOne(id);
 
-    payment.remove();
+    await payment.remove();
 
     return true;
   }

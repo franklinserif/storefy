@@ -67,7 +67,7 @@ router.get("/", getUsersController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(userIdSchema, "params"),
   getUserProfileController
 );
@@ -137,3 +137,5 @@ router.delete(
   validatorHandler(userIdSchema, "params"),
   userDeleteController
 );
+
+export default router;

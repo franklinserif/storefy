@@ -6,26 +6,8 @@ import { User } from "../db/entity/User";
 import { IUser } from "../index.type";
 import removePassword from "../utils/removePassword";
 import boom from "@hapi/boom";
-import bcrypt from "bcrypt";
 
 export default class UserService {
-  /**
-   * Insert a new record into the db in the user's table
-   * @async
-   * @param { Omit<IUser, "id">}  data
-   * @returns {Promise<IUser>}
-   */
-  async create(data: Omit<IUser, "id">) {
-    // Encrypt user password
-    const encryptedPassword = await bcrypt.hash(data.password, 10);
-    const userData = { ...data, password: encryptedPassword };
-
-    const user = await User.create(userData);
-
-    const userWithoutPassword = removePassword(user);
-    return userWithoutPassword;
-  }
-
   /**
    * Find all user in the db
    * @async
@@ -92,7 +74,7 @@ export default class UserService {
     const user = await this.findOne(id);
     if (!user) throw boom.notFound();
 
-    user.remove();
+    await user.remove();
 
     return { message: "user was delete from db" };
   }

@@ -16,11 +16,11 @@ import {
   BaseEntity,
 } from "typeorm";
 
+import { ProductModel } from "./ProductModel";
 import { Category } from "./Category";
 import { ProductRating } from "./ProductRating";
 import { Review } from "./Review";
 import { WishList } from "./WishList";
-import { ShoppingCartItem } from "./ShoppingCartItem";
 import { User } from "./User";
 
 @Entity()
@@ -32,9 +32,6 @@ export class Product extends BaseEntity {
   name: string;
 
   @Column()
-  price: number;
-
-  @Column()
   description: string;
 
   @Column()
@@ -43,18 +40,17 @@ export class Product extends BaseEntity {
   @Column()
   colors: string[];
 
-  @ManyToMany(() => Category)
-  @JoinTable()
-  categories: Category[];
+  @OneToMany(() => ProductModel, (productModel) => productModel.product, {
+    cascade: ["remove"],
+  })
+  productsModels: ProductModel[];
 
   @OneToMany(() => Review, (review) => review.product)
   reviews: Review[];
 
-  @OneToMany(
-    () => ShoppingCartItem,
-    (shoppingCartItem) => shoppingCartItem.product
-  )
-  shoppingCartItems: ShoppingCartItem[];
+  @ManyToMany(() => Category)
+  @JoinTable()
+  categories: Category[];
 
   @OneToMany(() => ProductRating, (productRating) => productRating.product)
   productsRating: ProductRating[];

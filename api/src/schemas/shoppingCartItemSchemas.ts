@@ -35,27 +35,6 @@ const shoppingCartId = joi.string().uuid();
 const qty = joi.number();
 
 /**
- * shoppinCartItem price
- * @const
- * @type {joi.NumberSchema<number>}
- */
-const price = joi.number();
-
-/**
- * shoppingCartItem size
- * @const
- * @type {joi.StringSchema<string>}
- */
-const size = joi.string();
-
-/**
- * shoppingCartItem color
- * @const
- * @type {joi.StringSchema<string>}
- */
-const color = joi.string();
-
-/**
  * shoppinCartItem creation validation schema
  * @const
  * @type {joi.ObjectSchema<IShoppingCartItem>}
@@ -64,9 +43,6 @@ export const shoppinCartItemCreateSchema = joi.object<IShoppingCartItem>({
   qty: qty.required(),
   productId: productId.required(),
   shoppingCartId: shoppingCartId.required(),
-  price: price.required(),
-  size: size.required(),
-  color: color.required(),
 });
 
 /**
@@ -76,9 +52,6 @@ export const shoppinCartItemCreateSchema = joi.object<IShoppingCartItem>({
  */
 export const shoppinCartItemUpdateSchema = joi.object<IShoppingCartItem>({
   qty,
-  price,
-  size,
-  color,
 });
 
 /**

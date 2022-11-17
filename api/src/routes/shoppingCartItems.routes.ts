@@ -11,7 +11,7 @@ import {
   shoppinCartItemIdSchema,
 } from "../schemas/shoppingCartItemSchemas";
 
-import { shoppingCartIdSchema } from "schemas/shoppinCartSchemas";
+import { shoppingCartIdSchema } from "../schemas/shoppingCartSchemas";
 
 import {
   getShoppingCartItemsController,
@@ -74,7 +74,7 @@ router.get("/", getShoppingCartItemsController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(shoppinCartItemIdSchema, "params"),
   getShoppingCartItemController
 );
@@ -173,3 +173,5 @@ router.delete(
   validatorHandler(shoppingCartIdSchema, "body"),
   shoppingCartItemDeleteController
 );
+
+export default router;
