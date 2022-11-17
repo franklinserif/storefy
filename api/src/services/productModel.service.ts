@@ -4,8 +4,10 @@
  */
 
 import { ProductModel } from "../db/entity/ProductModel";
-import { IProductModel } from "../index.type";
+import { IProductModel, IProductModelCreate } from "../index.type";
 import ProductService from "../services/product.service";
+import VariationService from "./variation.service";
+import VariationOptionService from "./variationOption.service";
 import boom from "@hapi/boom";
 
 /**
@@ -13,6 +15,18 @@ import boom from "@hapi/boom";
  * @const
  */
 const productServide = new ProductService();
+
+/**
+ * variation service for crud operations
+ * @const
+ */
+const variationServide = new VariationService();
+
+/**
+ * variation option service for crud operations
+ * @const
+ */
+const variationOptionService = new VariationOptionService();
 
 export default class ProductModelService {
   /**
@@ -22,23 +36,28 @@ export default class ProductModelService {
    * @param data
    * @return Promise
    */
-  async create(productId: string, data: Omit<IProductModel, "id">) {
+  async create(productId: string, data: IProductModelCreate) {
     const product = await productServide.findOne(productId);
     const productModel = new ProductModel();
 
-    productModel.price = data.price;
-    productModel.qty = data.qty;
+    productModel.price = data.productModel.price;
+    productModel.qty = data.productModel.qty;
+
+    for (const variation of data.variations) {
+      const newVariation = await variationServide.create(
+        productModel.id,
+        variation
+      );
+
+      for (const variationOption of variation.values) {
+        await variationOptionService.create(newVariation.id, {
+          value: variationOption,
+        });
+      }
+    }
 
     product.productsModels.push(productModel);
     await product.save();
-
-    for (const size of data.sizes) {
-      productModel.sizes.push(size);
-    }
-
-    for (const color of data.colors) {
-      productModel.sizes.push(color);
-    }
 
     await productModel.save();
 
