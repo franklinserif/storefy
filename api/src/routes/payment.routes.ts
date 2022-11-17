@@ -74,7 +74,7 @@ router.get("/", getPaymentsController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(paymentIdSchema, "params"),
   getPaymentController
 );
