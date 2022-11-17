@@ -67,7 +67,7 @@ router.get("/", getUsersController);
  *       - bearerAuth: []
  */
 router.get(
-  "/",
+  "/:id",
   validatorHandler(userIdSchema, "params"),
   getUserProfileController
 );
