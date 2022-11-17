@@ -20,7 +20,7 @@ const variationOptionService = new VariationOptionService();
  * @param res
  * @param next
  */
-export async function getVariationOptionController(
+export async function getVariationOptionsController(
   _req: Request,
   res: Response,
   next: NextFunction
@@ -40,7 +40,7 @@ export async function getVariationOptionController(
  * @param res
  * @param next
  */
-export async function getVariationOptionsController(
+export async function getVariationOptionController(
   req: Request,
   res: Response,
   next: NextFunction
