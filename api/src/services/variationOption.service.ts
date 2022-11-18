@@ -6,32 +6,21 @@
 import { VariationOption } from "../db/entity/VariationOption";
 import { IVariationOption } from "../index.type";
 import boom from "@hapi/boom";
-import VariationService from "./variation.service";
-
-/**
- * variation crud operation service
- * @const
- */
-const variationService = new VariationService();
 
 export default class VariationOptionService {
   /**
    * Create a variation option
    * @async
-   * @param variationId
    * @param data``
    * @returns Promise
    */
-  async create(variationId: string, data: Omit<IVariationOption, "id">) {
-    const variation = await variationService.findOne(variationId);
+  async create(data: Omit<IVariationOption, "id">) {
     const variationOption = VariationOption.create();
     variationOption.value = data.value;
-    variation.variationOptions.push(variationOption);
 
     await variationOption.save();
-    await variation.save();
 
-    return variation;
+    return variationOption;
   }
 
   /**
