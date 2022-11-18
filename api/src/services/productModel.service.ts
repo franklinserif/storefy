@@ -44,15 +44,14 @@ export default class ProductModelService {
     productModel.qty = data.productModel.qty;
 
     for (const variation of data.variations) {
-      const newVariation = await variationServide.create(
-        productModel.id,
-        variation
-      );
+      const newVariation = await variationServide.create(variation);
+      productModel.variations.push(newVariation);
 
       for (const variationOption of variation.values) {
-        await variationOptionService.create(newVariation.id, {
+        const newVariationOption = await variationOptionService.create({
           value: variationOption,
         });
+        newVariation.variationOptions.push(newVariationOption);
       }
     }
 
