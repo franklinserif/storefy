@@ -38,7 +38,9 @@ export class ProductModel extends BaseEntity {
   )
   shoppingCartItems: ShoppingCartItem[];
 
-  @OneToMany(() => Variation, (variation) => variation.productModel)
+  @OneToMany(() => Variation, (variation) => variation.productModel, {
+    cascade: ["remove"],
+  })
   variations: Variation[];
 
   @CreateDateColumn({ name: "create_at" })
