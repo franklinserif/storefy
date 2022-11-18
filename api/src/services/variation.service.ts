@@ -6,30 +6,19 @@
 import { Variation } from "../db/entity/Variation";
 import { IVariation } from "../index.type";
 import boom from "@hapi/boom";
-import ProductModelService from "./productModel.service";
-
-/**
- * product model crud operation service
- * @const
- */
-const productModelService = new ProductModelService();
 
 export default class VariationService {
   /**
    * Create a variation
    * @async
-   * @param productModelId
    * @param data``
    * @returns Promise
    */
-  async create(productModelId: string, data: Omit<IVariation, "id">) {
-    const productModel = await productModelService.findOne(productModelId);
+  async create(data: Omit<IVariation, "id">) {
     const variation = Variation.create();
     variation.name = data.name;
-    productModel.variations.push(variation);
 
     await variation.save();
-    await productModel.save();
 
     return variation;
   }
