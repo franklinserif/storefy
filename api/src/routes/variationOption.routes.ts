@@ -102,8 +102,7 @@ router.get(
  *       - bearerAuth: []
  */
 router.post(
-  "/:id",
-  validatorHandler(variationIdSchema, "params"),
+  "/",
   validatorHandler(variationOptionCreateSchema, "body"),
   createVariationOptionController
 );
@@ -111,19 +110,12 @@ router.post(
 /**
  * Serving variation otpion update information route
  * @openapi
- * /variationoption/:id:
+ * /variationoption:
  *    patch:
  *      tags:
  *        - variation
  *      summary: "update variation option"
  *      description: update variation option information route
- *      parameters:
- *        - in: path
- *          name: id
- *          schema:
- *            type: string
- *          required: true
- *          description: id of the variation option to update
  *      requestBody:
  *          content:
  *            application/json:
