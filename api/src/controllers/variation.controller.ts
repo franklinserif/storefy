@@ -68,9 +68,8 @@ export async function createVariationController(
   next: NextFunction
 ) {
   try {
-    const { id } = req.params;
     const data: Omit<IVariation, "id"> = req.body;
-    const variation = await variationService.create(id, data);
+    const variation = await variationService.create(data);
 
     res.status(200).json(variation);
   } catch (error) {
