@@ -68,9 +68,8 @@ export async function createVariationOptionController(
   next: NextFunction
 ) {
   try {
-    const { id } = req.params;
     const data: Omit<IVariationOption, "id"> = req.body;
-    const variationOption = await variationOptionService.create(id, data);
+    const variationOption = await variationOptionService.create(data);
 
     res.status(200).json(variationOption);
   } catch (error) {
