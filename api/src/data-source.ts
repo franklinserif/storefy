@@ -11,6 +11,8 @@ import { ShoppingCartItem } from "./db/entity/ShoppingCartItem";
 import { Product } from "./db/entity/Product";
 import { ProductModel } from "./db/entity/ProductModel";
 import { WishList } from "./db/entity/WishList";
+import { Variation } from "./db/entity/Variation";
+import { VariationOption } from "./db/entity/VariationOption";
 import CONFIG from "./config";
 
 export const AppDataSource = new DataSource({
@@ -34,6 +36,8 @@ export const AppDataSource = new DataSource({
     Product,
     ProductModel,
     WishList,
+    Variation,
+    VariationOption,
   ],
   migrations: [],
   subscribers: [],
