@@ -4,7 +4,7 @@
  */
 
 import { Request, Response, NextFunction } from "express";
-import { IProductModel } from "../index.type";
+import { IProductModel, IProductModelCreate } from "../index.type";
 import ProductModelService from "../services/productModel.service";
 
 /**
@@ -69,7 +69,7 @@ export async function createProductModelController(
 ) {
   try {
     const { id } = req.params;
-    const data: Omit<IProductModel, "id"> = req.body;
+    const data: IProductModelCreate = req.body;
     const productModel = await productModelService.create(id, data);
 
     res.status(200).json(productModel);
