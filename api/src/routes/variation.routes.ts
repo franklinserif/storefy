@@ -11,8 +11,6 @@ import {
   variationIdSchema,
 } from "../schemas/variationSchemas";
 
-import { productModelIdSchema } from "../schemas/ProductModelSchemas";
-
 import {
   getVariationsController,
   getVariationController,
@@ -102,8 +100,7 @@ router.get(
  *       - bearerAuth: []
  */
 router.post(
-  "/:id",
-  validatorHandler(productModelIdSchema, "params"),
+  "/",
   validatorHandler(variationCreateSchema, "body"),
   createVariationController
 );
