@@ -34,12 +34,6 @@ export class Product extends BaseEntity {
   @Column()
   description: string;
 
-  @Column()
-  sizes: string[];
-
-  @Column()
-  colors: string[];
-
   @OneToMany(() => ProductModel, (productModel) => productModel.product, {
     cascade: ["remove"],
   })
