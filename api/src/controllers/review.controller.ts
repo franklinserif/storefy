@@ -10,16 +10,15 @@ import ReviewService from "../services/review.service";
 /**
  * review services for all crud operation in db
  * @const
- * @type {IReview}
  */
 const reviewService = new ReviewService();
 
 /**
  * get all review controller
  * @async
- * @param {Request} _req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param _req
+ * @param res
+ * @param next
  */
 export async function getReviewsController(
   _req: Request,
@@ -37,9 +36,9 @@ export async function getReviewsController(
 /**
  * get reviews controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function getReviewController(
   req: Request,
@@ -59,9 +58,9 @@ export async function getReviewController(
 /**
  * create promotion controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function createReviewController(
   req: Request,
@@ -84,9 +83,9 @@ export async function createReviewController(
 /**
  * review update controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function reviewUpdateController(
   req: Request,
@@ -107,9 +106,9 @@ export async function reviewUpdateController(
 /**
  * delete review controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function reviewDeleteController(
   req: Request,
