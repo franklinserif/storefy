@@ -9,9 +9,9 @@ import boom from "@hapi/boom";
 
 /**
  * validate request data with joi
- * @param {TSchemas} schema joi schema
- * @param {TProperty} property body or params
- * @returns {(req: Request, res: Response,next: NextFunction):void}
+ * @param schema joi schema
+ * @param property body or params
+ * @returns Function
  */
 export default function validatorHandler(
   schema: TSchemas,
