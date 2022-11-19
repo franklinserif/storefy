@@ -12,14 +12,12 @@ import ProductService from "./product.service";
 /**
  * User service for crud operations
  * @const
- * @type {UserService}
  */
 const userService = new UserService();
 
 /**
  * Product service for crud operations
  * @const
- * @type {UserService}
  */
 const productService = new ProductService();
 
@@ -27,10 +25,10 @@ export default class ProductRatingService {
   /**
    * Create a product rating
    * @async
-   * @param {string} userId
-   * @param {string} productId
-   * @param {Omit<IProductRating, "id">}
-   * @returns {Promise<IProductRating>}
+   * @param userId
+   * @param productId
+   * @param data
+   * @returns Promise
    */
   async create(
     userId: string,
@@ -52,7 +50,7 @@ export default class ProductRatingService {
   /**
    * Find all a product rating
    * @async
-   * @returns {Promise<IProductRating>}
+   * @returns Promise
    */
   async findAll() {
     const productRating = await ProductRating.find();
@@ -63,8 +61,8 @@ export default class ProductRatingService {
   /**
    * Find product rating by id
    * @async
-   * @param {string} id product rating id
-   * @returns {Promise<IProductRating>}
+   * @param id product rating id
+   * @returns Promise
    */
   async findOne(id: string) {
     const productRating = await ProductRating.findOneBy({ id });
@@ -77,9 +75,9 @@ export default class ProductRatingService {
   /**
    * Update product rating data
    * @async
-   * @param {string} id product rating id
-   * @param {Partial<IProductRating>} data to update
-   * @returns {Promise<IProductRating>}
+   * @param id product rating id
+   * @param data to update
+   * @returns Promise
    */
   async update(id: string, data: Partial<ProductRating>) {
     const updatedProductRating = await ProductRating.update(id, data);
@@ -92,8 +90,8 @@ export default class ProductRatingService {
   /**
    * Remove product rating from db
    * @async
-   * @param {string} id product rating id
-   * @returns {Promise<boolean>}
+   * @param id product rating id
+   * @returns Promise
    */
   async delete(id: string) {
     const productRating = await this.findOne(id);
