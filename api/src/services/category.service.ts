@@ -94,4 +94,24 @@ export default class CategoryService {
 
     return parentCategory;
   }
+
+  /**
+   * remove a category as a children of another category
+   * @param parentCategoryId
+   * @param childCategoryId
+   * @returns
+   */
+  async removeParentCategory(
+    parentCategoryId: string,
+    childCategoryId: string
+  ) {
+    const parentCategory = await this.findOne(parentCategoryId);
+
+    parentCategory.children = parentCategory.children.filter(
+      (category) => category.id !== childCategoryId
+    );
+    await parentCategory.save();
+
+    return parentCategory;
+  }
 }
