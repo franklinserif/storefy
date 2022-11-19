@@ -17,9 +17,9 @@ const categoryService = new CategoryService();
 /**
  * get all category controller
  * @async
- * @param {Request} _req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param _req
+ * @param res
+ * @param next
  */
 export async function getCategoriesController(
   _req: Request,
@@ -37,9 +37,9 @@ export async function getCategoriesController(
 /**
  * get category controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function getCategoryController(
   req: Request,
@@ -59,9 +59,9 @@ export async function getCategoryController(
 /**
  * create category controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function createCategoryController(
   req: Request,
@@ -81,9 +81,9 @@ export async function createCategoryController(
 /**
  * category update controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function categoryUpdateController(
   req: Request,
@@ -104,9 +104,9 @@ export async function categoryUpdateController(
 /**
  * delete category controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function categoryDeleteController(
   req: Request,
