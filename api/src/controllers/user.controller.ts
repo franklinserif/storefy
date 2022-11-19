@@ -10,16 +10,15 @@ import UserService from "../services/user.service";
 /**
  * user services for all crud operation in db
  * @const
- * @type {UserService}
  */
 const userService = new UserService();
 
 /**
  * get all user controller
  * @async
- * @param {Request} _req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param _req
+ * @param res
+ * @param next
  */
 export async function getUsersController(
   _req: Request,
@@ -37,9 +36,9 @@ export async function getUsersController(
 /**
  * get user profile controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function getUserProfileController(
   req: Request,
@@ -59,9 +58,9 @@ export async function getUserProfileController(
 /**
  * user update controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function userUpdateController(
   req: Request,
@@ -82,9 +81,9 @@ export async function userUpdateController(
 /**
  * delete user controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function userDeleteController(
   req: Request,
