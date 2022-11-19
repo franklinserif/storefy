@@ -26,7 +26,6 @@ import {
 } from "../schemas/userSchemas";
 /**
  * Express router to mount auth related function on
- * @type {Router}
  * @constant
  */
 const router = express.Router();
@@ -86,7 +85,7 @@ router.post(
 /**
  * Serving code confirmation route
  * @openapi
- * /auth/code/confirm:
+ * /auth/confirm/code:
  *    post:
  *      tags:
  *        - auth
@@ -104,7 +103,7 @@ router.post(
  *          description: unauthorized, invalid code/email.
  */
 router.post(
-  "/code/confirm",
+  "/confirm/code",
   validatorHandler(userConfirmCodeSchema, "body"),
   confirmCodeController
 );
@@ -112,7 +111,7 @@ router.post(
 /**
  * Serving forgot forgot/password and new/code route
  * @openapi
- * /auth/password/forgot:
+ * /auth/forgot/password:
  *    post:
  *      tags:
  *        - auth
@@ -130,7 +129,7 @@ router.post(
  *          description: unauthorized, invalid email.
  */
 router.post(
-  ["/code/new", "/password/forgot"],
+  ["/new/code", "/forgot/password"],
   validatorHandler(userEmailSchema, "body"),
   createConfirmationController
 );
@@ -138,7 +137,7 @@ router.post(
 /**
  * Serving change password route
  * @openapi
- * /auth/password/new:
+ * /auth/new/password:
  *    post:
  *      tags:
  *        - auth
@@ -156,7 +155,7 @@ router.post(
  *          description: unauthorized, invalid email.
  */
 router.post(
-  "/password/new",
+  "/new/password",
   validatorHandler(userChangePasswordSchema, "body"),
   changePasswordController
 );
