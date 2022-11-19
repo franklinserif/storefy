@@ -15,7 +15,9 @@ export default class CategoryService {
    * @returns Promise
    */
   async create(data: Omit<ICategory, "id">) {
-    const category = await Category.create(data);
+    const category = Category.create(data);
+
+    await category.save();
 
     return category;
   }
