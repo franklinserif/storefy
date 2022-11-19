@@ -38,6 +38,7 @@ export default class ReviewService {
     const product = await productService.findOne(productId);
     const review = Review.create(data as Review);
 
+    await review.save();
     product.reviews.push(review);
     await product.save();
     user.reviews.push(review);
