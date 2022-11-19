@@ -4,7 +4,7 @@
  */
 
 import joi from "joi";
-import { ICategory } from "../index.type";
+import { ICategory, IAddOrRemoveCategoryParent } from "../index.type";
 
 /**
  * category id uuid
@@ -55,3 +55,15 @@ export const categoryUpdateSchema = joi.object<ICategory>({
 export const categoryIdSchema = joi.object<ICategory>({
   id: id.required(),
 });
+
+/**
+ * add or remove category as a child of another category
+ * schema validator
+ * @const
+ */
+export const addOrRemoveCategoryParent = joi.object<IAddOrRemoveCategoryParent>(
+  {
+    parentCategoryId: id.required(),
+    childCategoryId: id.required(),
+  }
+);
