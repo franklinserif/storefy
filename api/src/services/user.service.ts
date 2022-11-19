@@ -11,7 +11,6 @@ export default class UserService {
   /**
    * Find all user in the db
    * @async
-   * @returns {Promise<IUser[]>}
    */
   async findAll() {
     const users = await User.find();
@@ -22,8 +21,8 @@ export default class UserService {
   /**
    * Find user by email address withou password
    * @async
-   * @param {string} id user id
-   * @returns {Promise<IUser>}
+   * @param id user id
+   * @returns Promise
    */
   async findOne(id: string) {
     const user = await User.findOneBy({ id });
@@ -39,8 +38,8 @@ export default class UserService {
   /**
    * Find user by email address with password
    * @async
-   * @param {string} email email address
-   * @returns {Promise<Iuser>}
+   * @param email address
+   * @returns Promise
    */
   async findByEmail(email: string) {
     const user = await User.findOneBy({ email });
@@ -52,9 +51,9 @@ export default class UserService {
   /**
    * Update user data in database
    * @async
-   * @param {string} id user id
-   * @param {Partial<IUser>} user data
-   * @returns {Promise<IUser>}
+   * @param id user id
+   * @param user data
+   * @returns Promise
    */
   async update(id: string, user: Partial<IUser>) {
     const updatedUser = await User.update(id, user);
@@ -67,8 +66,8 @@ export default class UserService {
   /**
    * Remove user data from db
    * @async
-   * @param {string} id user id
-   *
+   * @param id user id
+   * @returns Promise
    */
   async delete(id: string) {
     const user = await this.findOne(id);
