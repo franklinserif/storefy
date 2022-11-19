@@ -8,6 +8,7 @@ import {
   categoryCreateSchema,
   categoryUpdateSchema,
   categoryIdSchema,
+  addOrRemoveCategorySchema,
 } from "./category.swagger.shemas";
 import {
   paymentCreateSchema,
@@ -116,6 +117,7 @@ const swaggerDefinition: OAS3Definition = {
       variationUpdateSchema,
       variationOptionCreateSchema,
       variationOptionUpdateSchema,
+      addOrRemoveCategorySchema,
 
       /*   createUserSchema: {
         type: "object",

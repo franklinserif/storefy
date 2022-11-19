@@ -37,3 +37,16 @@ export const categoryIdSchema = {
     },
   },
 };
+
+export const addOrRemoveCategorySchema = {
+  type: "object",
+  properties: {
+    required: ["parentCategoryId", "childCategoryId"],
+    parentCategoryId: {
+      type: "string",
+    },
+    childCategoryId: {
+      type: "string",
+    },
+  },
+};
