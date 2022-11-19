@@ -122,3 +122,51 @@ export async function categoryDeleteController(
     next(error);
   }
 }
+
+/**
+ * add a category as a children of another category
+ * @param req
+ * @param res
+ * @param next
+ */
+export async function addParentCategoryController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { parentCategoryId, childCategoryId } = req.body;
+    const parentCategory = await categoryService.addParentCategory(
+      parentCategoryId,
+      childCategoryId
+    );
+
+    res.status(201).json(parentCategory);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * add a category as a children of another category
+ * @param req
+ * @param res
+ * @param next
+ */
+export async function removeParentCategoryController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { parentCategoryId, childCategoryId } = req.body;
+    const parentCategory = await categoryService.addParentCategory(
+      parentCategoryId,
+      childCategoryId
+    );
+
+    res.status(201).json(parentCategory);
+  } catch (error) {
+    next(error);
+  }
+}
