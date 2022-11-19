@@ -11,7 +11,6 @@ import UserService from "./user.service";
 /**
  * user service for crud operations related to users
  * @const
- * @type {UserService}
  */
 const userService = new UserService();
 
@@ -19,9 +18,9 @@ export default class ShoppingCartService {
   /**
    * Create a shopping cart
    * @async
-   * @param {string} userId
-   * @param {Omit<IShoppinCart, "id">} data
-   * @returns {Promise<IShoppinCart>}
+   * @param userId
+   * @param data
+   * @returns Promise
    */
   async create(userId: string, data: Omit<IShoppingCart, "id">) {
     const user = await userService.findOne(userId);
@@ -39,7 +38,7 @@ export default class ShoppingCartService {
   /**
    * Find all a shopping cart
    * @async
-   * @returns {Promise<IShoppinCart>}
+   * @returns Promise
    */
   async findAll() {
     const shoppingCart = await ShoppingCart.find({
@@ -52,8 +51,8 @@ export default class ShoppingCartService {
   /**
    * Find shopping cart by id
    * @async
-   * @param {string} id shopping cart id
-   * @returns {Promise<IShoppinCart>}
+   * @param id shopping cart id
+   * @returns Promise
    */
   async findOne(id: string) {
     const shoppingCart = await ShoppingCart.findOneBy({ id });
@@ -66,9 +65,9 @@ export default class ShoppingCartService {
   /**
    * Update shopping cart data
    * @async
-   * @param {string} id shopping cart id
-   * @param {Partial<IShoppinCart>} data to update
-   * @returns {Promise<IShoppinCart>}
+   * @param id shopping cart id
+   * @param data to update
+   * @returns Promise
    */
   async update(id: string, data: Partial<IShoppingCart>) {
     const updatedShoppingCart = await ShoppingCart.update(id, data);
@@ -81,8 +80,8 @@ export default class ShoppingCartService {
   /**
    * Remove Shopping cart from db
    * @async
-   * @param {string} id Shopping cart id
-   * @returns {Promise<boolean>}
+   * @param id Shopping cart id
+   * @returns Promise
    */
   async delete(id: string) {
     const shoppingCart = await this.findOne(id);
