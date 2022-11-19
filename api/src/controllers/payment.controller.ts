@@ -10,16 +10,15 @@ import PaymentService from "../services/payment.service";
 /**
  * payment services for all crud operation in db
  * @const
- * @type {CategoryService}
  */
 const paymentService = new PaymentService();
 
 /**
  * get all payments controller
  * @async
- * @param {Request} _req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param _req
+ * @param res
+ * @param next
  */
 export async function getPaymentsController(
   _req: Request,
@@ -37,9 +36,9 @@ export async function getPaymentsController(
 /**
  * get payment controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function getPaymentController(
   req: Request,
@@ -59,9 +58,9 @@ export async function getPaymentController(
 /**
  * create payment controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function createPaymentController(
   req: Request,
@@ -82,9 +81,9 @@ export async function createPaymentController(
 /**
  * payment update controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function paymentUpdateController(
   req: Request,
@@ -105,9 +104,9 @@ export async function paymentUpdateController(
 /**
  * delete payment controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function paymentDeleteController(
   req: Request,
