@@ -9,6 +9,7 @@ import {
   categoryCreateSchema,
   categoryUpdateSchema,
   categoryIdSchema,
+  addOrRemoveCategoryParent,
 } from "../schemas/categorySchemas";
 
 import {
@@ -17,6 +18,8 @@ import {
   createCategoryController,
   categoryUpdateController,
   categoryDeleteController,
+  addParentCategoryController,
+  removeParentCategoryController,
 } from "../controllers/category.controller";
 
 import express from "express";
@@ -169,6 +172,62 @@ router.delete(
   "/:id",
   validatorHandler(categoryIdSchema, "params"),
   categoryDeleteController
+);
+
+/**
+ * Serving add parent category
+ * @openapi
+ * /category/add/child:
+ *    post:
+ *      tags:
+ *        - category
+ *      summary: "add category decendent"
+ *      description: add a category as a child of another category
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: "#/components/schemas/addOrRemoveCategorySchema"
+ *      responses:
+ *        '200':
+ *          description: response with the category information .
+ *        '401':
+ *          description: category not found or unauthorized.
+ *      security:
+ *       - bearerAuth: []
+ */
+router.post(
+  "/add/child",
+  validatorHandler(addOrRemoveCategoryParent, "body"),
+  addParentCategoryController
+);
+
+/**
+ * Serving remove parent category
+ * @openapi
+ * /category/remove/child:
+ *    post:
+ *      tags:
+ *        - category
+ *      summary: "remove category decendent"
+ *      description: remove a category as a child of another category
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: "#/components/schemas/addOrRemoveCategorySchema"
+ *      responses:
+ *        '200':
+ *          description: response with the category information .
+ *        '401':
+ *          description: category not found or unauthorized.
+ *      security:
+ *       - bearerAuth: []
+ */
+router.delete(
+  "/remove/child",
+  validatorHandler(addOrRemoveCategoryParent, "body"),
+  removeParentCategoryController
 );
 
 export default router;
