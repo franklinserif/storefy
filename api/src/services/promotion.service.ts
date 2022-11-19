@@ -24,7 +24,7 @@ export default class PromotionService {
    */
   async create(categoryId: string, data: Omit<IPromotion, "id">) {
     const category = await categoryService.findOne(categoryId);
-    const promotion = await Promotion.create(data);
+    const promotion = Promotion.create(data);
 
     promotion.categories.push(category);
     await promotion.save();
