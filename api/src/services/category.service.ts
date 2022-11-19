@@ -23,7 +23,7 @@ export default class CategoryService {
   }
 
   /**
-   * Find all a category
+   * Find all a categories
    * @async
    * @returns Promise
    */
@@ -34,7 +34,7 @@ export default class CategoryService {
   }
 
   /**
-   * Find category by id
+   * Find a category by id
    * @async
    * @param id category id
    * @throws error not found
@@ -49,7 +49,7 @@ export default class CategoryService {
   }
 
   /**
-   * Update category data
+   * Update category data in db
    * @async
    * @param id category id
    * @param data to update
