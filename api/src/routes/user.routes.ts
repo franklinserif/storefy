@@ -19,7 +19,6 @@ import express from "express";
 /**
  * Express route to mount user related endpoints
  * @const
- * @type {Router}
  */
 const router = express.Router();
 
