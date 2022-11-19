@@ -10,16 +10,15 @@ import ProductRatingService from "../services/productRating.service";
 /**
  * product rating services for all crud operation in db
  * @const
- * @type {CategoryService}
  */
 const productRatingService = new ProductRatingService();
 
 /**
  * get all products ratings controller
  * @async
- * @param {Request} _req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param _req
+ * @param res
+ * @param next
  */
 export async function getProductsRatingsController(
   _req: Request,
@@ -37,9 +36,9 @@ export async function getProductsRatingsController(
 /**
  * get poduct rating controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function getProductRatingController(
   req: Request,
@@ -59,9 +58,9 @@ export async function getProductRatingController(
 /**
  * create product Rating controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function createProductRatingController(
   req: Request,
@@ -85,9 +84,9 @@ export async function createProductRatingController(
 /**
  * product rating update controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function productRatingUpdateController(
   req: Request,
@@ -108,9 +107,9 @@ export async function productRatingUpdateController(
 /**
  * delete product rating controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function productRatingDeleteController(
   req: Request,
