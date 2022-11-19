@@ -10,16 +10,15 @@ import ShoppingCartItemService from "../services/ShoppingCartItem.service";
 /**
  * shopping cart item services for all crud operation in db
  * @const
- * @type {CategoryService}
  */
 const shoppingCartItemService = new ShoppingCartItemService();
 
 /**
  * get all shopping cart item controller
  * @async
- * @param {Request} _req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param _req
+ * @param res
+ * @param next
  */
 export async function getShoppingCartItemsController(
   _req: Request,
@@ -37,9 +36,9 @@ export async function getShoppingCartItemsController(
 /**
  * get shopping cart item  controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function getShoppingCartItemController(
   req: Request,
@@ -59,9 +58,9 @@ export async function getShoppingCartItemController(
 /**
  * create shopping cart item controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function createShoppingCartItemController(
   req: Request,
@@ -88,9 +87,9 @@ export async function createShoppingCartItemController(
 /**
  * shopping Cart Item update controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function shoppingCartItemUpdateController(
   req: Request,
@@ -114,9 +113,9 @@ export async function shoppingCartItemUpdateController(
 /**
  * delete shopping cart item controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function shoppingCartItemDeleteController(
   req: Request,
