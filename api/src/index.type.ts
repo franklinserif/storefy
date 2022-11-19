@@ -30,6 +30,11 @@ export interface ICategory {
   children: ICategory[];
 }
 
+export interface IAddOrRemoveCategoryParent {
+  parentCategoryId: string;
+  childCategoryId: string;
+}
+
 export interface IPayment {
   id: string;
   provider: string;
@@ -152,6 +157,7 @@ export type TSchemas =
   | joi.ObjectSchema<IConfirmCode>
   | joi.ObjectSchema<IChangeUserPassword>
   | joi.ObjectSchema<IWishList>
-  | joi.ObjectSchema<{ id: string }>;
+  | joi.ObjectSchema<{ id: string }>
+  | joi.ObjectSchema<IAddOrRemoveCategoryParent>;
 
 export type TProperty = "body" | "params";
