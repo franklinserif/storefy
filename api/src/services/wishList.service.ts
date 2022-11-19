@@ -11,14 +11,12 @@ import ProductService from "./product.service";
 /**
  * user service for crud operations
  * @const
- * @type {UserService}
  */
 const userService = new UserService();
 
 /**
  * user service for crud operations
  * @const
- * @type {UserService}
  */
 const productService = new ProductService();
 
@@ -26,8 +24,8 @@ export default class CategoryService {
   /**
    * Create a wishList
    * @async
-   * @param {string} userId
-   * @returns {Promise<ICategory>}
+   * @param userId
+   * @returns Promise
    */
   async create(userId: string) {
     const user = await userService.findOne(userId);
@@ -56,9 +54,9 @@ export default class CategoryService {
   /**
    * add product to wishList
    * @async
-   * @param {string} productId
-   * @param {string} wishListId
-   * @returns {Promise<IWishList>}
+   * @param productId
+   * @param wishListId
+   * @returns Promise
    */
   async addProduct(productId: string, wishListId: string) {
     const product = await productService.findOne(productId);
@@ -73,9 +71,9 @@ export default class CategoryService {
   /**
    * remove product to wishList
    * @async
-   * @param {string} productId
-   * @param {string} wishListId
-   * @returns {Promise<IWishList>}
+   * @param productId
+   * @param wishListId
+   * @returns Promise
    */
   async removeProduct(productId: string, wishListId: string) {
     const product = await productService.findOne(productId);
@@ -93,8 +91,8 @@ export default class CategoryService {
   /**
    * Remove wishList from db
    * @async
-   * @param {string} id wishList id
-   * @returns {Promise<boolean>}
+   * @param id wishList id
+   * @returns Promise
    */
   async delete(id: string) {
     const wishList = await this.findOne(id);
