@@ -24,7 +24,6 @@ import express from "express";
 /**
  * Express route to mount promotion related endpoints
  * @const
- * @type {Router}
  */
 const router = express.Router();
 
