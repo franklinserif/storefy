@@ -12,14 +12,12 @@ import ProductModelService from "./productModel.service";
 /**
  * contains all related methods for product crud operation
  * @const
- * @type {ShopppingCartService}
  */
 const productModelService = new ProductModelService();
 
 /**
  * contains all related methods for shopping cart crud operation
  * @const
- * @type {ShopppingCartService}
  */
 const shoppingCartService = new ShoppingCartService();
 
@@ -27,10 +25,10 @@ export default class ShoppingCartItemService {
   /**
    * Create a shopping cart item
    * @async
-   * @param {string} productModelId
-   * @param {string} shoppingCartId
-   * @param {Omit<IShoppingCartItem, "id">}
-   * @returns {Promise<IShoppingCartItem>}
+   * @param productModelId
+   * @param shoppingCartId
+   * @param data
+   * @returns Promise
    */
   async create(
     productModelId: string,
@@ -65,7 +63,7 @@ export default class ShoppingCartItemService {
   /**
    * Find all a shopping cart item
    * @async
-   * @returns {Promise<IShoppingCartItem>}
+   * @returns Promise
    */
   async findAll() {
     const shoppingCartItem = await ShoppingCartItem.find();
@@ -76,8 +74,8 @@ export default class ShoppingCartItemService {
   /**
    * Find shopping cart item by id
    * @async
-   * @param {string} id shopping cart item id
-   * @returns {Promise<IShoppingCartItem>}
+   * @param id shopping cart item id
+   * @returns Promise
    */
   async findOne(id: string) {
     const shoppingCartItem = await ShoppingCartItem.findOneBy({ id });
@@ -90,9 +88,9 @@ export default class ShoppingCartItemService {
   /**
    * Update shopping cart item data
    * @async
-   * @param {string} id shopping cart item id
-   * @param {Partial<IShoppingCartItem>} data to update
-   * @returns {Promise<IShoppingCartItem>}
+   * @param id shopping cart item id
+   * @param data to update
+   * @returns Promise
    */
   async update(id: string, data: Partial<IShoppingCartItem>) {
     const updatedShoppingCartItem = await ShoppingCartItem.update(id, data);
@@ -105,9 +103,9 @@ export default class ShoppingCartItemService {
   /**
    * Remove shopping cart item from db
    * @async
-   * @param {string} shoppingCartId
-   * @param {string} shoppinCartItemId
-   * @returns {Promise<boolean>}
+   * @param shoppingCartId
+   * @param shoppinCartItemId
+   * @returns Promise
    */
   async delete(shoppingCartId: string, shoppinCartItemId: string) {
     const shoppingCart = await shoppingCartService.findOne(shoppingCartId);
