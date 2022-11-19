@@ -179,7 +179,7 @@ router.delete(
  * Serving add product category information route
  * @openapi
  * /product/add/category:id:
- *    patch:
+ *    post:
  *      tags:
  *        - product
  *      summary: "add category to product"
@@ -204,7 +204,7 @@ router.delete(
  *      security:
  *       - bearerAuth: []
  */
-router.patch(
+router.post(
   "/add/category/:id",
   validatorHandler(productIdSchema, "params"),
   validatorHandler(categoryIdSchema, "body"),
@@ -215,7 +215,7 @@ router.patch(
  * Serving remove product category information route
  * @openapi
  * /product/remove/category/:id:
- *    patch:
+ *    delete:
  *      tags:
  *        - product
  *      summary: "remove category to product"
@@ -240,7 +240,7 @@ router.patch(
  *      security:
  *       - bearerAuth: []
  */
-router.patch(
+router.delete(
   "/remove/category/:id",
   validatorHandler(productIdSchema, "params"),
   validatorHandler(categoryIdSchema, "body"),
