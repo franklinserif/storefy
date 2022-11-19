@@ -19,7 +19,6 @@ const categoryService = new CategoryService();
 /**
  * contain all methods related to product services
  * @const
- * @type {UserService}
  */
 const userService = new UserService();
 
@@ -27,9 +26,9 @@ export default class ProductService {
   /**
    * Create a product
    * @async
-   * @param {string} userId
-   * @param {Omit<IProduct, "id">}
-   * @returns {Promise<IProduct>}
+   * @param userId
+   * @param data
+   * @returns Promise
    */
   async create(userId: string, data: Omit<IProduct, "id">) {
     const user = await userService.findOne(userId);
@@ -44,7 +43,7 @@ export default class ProductService {
   /**
    * Find all a product
    * @async
-   * @returns {Promise<IProduct>}
+   * @returns Promise
    */
   async findAll() {
     const product = await Product.find();
@@ -55,8 +54,8 @@ export default class ProductService {
   /**
    * Find product by id
    * @async
-   * @param {string} id product id
-   * @returns {Promise<IProduct>}
+   * @param id product id
+   * @returns Promise
    */
   async findOne(id: string) {
     const product = await Product.findOneBy({ id });
@@ -69,9 +68,9 @@ export default class ProductService {
   /**
    * Update product data
    * @async
-   * @param {string} id product id
-   * @param {Partial<IProduct>} data to update
-   * @returns {Promise<IProduct>}
+   * @param id product id
+   * @param data to update
+   * @returns Promise
    */
   async update(id: string, data: Partial<IProduct>) {
     const updatedProduct = await Product.update(id, data);
@@ -84,8 +83,8 @@ export default class ProductService {
   /**
    * Remove product from db
    * @async
-   * @param {string} id product id
-   * @returns {Promise<boolean>}
+   * @param id product id
+   * @returns Promise
    */
   async delete(id: string) {
     const product = await this.findOne(id);
@@ -98,8 +97,9 @@ export default class ProductService {
   /**
    * Add category to producto
    * @async
-   * @param {string} productId
-   * @param {string} categoryId
+   * @param productId
+   * @param categoryId
+   * @returns Promise
    */
   async addCategory(productId: string, categoryId: string) {
     const product = await this.findOne(productId);
