@@ -9,16 +9,15 @@ import AuthService from "../services/auth.service";
 /**
  * auth service for crud operations in db
  * @const
- * @type {AuthService}
  */
 const authService = new AuthService();
 
 /**
  * handle all signin request
  * @async
- * @param {Request} req
- * @param {Response } res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function signinController(
   req: Request,
@@ -38,9 +37,9 @@ export async function signinController(
 /**
  * handle all signup/register user request
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function signupController(
   req: Request,
@@ -60,9 +59,9 @@ export async function signupController(
 /**
  * user confirm code controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function confirmCodeController(
   req: Request,
@@ -85,9 +84,9 @@ export async function confirmCodeController(
 /**
  * create confirmation code controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function createConfirmationController(
   req: Request,
@@ -107,9 +106,9 @@ export async function createConfirmationController(
 /**
  * user change password controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function changePasswordController(
   req: Request,
