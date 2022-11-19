@@ -108,6 +108,24 @@ export default class ProductService {
     product.categories.push(category);
     await product.save();
 
-    return true;
+    return product;
+  }
+
+  /**
+   * Remove category from product
+   * @param productId
+   * @param categoryId
+   * @returns Promise
+   */
+  async removeCategory(productId: string, categoryId: string) {
+    const product = await this.findOne(productId);
+
+    product.categories = product.categories.filter(
+      (category) => category.id !== categoryId
+    );
+
+    product.save();
+
+    return product;
   }
 }
