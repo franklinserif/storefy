@@ -137,10 +137,29 @@ export async function addCategoryToProductController(
   try {
     const { id } = req.params;
     const { id: categoryId } = req.body;
-    const rta = await productService.addCategory(
-      id,
-      categoryId as unknown as string
-    );
+    const rta = await productService.addCategory(id, categoryId);
+
+    res.status(201).json(rta);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * remove category from product
+ * @param req
+ * @param res
+ * @param next
+ */
+export async function removeCategoryToProductController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { id } = req.params;
+    const { id: categoryId } = req.body;
+    const rta = await productService.removeCategory(id, categoryId);
 
     res.status(201).json(rta);
   } catch (error) {
