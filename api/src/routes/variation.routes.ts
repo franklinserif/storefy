@@ -24,7 +24,6 @@ import express from "express";
 /**
  * Express route to mount variation related endpoints
  * @const
- * @type {Router}
  */
 const router = express.Router();
 
