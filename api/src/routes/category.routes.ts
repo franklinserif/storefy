@@ -205,7 +205,7 @@ router.post(
  * Serving remove parent category
  * @openapi
  * /category/remove/child:
- *    post:
+ *    delete:
  *      tags:
  *        - category
  *      summary: "remove category decendent"
