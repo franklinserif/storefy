@@ -10,16 +10,15 @@ import PromotionService from "../services/promotion.service";
 /**
  * promotion services for all crud operation in db
  * @const
- * @type {PromotionService}
  */
 const promotionService = new PromotionService();
 
 /**
  * get all promotions controller
  * @async
- * @param {Request} _req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param _req
+ * @param res
+ * @param next
  */
 export async function getPromotionsController(
   _req: Request,
@@ -37,9 +36,9 @@ export async function getPromotionsController(
 /**
  * get promotion controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function getPromotionController(
   req: Request,
@@ -59,9 +58,9 @@ export async function getPromotionController(
 /**
  * create promotion controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function createPromotionController(
   req: Request,
@@ -82,9 +81,9 @@ export async function createPromotionController(
 /**
  * promotion update controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function promotionUpdateController(
   req: Request,
@@ -105,9 +104,9 @@ export async function promotionUpdateController(
 /**
  * delete promotion controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function promotionDeleteController(
   req: Request,
