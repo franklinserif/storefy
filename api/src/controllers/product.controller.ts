@@ -10,16 +10,15 @@ import ProductService from "../services/product.service";
 /**
  * product services for all crud operation in db
  * @const
- * @type {ProductService}
  */
 const productService = new ProductService();
 
 /**
  * create product controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function createProductController(
   req: Request,
@@ -40,9 +39,9 @@ export async function createProductController(
 /**
  * get all products controller
  * @async
- * @param {Request} _req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param _req
+ * @param res
+ * @param next
  */
 export async function getProductsController(
   _req: Request,
@@ -60,9 +59,9 @@ export async function getProductsController(
 /**
  * get products controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function getProductController(
   req: Request,
@@ -82,9 +81,9 @@ export async function getProductController(
 /**
  * product update controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function updateProductController(
   req: Request,
@@ -105,9 +104,9 @@ export async function updateProductController(
 /**
  * delete product controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function productDeleteController(
   req: Request,
@@ -126,9 +125,9 @@ export async function productDeleteController(
 
 /**
  * add category to product
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function addCategoryToProductController(
   req: Request,
