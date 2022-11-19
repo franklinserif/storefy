@@ -10,16 +10,15 @@ import WishListService from "../services/wishList.service";
 /**
  * wishList services for all crud operation in db
  * @const
- * @type {WishListService}
  */
 const wishListService = new WishListService();
 
 /**
  * get wishList controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function getWishListController(
   req: Request,
@@ -39,9 +38,9 @@ export async function getWishListController(
 /**
  * create wishList controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function createWishListServiceController(
   req: Request,
@@ -61,9 +60,9 @@ export async function createWishListServiceController(
 /**
  * wishList add product controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function addProductController(
   req: Request,
@@ -86,9 +85,9 @@ export async function addProductController(
 /**
  * wishList remove product controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function removeProductController(
   req: Request,
@@ -111,9 +110,9 @@ export async function removeProductController(
 /**
  * delete wishList controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function wishListDeleteController(
   req: Request,
