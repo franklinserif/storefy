@@ -11,14 +11,12 @@ import UserService from "./user.service";
 /**
  * contains all product methods for crud operations
  * @const
- * @type {ProductService}
  */
 const productService = new ProductService();
 
 /**
  * contains all user methods for crud operations
  * @const
- * @type {UserService}
  */
 const userService = new UserService();
 
@@ -26,10 +24,10 @@ export default class ReviewService {
   /**
    * Create a review
    * @async
-   * @param {string} userId
-   * @param {string} productId
-   * @param {Omit<IReview, "id">}
-   * @returns {Promise<IReview>}
+   * @param userId
+   * @param productId
+   * @param data
+   * @returns Promise
    */
   async create(
     userId: string,
@@ -51,7 +49,7 @@ export default class ReviewService {
   /**
    * Find all a review
    * @async
-   * @returns {Promise<IReview>}
+   * @returns Promise
    */
   async findAll() {
     const review = await Review.find();
@@ -62,8 +60,8 @@ export default class ReviewService {
   /**
    * Find review by id
    * @async
-   * @param {string} id review id
-   * @returns {Promise<IReview>}
+   * @param id review id
+   * @returns Promise
    */
   async findOne(id: string) {
     const review = await Review.findOneBy({ id });
@@ -76,9 +74,9 @@ export default class ReviewService {
   /**
    * Update review data
    * @async
-   * @param {string} id review id
-   * @param {Partial<IReview>} data to update
-   * @returns {Promise<IReview>}
+   * @param id review id
+   * @param data to update
+   * @returns Promise
    */
   async update(id: string, data: Partial<IReview>) {
     const updatedReview = await Review.update(id, data);
@@ -91,8 +89,8 @@ export default class ReviewService {
   /**
    * Remove review from db
    * @async
-   * @param {string} id review id
-   * @returns {Promise<boolean>}
+   * @param id review id
+   * @returns Promise
    */
   async delete(id: string) {
     const review = await this.findOne(id);
