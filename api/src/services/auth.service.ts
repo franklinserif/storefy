@@ -25,8 +25,8 @@ export default class AuthService {
   /**
    * Insert a new record into the db in the user's table
    * @async
-   * @param { Omit<IUser, "id">}  data
-   * @returns {Promise<IUser>}
+   * @param data
+   * @returns Promise
    */
   async create(data: Omit<IUser, "id">) {
     // Encrypt user password
@@ -45,10 +45,10 @@ export default class AuthService {
   /**
    * Verify if the user exist and if password is correct
    * @async
-   * @param {string} email address
-   * @param {string} password
-   * @throws {Error} unauthorized
-   * @returns {Promise<IUser>} Promise
+   * @param email
+   * @param password
+   * @throws error unauthorized
+   * @returns Promise
    */
   async getUser(email: string, password: string) {
     const user = await userService.findByEmail(email);
@@ -63,8 +63,8 @@ export default class AuthService {
   /**
    * Signs tokens for user auth
    * @async
-   * @param {IUser} user
-   * @returns {Promise<ISignTokens>} Promise
+   * @param user
+   * @returns Promise
    */
   async signTokens(user: IUser) {
     const payload = {
@@ -98,9 +98,9 @@ export default class AuthService {
   /**
    * Generate random code for user auth
    * @async
-   * @param {string} email user email address
-   * @throws {Error} unauthorized
-   * @returns {Promise<string>} Promise
+   * @param email user email address
+   * @throws error unauthorized
+   * @returns Promise
    */
   async createCode(email: string) {
     const confirmCode = generateRandomCode();
@@ -122,10 +122,10 @@ export default class AuthService {
   /**
    * Verify code and active user account
    * @async
-   * @param {string} email user email address
-   * @param {number} confirmCode
-   * @throws {Error} unauthorized
-   * @returns {Promise<User>} Promise
+   * @param email user email address
+   * @param confirmCode
+   * @throws error unauthorized
+   * @returns Promise Promise
    */
   async confirmCode(email: string, confirmCode: number) {
     const user = await userService.findByEmail(email);
@@ -146,11 +146,11 @@ export default class AuthService {
   /**
    * Change user password
    * @async
-   * @param {string} email user email address
-   * @param {number} confirmCode
-   * @param {string} password user new password
-   * @throws {Error} unauthorized
-   * @returns {Promise<boolean>}
+   * @param email user email address
+   * @param confirmCode
+   * @param password user new password
+   * @throws error unauthorized
+   * @returns Promise
    */
   async changeUserPassword(
     email: string,
