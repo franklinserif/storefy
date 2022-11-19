@@ -31,6 +31,7 @@ export default class CategoryService {
     const user = await userService.findOne(userId);
     const wishList = WishList.create();
 
+    await wishList.save();
     user.wishList = wishList;
     await user.save();
 
