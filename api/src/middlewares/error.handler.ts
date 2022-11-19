@@ -10,11 +10,11 @@ import { TypeORMError } from "typeorm";
 /**
  * handler all boom error if it's a boom error
  * otherwise it will response with the error it self
- * @param {Boom} error
- * @param {Request} _req
- * @param {Response} res
- * @param {NextFunction} _next
- * @returns {void}
+ * @param error
+ * @param _req
+ * @param res
+ * @param _next
+ * @returns void
  */
 export const boomErrorHandler: ErrorRequestHandler = (
   error: Boom,
@@ -34,7 +34,11 @@ export const boomErrorHandler: ErrorRequestHandler = (
 };
 
 /**
- * It handle all orm errors
+ * It handle all typeorm error
+ * @param err
+ * @param _req
+ * @param res
+ * @param next
  */
 export const ormErrorHandler: ErrorRequestHandler = (
   err: Error,
