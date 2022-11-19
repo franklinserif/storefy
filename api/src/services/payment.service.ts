@@ -11,7 +11,6 @@ import UserService from "./user.service";
 /**
  * User service for crud operations
  * @const
- * @type {UserService}
  */
 const userService = new UserService();
 
@@ -19,9 +18,9 @@ export default class PaymentService {
   /**
    * Create a payment
    * @async
-   * @param {string} userId
-   * @param {Omit<IPayment, "id">}
-   * @returns {Promise<IPayment>} Promise
+   * @param userId
+   * @param data
+   * @returns Promise
    */
   async create(userId: string, data: Omit<IPayment, "id">) {
     const user = await userService.findOne(userId);
@@ -36,7 +35,7 @@ export default class PaymentService {
   /**
    * Find all a payment
    * @async
-   * @returns {Promise<IPayment>}
+   * @returns Promise
    */
   async findAll() {
     const payment = await Payment.find();
@@ -47,9 +46,9 @@ export default class PaymentService {
   /**
    * Find payment by id
    * @async
-   * @param {string} id payment id
-   * @throws {Error} not found
-   * @returns {Promise<IPayment>} Promise
+   * @param id payment id
+   * @throws error not found
+   * @returns Promise
    */
   async findOne(id: string) {
     const payment = await Payment.findOneBy({ id });
@@ -62,10 +61,10 @@ export default class PaymentService {
   /**
    * Update payment data
    * @async
-   * @param {string} id payment id
-   * @param {Partial<IPayment>} data to update
-   * @throws {Error} not found
-   * @returns {Promise<IPayment>} Promise
+   * @param id payment id
+   * @param data to update
+   * @throws error not found
+   * @returns Promise
    */
   async update(id: string, data: Partial<IPayment>) {
     const updatedPayment = await Payment.update(id, data);
@@ -78,9 +77,9 @@ export default class PaymentService {
   /**
    * Remove payment from db
    * @async
-   * @param {string} id payment id
-   * @throws {Error} not found
-   * @returns {Promise<boolean>} Promise
+   * @param id payment id
+   * @throws error not found
+   * @returns Promise
    */
   async delete(id: string) {
     const payment = await this.findOne(id);
