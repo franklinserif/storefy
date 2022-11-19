@@ -24,7 +24,6 @@ import express from "express";
 /**
  * Express route to mount shoppingCart related endpoints
  * @const
- * @type {Router}
  */
 const router = express.Router();
 
