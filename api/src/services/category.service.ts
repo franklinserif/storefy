@@ -78,4 +78,20 @@ export default class CategoryService {
 
     return true;
   }
+
+  /**
+   * add a category as a children of another category
+   * @param parentCategoryId
+   * @param childCategoryId
+   * @returns Promise
+   */
+  async addParentCategory(parentCategoryId: string, childCategoryId: string) {
+    const parentCategory = await this.findOne(parentCategoryId);
+    const childCategory = await this.findOne(childCategoryId);
+
+    parentCategory.children.push(childCategory);
+    await parentCategory.save();
+
+    return parentCategory;
+  }
 }
