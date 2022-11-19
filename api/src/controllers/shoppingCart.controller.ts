@@ -10,16 +10,15 @@ import ShoppingCartService from "../services/shoppingCart.service";
 /**
  * shoppingCart services for all crud operation in db
  * @const
- * @type {ShoppingCartService}
  */
 const shoppingCartService = new ShoppingCartService();
 
 /**
  * get all shopping carts controller
  * @async
- * @param {Request} _req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param _req
+ * @param res
+ * @param next
  */
 export async function getShoppingCartsController(
   _req: Request,
@@ -37,9 +36,9 @@ export async function getShoppingCartsController(
 /**
  * get shoppingCart controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function getShoppingCartController(
   req: Request,
@@ -59,9 +58,9 @@ export async function getShoppingCartController(
 /**
  * create shopping cart controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function createShoppingCartController(
   req: Request,
@@ -82,9 +81,9 @@ export async function createShoppingCartController(
 /**
  * shoppingCart update controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function shoppingCartUpdateController(
   req: Request,
@@ -105,9 +104,9 @@ export async function shoppingCartUpdateController(
 /**
  * delete shoppingCart controller
  * @async
- * @param {Request} req
- * @param {Response} res
- * @param {NextFunction} next
+ * @param req
+ * @param res
+ * @param next
  */
 export async function shoppingCartDeleteController(
   req: Request,
