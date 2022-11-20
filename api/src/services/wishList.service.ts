@@ -31,21 +31,24 @@ export default class CategoryService {
     const user = await userService.findOne(userId);
     const wishList = WishList.create();
 
-    await wishList.save();
+    const newWishList = await wishList.save();
     user.wishList = wishList;
     await user.save();
 
-    return wishList;
+    return newWishList;
   }
 
   /**
    * Find wishList
    * @async
-   * @param {string} id
-   * @returns {Promise<IWishList>}
+   * @param id
+   * @returns Promise
    */
   async findOne(id: string) {
-    const wishList = await WishList.findOneBy({ id });
+    const wishList = await WishList.findOne({
+      where: { id },
+      relations: ["products"],
+    });
 
     if (!wishList) throw boom.notFound();
 
