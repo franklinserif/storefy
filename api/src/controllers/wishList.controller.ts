@@ -26,7 +26,7 @@ export async function getWishListController(
   next: NextFunction
 ) {
   try {
-    const id = req.params as unknown as string;
+    const { id } = req.params;
     const wishList = await wishListService.findOne(id);
 
     res.status(200).json(wishList);
@@ -48,8 +48,8 @@ export async function createWishListServiceController(
   next: NextFunction
 ) {
   try {
-    const userId = req.params as unknown as string;
-    const wishList = await wishListService.create(userId);
+    const { id } = req.params;
+    const wishList = await wishListService.create(id);
 
     res.status(200).json(wishList);
   } catch (error) {
@@ -70,7 +70,8 @@ export async function addProductController(
   next: NextFunction
 ) {
   try {
-    const { productId, wishListId }: IWishList = req.body;
+    const { productId, wishListId } = req.body;
+    console.log("id's", productId, wishListId);
     const categoryUpdated = await wishListService.addProduct(
       productId,
       wishListId
