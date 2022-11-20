@@ -8,5 +8,5 @@ import { User } from "../db/entity/User";
 export default function removePassword(user: User) {
   const { password, ...userWithoutPassword } = user;
 
-  return userWithoutPassword;
+  return userWithoutPassword as User;
 }
