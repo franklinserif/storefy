@@ -43,24 +43,35 @@ export default class ProductModelService {
     productModel.price = data.productModel.price;
     productModel.qty = data.productModel.qty;
 
+    const variations = [];
+
     for (const variation of data.variations) {
-      const newVariation = await variationServide.create(variation);
-      productModel.variations.push(newVariation);
+      const variationOptionArray = [];
+      const newVariation = await variationServide.create({
+        name: variation.name,
+      });
+      await newVariation.save();
+      variations.push(newVariation);
 
       for (const variationOption of variation.values) {
         const newVariationOption = await variationOptionService.create({
           value: variationOption,
         });
-        newVariation.variationOptions.push(newVariationOption);
+
+        await newVariationOption.save();
+        variationOptionArray.push(newVariationOption);
       }
+
+      newVariation.variationOptions = variationOptionArray;
+      await newVariation.save();
     }
 
-    product.productsModels.push(productModel);
-    await product.save();
-
+    productModel.variations = variations;
     await productModel.save();
+    product.productsModels.push(productModel);
+    const newProductModel = await product.save();
 
-    return productModel;
+    return newProductModel;
   }
 
   /**
@@ -81,7 +92,14 @@ export default class ProductModelService {
    * @returns Promise
    */
   async findOne(id: string) {
-    const productModel = await ProductModel.findOneBy({ id });
+    const productModel = await ProductModel.findOne({
+      where: { id },
+      relations: [
+        "variations",
+        "variations.variationOptions",
+        "shoppingCartItems",
+      ],
+    });
 
     if (!productModel) throw boom.notFound();
 
@@ -98,9 +116,9 @@ export default class ProductModelService {
   async update(id: string, data: Partial<IProductModel>) {
     const updatedProductModel = await ProductModel.update(id, data);
 
-    if (!updatedProductModel) throw boom.notFound();
+    if (updatedProductModel.affected === 0) throw boom.notFound();
 
-    return updatedProductModel;
+    return { message: "product model updated" };
   }
 
   /**
@@ -111,6 +129,13 @@ export default class ProductModelService {
    */
   async delete(id: string) {
     const productModel = await this.findOne(id);
+
+    for (const variation of productModel.variations) {
+      for (const option of variation.variationOptions) {
+        await option.remove();
+      }
+      await variation.remove();
+    }
 
     await productModel.remove();
 
