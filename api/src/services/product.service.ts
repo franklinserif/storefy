@@ -32,12 +32,13 @@ export default class ProductService {
    */
   async create(userId: string, data: Omit<IProduct, "id">) {
     const user = await userService.findOne(userId);
-    const product = Product.create(data);
+    const product = Product.create(data as Product);
 
+    const newProduct = await product.save();
     user.products.push(product);
     await user.save();
 
-    return product;
+    return newProduct;
   }
 
   /**
@@ -58,7 +59,16 @@ export default class ProductService {
    * @returns Promise
    */
   async findOne(id: string) {
-    const product = await Product.findOneBy({ id });
+    const product = await Product.findOne({
+      where: { id },
+      relations: [
+        "categories",
+        "productsModels",
+        "reviews",
+        "productsRating",
+        "categories.children",
+      ],
+    });
 
     if (!product) throw boom.notFound();
 
@@ -75,9 +85,9 @@ export default class ProductService {
   async update(id: string, data: Partial<IProduct>) {
     const updatedProduct = await Product.update(id, data);
 
-    if (!updatedProduct) throw boom.notFound();
+    if (updatedProduct.affected === 0) throw boom.notFound();
 
-    return updatedProduct;
+    return { message: "product updated" };
   }
 
   /**
@@ -104,6 +114,12 @@ export default class ProductService {
   async addCategory(productId: string, categoryId: string) {
     const product = await this.findOne(productId);
     const category = await categoryService.findOne(categoryId);
+    const categoryFounded = product.categories.find(
+      (category) => category.id === categoryId
+    );
+
+    if (categoryFounded)
+      throw boom.conflict("this product already have the category");
 
     product.categories.push(category);
     await product.save();
