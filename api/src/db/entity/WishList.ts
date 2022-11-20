@@ -16,7 +16,7 @@ import { Product } from "./Product";
 
 @Entity()
 export class WishList extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @OneToMany(() => Product, (products) => products.wishList)
