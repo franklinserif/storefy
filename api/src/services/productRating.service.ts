@@ -39,8 +39,16 @@ export default class ProductRatingService {
     const productRating = ProductRating.create(data);
     const product = await productService.findOne(productId);
 
-    productRating.product = product;
+    const relationAlreadyExist = user.productRating.find(
+      (model) => model.product.id === productId
+    );
+
+    if (relationAlreadyExist)
+      throw boom.conflict("you have already given a rating to this product");
+
     await productRating.save();
+    product.productsRating.push(productRating);
+    await product.save();
     user.productRating.push(productRating);
     await user.save();
 
@@ -65,7 +73,10 @@ export default class ProductRatingService {
    * @returns Promise
    */
   async findOne(id: string) {
-    const productRating = await ProductRating.findOneBy({ id });
+    const productRating = await ProductRating.findOne({
+      where: { id },
+      relations: ["user"],
+    });
 
     if (!productRating) throw boom.notFound();
 
@@ -82,9 +93,9 @@ export default class ProductRatingService {
   async update(id: string, data: Partial<ProductRating>) {
     const updatedProductRating = await ProductRating.update(id, data);
 
-    if (!updatedProductRating) throw boom.notFound();
+    if (updatedProductRating.affected === 0) throw boom.notFound();
 
-    return updatedProductRating;
+    return { message: "product rating updated" };
   }
 
   /**
