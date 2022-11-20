@@ -26,7 +26,6 @@ const total = joi.number();
  * @type {joi.ObjectSchema<IShoppingCart>}
  */
 export const shoppingCartCreateSchema = joi.object<IShoppingCart>({
-  id: id.required(),
   total: total.required(),
 });
 
@@ -36,7 +35,6 @@ export const shoppingCartCreateSchema = joi.object<IShoppingCart>({
  * @type {joi.ObjectSchema<IShoppingCart>}
  */
 export const shoppingCartUpdateSchema = joi.object<IShoppingCart>({
-  id,
   total,
 });
 
