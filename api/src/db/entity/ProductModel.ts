@@ -34,11 +34,14 @@ export class ProductModel extends BaseEntity {
 
   @OneToMany(
     () => ShoppingCartItem,
-    (shoppingCartItem) => shoppingCartItem.productModel
+    (shoppingCartItem) => shoppingCartItem.productModel,
+    { eager: true }
   )
   shoppingCartItems: ShoppingCartItem[];
 
-  @OneToMany(() => Variation, (variation) => variation.productModel)
+  @OneToMany(() => Variation, (variation) => variation.productModel, {
+    eager: true,
+  })
   variations: Variation[];
 
   @CreateDateColumn({ name: "create_at" })
