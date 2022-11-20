@@ -26,10 +26,10 @@ export default class PromotionService {
     const category = await categoryService.findOne(categoryId);
     const promotion = Promotion.create(data);
 
-    promotion.categories.push(category);
-    await promotion.save();
+    promotion.categories = [category];
+    const newPromotion = await promotion.save();
 
-    return promotion;
+    return newPromotion;
   }
 
   /**
@@ -50,7 +50,10 @@ export default class PromotionService {
    * @returns Promise
    */
   async findOne(id: string) {
-    const promotion = await Promotion.findOneBy({ id });
+    const promotion = await Promotion.findOne({
+      where: { id },
+      relations: ["categories"],
+    });
 
     if (!promotion) throw boom.notFound();
 
@@ -67,9 +70,9 @@ export default class PromotionService {
   async update(id: string, data: Partial<IPromotion>) {
     const updatedPromotion = await Promotion.update(id, data);
 
-    if (!updatedPromotion) throw boom.notFound();
+    if (updatedPromotion.affected === 0) throw boom.notFound();
 
-    return updatedPromotion;
+    return { message: "promotion updated" };
   }
 
   /**
@@ -103,5 +106,22 @@ export default class PromotionService {
     await promotion.save();
 
     return promotion;
+  }
+
+  /**
+   * add promotions from categories
+   * @async
+   * @param categoryId
+   * @param promotionId
+   * @returns Promise
+   */
+  async addCategory(categoryId: string, promotionId: string) {
+    const category = await categoryService.findOne(categoryId);
+    const promotion = await this.findOne(promotionId);
+
+    promotion.categories.push(category);
+    const promotionUpdated = await promotion.save();
+
+    return promotionUpdated;
   }
 }
