@@ -55,11 +55,33 @@ export default class ShoppingCartService {
    * @returns Promise
    */
   async findOne(id: string) {
-    const shoppingCart = await ShoppingCart.findOneBy({ id });
+    const shoppingCart = await ShoppingCart.findOne({
+      where: { id },
+      relations: ["shoppingCartItems", "shoppingCartItems.productModel"],
+    });
 
     if (!shoppingCart) throw boom.notFound();
 
     return shoppingCart;
+  }
+
+  /**
+   * get shopping cart total price to paid
+   * @param id
+   * @returns Promise
+   */
+  async getTotal(id: string) {
+    const shoppingCart = await this.findOne(id);
+
+    const total = shoppingCart.shoppingCartItems
+      .filter((item) => item?.productModel?.price !== undefined)
+      .reduce((total, item) => total + item.productModel.price * item.qty, 0);
+
+    shoppingCart.total = +total;
+
+    const updatedShoppingCart = await shoppingCart.save();
+
+    return updatedShoppingCart;
   }
 
   /**
@@ -72,9 +94,9 @@ export default class ShoppingCartService {
   async update(id: string, data: Partial<IShoppingCart>) {
     const updatedShoppingCart = await ShoppingCart.update(id, data);
 
-    if (!updatedShoppingCart) throw boom.notFound();
+    if (updatedShoppingCart.affected === 0) throw boom.notFound();
 
-    return updatedShoppingCart;
+    return { message: "shopping cart updated" };
   }
 
   /**
