@@ -21,6 +21,7 @@ import {
   updateProductController,
   productDeleteController,
   addCategoryToProductController,
+  removeCategoryToProductController,
 } from "../controllers/product.controller";
 
 import express from "express";
@@ -104,7 +105,7 @@ router.get(
  */
 router.post(
   "/:id",
-  validatorHandler(userIdSchema, "body"),
+  validatorHandler(userIdSchema, "params"),
   validatorHandler(productCreateSchema, "body"),
   createProductController
 );
@@ -244,6 +245,6 @@ router.delete(
   "/remove/category/:id",
   validatorHandler(productIdSchema, "params"),
   validatorHandler(categoryIdSchema, "body"),
-  addCategoryToProductController
+  removeCategoryToProductController
 );
 export default router;
