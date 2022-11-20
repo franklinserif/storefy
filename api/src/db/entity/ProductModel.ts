@@ -26,7 +26,7 @@ export class ProductModel extends BaseEntity {
   @Column()
   qty: number;
 
-  @Column()
+  @Column({ type: "real" })
   price: number;
 
   @ManyToOne(() => Product, (product) => product.productsModels)
@@ -38,9 +38,7 @@ export class ProductModel extends BaseEntity {
   )
   shoppingCartItems: ShoppingCartItem[];
 
-  @OneToMany(() => Variation, (variation) => variation.productModel, {
-    cascade: ["remove"],
-  })
+  @OneToMany(() => Variation, (variation) => variation.productModel)
   variations: Variation[];
 
   @CreateDateColumn({ name: "create_at" })
