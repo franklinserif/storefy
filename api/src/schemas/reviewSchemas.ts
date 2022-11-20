@@ -27,6 +27,8 @@ const comments = joi.string();
  */
 export const reviewCreateSchema = joi.object<IReview>({
   comments: comments.required(),
+  userId: id.required(),
+  productId: id.required(),
 });
 
 /**
