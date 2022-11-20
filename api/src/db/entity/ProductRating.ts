@@ -18,7 +18,7 @@ import { User } from "./User";
 
 @Entity()
 export class ProductRating extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
