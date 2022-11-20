@@ -11,11 +11,15 @@ import {
   promotionIdSchema,
 } from "../schemas/promotionSchemas";
 
+import { categoryIdSchema } from "../schemas/categorySchemas";
+
 import {
   getPromotionsController,
   getPromotionController,
   createPromotionController,
   promotionUpdateController,
+  addCategoryToPromotionController,
+  removeCategoryToPromotionController,
   promotionDeleteController,
 } from "../controllers/promotion.controller";
 
@@ -30,7 +34,7 @@ const router = express.Router();
 /**
  * Serving get all promotions route
  * @openapi
- * /promotion/:
+ * /promotion:
  *    get:
  *      tags:
  *        - promotions
@@ -79,11 +83,18 @@ router.get(
 /**
  * Serving creation promotion endpoint
  * @openapi
- * /promotion:
+ * /promotion/:id:
  *    post:
  *      tags:
  *        - promotion
  *      summary: "create a promotion"
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: id of the category
  *      description: create a new promotion
  *      requestBody:
  *          content:
@@ -99,7 +110,8 @@ router.get(
  *       - bearerAuth: []
  */
 router.post(
-  "/",
+  "/:id",
+  validatorHandler(categoryIdSchema, "params"),
   validatorHandler(promotionCreateSchema, "body"),
   createPromotionController
 );
@@ -138,6 +150,78 @@ router.patch(
   validatorHandler(promotionIdSchema, "params"),
   validatorHandler(promotionUpdateSchema, "body"),
   promotionUpdateController
+);
+
+/**
+ * Serving add category to promotion route
+ * @openapi
+ * /promotion/add/category/:id:
+ *    post:
+ *      tags:
+ *        - promotion
+ *      summary: "add a category to promotion"
+ *      description: update promotion information route
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: id of the category to update
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: "#/components/schemas/categoryIdSchema"
+ *      responses:
+ *        '201':
+ *          description: response with promotion information .
+ *        '401':
+ *          description: promotion not found or unauthorized or category not found.
+ *      security:
+ *       - bearerAuth: []
+ */
+router.post(
+  "/add/category/:id",
+  validatorHandler(categoryIdSchema, "params"),
+  validatorHandler(promotionIdSchema, "body"),
+  addCategoryToPromotionController
+);
+
+/**
+ * Serving removecategory to promotion route
+ * @openapi
+ * /promotion/remove/category/:id:
+ *    delete:
+ *      tags:
+ *        - promotion
+ *      summary: "remove a category to promotion"
+ *      description: update promotion information route
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: id of the category to update
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: "#/components/schemas/categoryIdSchema"
+ *      responses:
+ *        '201':
+ *          description: response with promotion information .
+ *        '401':
+ *          description: promotion not found or unauthorized or category not found.
+ *      security:
+ *       - bearerAuth: []
+ */
+router.delete(
+  "/remove/category/:id",
+  validatorHandler(categoryIdSchema, "params"),
+  validatorHandler(promotionIdSchema, "body"),
+  removeCategoryToPromotionController
 );
 
 /**
