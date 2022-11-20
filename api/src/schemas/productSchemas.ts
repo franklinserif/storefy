@@ -28,27 +28,6 @@ const name = joi.string();
 const description = joi.string();
 
 /**
- * product price
- * @const
- * @type {joi.StringSchema<string>}
- */
-const price = joi.number();
-
-/**
- * product sizes
- * @const
- * @type {joi.ArraySchema<string[]>}
- */
-const sizes = joi.array().items(joi.string());
-
-/**
- * product colors
- * @const
- * @type {joi.ArraySchema<any[]>}
- */
-const colors = joi.array().items(joi.string());
-
-/**
  * product creation validatation schema
  * @const
  * @type {joi.ObjectSchema<IProduct>}
@@ -56,9 +35,6 @@ const colors = joi.array().items(joi.string());
 export const productCreateSchema = joi.object<IProduct>({
   name: name.required(),
   description: description.required(),
-  price: price.required(),
-  sizes: sizes.required(),
-  colors: colors.required(),
 });
 
 /**
@@ -69,9 +45,6 @@ export const productCreateSchema = joi.object<IProduct>({
 export const productUpdateSchema = joi.object<IProduct>({
   name,
   description,
-  price,
-  sizes,
-  colors,
 });
 
 /**
