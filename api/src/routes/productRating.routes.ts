@@ -30,7 +30,7 @@ const router = express.Router();
 /**
  * Serving get all productsRatings route
  * @openapi
- * /productRating/:
+ * /productRating:
  *    get:
  *      tags:
  *        - productsRatings
