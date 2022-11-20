@@ -3,6 +3,7 @@
  * @module utils/category
  */
 
+import { AppDataSource } from "../data-source";
 import { Category } from "../db/entity/Category";
 import { ICategory } from "../index.type";
 import boom from "@hapi/boom";
@@ -41,7 +42,10 @@ export default class CategoryService {
    * @returns Promise
    */
   async findOne(id: string) {
-    const category = await Category.findOneBy({ id });
+    const category = await Category.findOne({
+      where: { id },
+      relations: ["children"],
+    });
 
     if (!category) throw boom.notFound();
 
@@ -61,7 +65,7 @@ export default class CategoryService {
 
     if (!updatedCategory) throw boom.notFound();
 
-    return updatedCategory;
+    return { message: "category updated" };
   }
 
   /**
@@ -72,9 +76,13 @@ export default class CategoryService {
    * @returns Promise
    */
   async delete(id: string) {
-    const category = await this.findOne(id);
+    const rta = await AppDataSource.createQueryBuilder()
+      .delete()
+      .from(Category)
+      .where("id = :id", { id })
+      .execute();
 
-    await category.remove();
+    if (rta.affected === 0) throw boom.notFound();
 
     return true;
   }
@@ -87,6 +95,13 @@ export default class CategoryService {
    */
   async addParentCategory(parentCategoryId: string, childCategoryId: string) {
     const parentCategory = await this.findOne(parentCategoryId);
+
+    const chilrenFounded = parentCategory.children.find(
+      (category) => category.id === childCategoryId
+    );
+    if (chilrenFounded)
+      throw boom.conflict("category is already added to this parent");
+
     const childCategory = await this.findOne(childCategoryId);
 
     parentCategory.children.push(childCategory);
@@ -110,6 +125,8 @@ export default class CategoryService {
     parentCategory.children = parentCategory.children.filter(
       (category) => category.id !== childCategoryId
     );
+
+    parentCategory.children.forEach((item) => console.log(item));
     await parentCategory.save();
 
     return parentCategory;
