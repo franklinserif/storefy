@@ -122,3 +122,55 @@ export async function promotionDeleteController(
     next(error);
   }
 }
+
+/**
+ * add category to promotion controller
+ * @async
+ * @param req
+ * @param res
+ * @param next
+ */
+export async function addCategoryToPromotionController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { id } = req.params;
+    const { id: promotionId } = req.body;
+    const promotionUpdated = await promotionService.addCategory(
+      id,
+      promotionId
+    );
+
+    res.status(201).json(promotionUpdated);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * add category to promotion controller
+ * @async
+ * @param req
+ * @param res
+ * @param next
+ */
+export async function removeCategoryToPromotionController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { id } = req.params;
+    const { id: promotionId } = req.body;
+    const promotionUpdated = await promotionService.removeCategory(
+      id,
+      promotionId
+    );
+
+    res.status(201).json(promotionUpdated);
+  } catch (error) {
+    next(error);
+  }
+}
