@@ -36,28 +36,20 @@ export default class ShoppingCartItemService {
     data: Omit<IShoppingCartItem, "id" | "productId" | "shoppinCartId">
   ) {
     const productModel = await productModelService.findOne(productModelId);
+
+    if (productModel.qty === 0) throw boom.conflict("sold out");
+
     const shoppingCart = await shoppingCartService.findOne(shoppingCartId);
-    const shoppingCartItem = await ShoppingCartItem.create();
+    const shoppingCartItem = ShoppingCartItem.create();
 
     shoppingCartItem.qty = data.qty;
-    await shoppingCartItem.save();
 
-    productModel.shoppingCartItems.push(shoppingCartItem);
-    shoppingCart.shoppingCartItems.push(shoppingCartItem);
-    await productModel.save();
+    shoppingCartItem.shoppingCart = shoppingCart;
+    shoppingCartItem.productModel = productModel;
 
-    /**
-     * list of shoppingCartItem related to this shopping cart
-     */
-    const prices = shoppingCart.shoppingCartItems.map(
-      (shoppingCartItem) =>
-        shoppingCartItem.productModel.price * shoppingCartItem.qty
-    );
+    const newShoppingCartItem = await shoppingCartItem.save();
 
-    shoppingCart.total = prices.reduce((prev, current) => prev + current, 0);
-
-    shoppingCart.save();
-    return shoppingCartItem;
+    return newShoppingCartItem;
   }
 
   /**
@@ -78,7 +70,10 @@ export default class ShoppingCartItemService {
    * @returns Promise
    */
   async findOne(id: string) {
-    const shoppingCartItem = await ShoppingCartItem.findOneBy({ id });
+    const shoppingCartItem = await ShoppingCartItem.findOne({
+      where: { id },
+      relations: ["productModel", "productModel.variations", "shoppingCart"],
+    });
 
     if (!shoppingCartItem) throw boom.notFound();
 
@@ -93,11 +88,11 @@ export default class ShoppingCartItemService {
    * @returns Promise
    */
   async update(id: string, data: Partial<IShoppingCartItem>) {
-    const updatedShoppingCartItem = await ShoppingCartItem.update(id, data);
+    const shoppinCartItemUpdated = await ShoppingCartItem.update(id, data);
 
-    if (!updatedShoppingCartItem) throw boom.notFound();
+    if (shoppinCartItemUpdated.affected === 0) boom.notFound();
 
-    return updatedShoppingCartItem;
+    return { message: "shopping cart item updated" };
   }
 
   /**
@@ -107,20 +102,10 @@ export default class ShoppingCartItemService {
    * @param shoppinCartItemId
    * @returns Promise
    */
-  async delete(shoppingCartId: string, shoppinCartItemId: string) {
-    const shoppingCart = await shoppingCartService.findOne(shoppingCartId);
-    const shoppingCartItem = await this.findOne(shoppinCartItemId);
+  async delete(shoppinCartItemId: string) {
+    const shoppinCartItem = await this.findOne(shoppinCartItemId);
 
-    shoppingCart.shoppingCartItems = shoppingCart.shoppingCartItems.filter(
-      (item) => item.id !== shoppingCartItem.id
-    );
-
-    shoppingCart.total =
-      shoppingCart.total -
-      shoppingCartItem.productModel.price * shoppingCartItem.qty;
-
-    await shoppingCartItem.remove();
-    await shoppingCart.save();
+    shoppinCartItem.remove();
 
     return true;
   }
