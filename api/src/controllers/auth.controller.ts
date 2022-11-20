@@ -69,11 +69,8 @@ export async function confirmCodeController(
   next: NextFunction
 ) {
   try {
-    const { email, confirmCode } = req.body;
-    const rta = await authService.confirmCode(
-      email as string,
-      confirmCode as number
-    );
+    const { email, code } = req.body;
+    const rta = await authService.confirmCode(email, code);
 
     res.status(200).json(rta);
   } catch (error) {
