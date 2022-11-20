@@ -2,9 +2,9 @@
  * user's related services for crud operations
  * @module services/userService
  */
+import { AppDataSource } from "../data-source";
 import { User } from "../db/entity/User";
 import { IUser } from "../index.type";
-import removePassword from "../utils/removePassword";
 import boom from "@hapi/boom";
 
 export default class UserService {
@@ -25,14 +25,25 @@ export default class UserService {
    * @returns Promise
    */
   async findOne(id: string) {
-    const user = await User.findOneBy({ id });
+    const user = await User.findOne({
+      where: { id },
+      relations: [
+        "products",
+        "payment",
+        "productRating",
+        "productRating.product",
+        "reviews",
+        "shoppingCarts",
+        "wishList",
+      ],
+    });
     /**
      * exception if user is not found
      */
+
     if (!user) throw boom.notFound();
 
-    const userWithoutPassword = removePassword(user);
-    return userWithoutPassword as unknown as User;
+    return user;
   }
 
   /**
@@ -42,7 +53,12 @@ export default class UserService {
    * @returns Promise
    */
   async findByEmail(email: string) {
-    const user = await User.findOneBy({ email });
+    const user = await AppDataSource.getRepository(User)
+      .createQueryBuilder("user")
+      .select(["user.password", "user.email", "user.id", "user.confirmCode"])
+      .where("user.email = :email", { email })
+      .getOne();
+
     if (!user) throw boom.notFound();
 
     return user;
@@ -57,7 +73,7 @@ export default class UserService {
    */
   async update(id: string, user: Partial<IUser>) {
     const updatedUser = await User.update(id, user);
-    if (!updatedUser) throw boom.notFound();
+    if (updatedUser.affected === 0) throw boom.notFound();
 
     const { password, ...userWithoutPassword } = user;
     return userWithoutPassword;
@@ -70,10 +86,13 @@ export default class UserService {
    * @returns Promise
    */
   async delete(id: string) {
-    const user = await this.findOne(id);
-    if (!user) throw boom.notFound();
+    const rta = await AppDataSource.createQueryBuilder()
+      .delete()
+      .from(User)
+      .where("id = :id", { id })
+      .execute();
 
-    await user.remove();
+    if (rta.affected === 0) throw boom.notFound();
 
     return { message: "user was delete from db" };
   }
