@@ -35,7 +35,7 @@ export class Promotion extends BaseEntity {
   @Column({ name: "end_date" })
   endDate: Date;
 
-  @ManyToMany(() => Category)
+  @ManyToMany(() => Category, { eager: true })
   @JoinTable()
   categories: Category[];
 
