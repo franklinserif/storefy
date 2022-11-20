@@ -1,5 +1,6 @@
 import UserService from "./services/user.service";
 import joi from "joi";
+import { productModelFullCreateSchema } from "./schemas/ProductModelSchemas";
 
 export type UserRolesTypes = "customer" | "seller";
 
@@ -10,16 +11,17 @@ export interface IUser {
   firstName: string;
   lastName: string;
   email: string;
-  phoneNumber: string;
   password: string;
   roles: "admin" | "seller" | "client";
-  isActive: boolean;
-  streetNumber: string;
-  addressLine1: string;
-  addressLine2: string;
   city: string;
   region: string;
-  postalCode: number;
+  phoneNumber?: string;
+  postalCode?: number;
+  confirmCode?: number;
+  isActive?: boolean;
+  streetNumber?: string;
+  addressLine1?: string;
+  addressLine2?: string;
 }
 
 export interface ICategory {
@@ -37,19 +39,16 @@ export interface IAddOrRemoveCategoryParent {
 
 export interface IPayment {
   id: string;
-  provider: string;
-  accountNumber: number;
-  expiryDate: Date;
-  paymentType: string;
+  provider?: string;
+  accountNumber?: number;
+  expiryDate?: Date;
+  paymentType?: string;
 }
 
 export interface IProduct {
   id: string;
   name: string;
   description: string;
-  price: number;
-  sizes: string[];
-  colors: string[];
 }
 
 export interface IProductRating {
@@ -83,8 +82,6 @@ export interface IShoppingCart {
 export interface IProductModel {
   id: string;
   price: number;
-  sizes: string[];
-  colors: string[];
   qty: number;
 }
 
@@ -158,6 +155,7 @@ export type TSchemas =
   | joi.ObjectSchema<IChangeUserPassword>
   | joi.ObjectSchema<IWishList>
   | joi.ObjectSchema<{ id: string }>
-  | joi.ObjectSchema<IAddOrRemoveCategoryParent>;
+  | joi.ObjectSchema<IAddOrRemoveCategoryParent>
+  | typeof productModelFullCreateSchema;
 
 export type TProperty = "body" | "params";
