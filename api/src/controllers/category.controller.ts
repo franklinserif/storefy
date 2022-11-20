@@ -160,7 +160,7 @@ export async function removeParentCategoryController(
 ) {
   try {
     const { parentCategoryId, childCategoryId } = req.body;
-    const parentCategory = await categoryService.addParentCategory(
+    const parentCategory = await categoryService.removeParentCategory(
       parentCategoryId,
       childCategoryId
     );
