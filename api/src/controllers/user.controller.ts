@@ -69,8 +69,8 @@ export async function userUpdateController(
 ) {
   try {
     const { id } = req.params;
-    const data: Partial<IUser> = req.body;
-    const userUpdated = await userService.update(id, data);
+    const { isActive, ...data } = req.body;
+    const userUpdated = await userService.update(id, data as Partial<IUser>);
 
     res.status(201).json(userUpdated);
   } catch (error) {
