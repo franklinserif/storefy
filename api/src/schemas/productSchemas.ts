@@ -9,28 +9,24 @@ import { IProduct } from "../index.type";
 /**
  * product id uuid
  * @const
- * @type {joi.StringSchema<string>}
  */
 const id = joi.string().uuid();
 
 /**
  * product name
  * @const
- * @type {joi.StringSchema<string>}
  */
 const name = joi.string();
 
 /**
  * product description
  * @const
- * @type {joi.StringSchema<string>}
  */
 const description = joi.string();
 
 /**
  * product creation validatation schema
  * @const
- * @type {joi.ObjectSchema<IProduct>}
  */
 export const productCreateSchema = joi.object<IProduct>({
   name: name.required(),
@@ -40,7 +36,6 @@ export const productCreateSchema = joi.object<IProduct>({
 /**
  * product update data validation schema
  * @const
- * @type {joi.ObjectSchema<IProduct>}
  */
 export const productUpdateSchema = joi.object<IProduct>({
   name,
@@ -50,7 +45,6 @@ export const productUpdateSchema = joi.object<IProduct>({
 /**
  * product id validation schema
  * @const
- * @type {joi.ObjectSchema<IProduct>}
  */
 export const productIdSchema = joi.object<IProduct>({
   id: id.required(),
