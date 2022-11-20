@@ -17,7 +17,7 @@ import { User } from "./User";
 
 @Entity()
 export class Review extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
