@@ -11,8 +11,6 @@ import {
   shoppinCartItemIdSchema,
 } from "../schemas/shoppingCartItemSchemas";
 
-import { shoppingCartIdSchema } from "../schemas/shoppingCartSchemas";
-
 import {
   getShoppingCartItemsController,
   getShoppingCartItemController,
@@ -169,7 +167,6 @@ router.patch(
 router.delete(
   "/:id",
   validatorHandler(shoppinCartItemIdSchema, "params"),
-  validatorHandler(shoppingCartIdSchema, "body"),
   shoppingCartItemDeleteController
 );
 
