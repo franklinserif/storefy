@@ -82,9 +82,9 @@ export default class ReviewService {
   async update(id: string, data: Partial<IReview>) {
     const updatedReview = await Review.update(id, data);
 
-    if (!updatedReview) throw boom.notFound();
+    if (updatedReview.affected === 0) throw boom.notFound();
 
-    return updatedReview;
+    return { message: "review updated" };
   }
 
   /**
