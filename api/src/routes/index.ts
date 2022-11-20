@@ -10,6 +10,7 @@ import categoryRoutes from "./category.routes";
 import paymentRoutes from "./payment.routes";
 import productRoutes from "./product.routes";
 import ProductModelRoutes from "./productModel.routes";
+import ProductRatingRoutes from "./productRating.routes";
 import promotionRoutes from "./promotion.routes";
 import reviewRoutes from "./review.routes";
 import shoppingCartRoutes from "./shoppingCart.routes";
@@ -29,13 +30,13 @@ export default function routeInit(app: Application) {
    * @const
    */
   const router = express.Router();
-
+  router.use("/promotion", promotionRoutes);
   router.use("/auth", authRoutes);
   router.use("/category", categoryRoutes);
   router.use("/payment", paymentRoutes);
   router.use("/product", productRoutes);
   router.use("/productmodel", ProductModelRoutes);
-  router.use("/promotion", promotionRoutes);
+  router.use("/productrating", ProductRatingRoutes);
   router.use("/review", reviewRoutes);
   router.use("/shoppingCart", shoppingCartRoutes);
   router.use("/shoppingCartItem", shoppingCartItemRoutes);
