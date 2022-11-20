@@ -35,10 +35,10 @@ export default class AuthService {
 
     const user = User.create(userData);
 
-    await user.save();
+    const newUser = await user.save();
     await this.createCode(data.email);
 
-    const userWithoutPassword = removePassword(user);
+    const userWithoutPassword = removePassword(newUser);
     return userWithoutPassword;
   }
 
@@ -109,7 +109,7 @@ export default class AuthService {
     user.confirmCode = confirmCode;
     await user.save();
 
-    sendMail({
+    await sendMail({
       to: [email],
       subject: "Activation code",
       html: `${confirmCode}`,
@@ -123,14 +123,14 @@ export default class AuthService {
    * Verify code and active user account
    * @async
    * @param email user email address
-   * @param confirmCode
+   * @param code
    * @throws error unauthorized
    * @returns Promise Promise
    */
-  async confirmCode(email: string, confirmCode: number) {
+  async confirmCode(email: string, code: number) {
     const user = await userService.findByEmail(email);
 
-    if (user.confirmCode !== confirmCode || confirmCode === 0) {
+    if (user.confirmCode !== code || code === 0) {
       throw boom.unauthorized();
     }
 
@@ -147,17 +147,13 @@ export default class AuthService {
    * Change user password
    * @async
    * @param email user email address
-   * @param confirmCode
+   * @param code
    * @param password user new password
    * @throws error unauthorized
    * @returns Promise
    */
-  async changeUserPassword(
-    email: string,
-    confirmCode: number,
-    password: string
-  ) {
-    const user = await this.confirmCode(email, confirmCode);
+  async changeUserPassword(email: string, code: number, password: string) {
+    const user = await this.confirmCode(email, code);
 
     const newPasswordEncryted = await bcrypt.hash(password, 10);
 
