@@ -190,8 +190,8 @@ router.delete(
  *      responses:
  *        '200':
  *          description: response with the category information .
- *        '401':
- *          description: category not found or unauthorized.
+ *        '409':
+ *          description: conflict category not already added to this parent.
  *      security:
  *       - bearerAuth: []
  */
