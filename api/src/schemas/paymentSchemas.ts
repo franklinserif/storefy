@@ -39,7 +39,7 @@ const expiryDate = joi.date();
  * @const
  * @type {joi.DateSchema<string>}
  */
-const paymentType = joi.string().valid("payment");
+const paymentType = joi.string();
 
 /**
  * payment creation validatation schema
@@ -47,10 +47,10 @@ const paymentType = joi.string().valid("payment");
  * @type {joi.ObjectSchema<IPayment>}
  */
 export const paymentCreateSchema = joi.object<IPayment>({
-  provider: provider.required(),
-  accountNumber: accountNumber.required(),
-  expiryDate: expiryDate.required(),
-  paymentType: paymentType.required(),
+  provider,
+  accountNumber,
+  expiryDate,
+  paymentType,
 });
 
 /**
