@@ -3,6 +3,7 @@
  * @module utils/payment
  */
 
+import { AppDataSource } from "../data-source";
 import { Payment } from "../db/entity/Payment";
 import { IPayment } from "../index.type";
 import boom from "@hapi/boom";
@@ -24,8 +25,9 @@ export default class PaymentService {
    */
   async create(userId: string, data: Omit<IPayment, "id">) {
     const user = await userService.findOne(userId);
-    const payment = await Payment.create(data);
+    const payment = Payment.create(data as Payment);
 
+    await payment.save();
     user.payment = payment;
     await user.save();
 
@@ -69,9 +71,9 @@ export default class PaymentService {
   async update(id: string, data: Partial<IPayment>) {
     const updatedPayment = await Payment.update(id, data);
 
-    if (!updatedPayment) throw boom.notFound();
+    if (updatedPayment.affected === 0) throw boom.notFound();
 
-    return updatedPayment;
+    return { message: "payment updated" };
   }
 
   /**
@@ -82,9 +84,13 @@ export default class PaymentService {
    * @returns Promise
    */
   async delete(id: string) {
-    const payment = await this.findOne(id);
+    const rta = await AppDataSource.createQueryBuilder()
+      .delete()
+      .from(Payment)
+      .where("id = :id", { id })
+      .execute();
 
-    await payment.remove();
+    if (rta.affected === 0) throw boom.notFound();
 
     return true;
   }
