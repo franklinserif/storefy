@@ -10,6 +10,8 @@ import {
   wishListIdSchema,
 } from "../schemas/wishList.schemas";
 
+import { userIdSchema } from "../schemas/userSchemas";
+
 import {
   getWishListController,
   createWishListServiceController,
@@ -29,7 +31,7 @@ const router = express.Router();
 /**
  * Serving get all wishLists route
  * @openapi
- * /wishList/:
+ * /wishList/:id:
  *    get:
  *      tags:
  *        - wishLists
@@ -43,13 +45,17 @@ const router = express.Router();
  *      security:
  *       - bearerAuth: []
  */
-router.get("/", getWishListController);
+router.get(
+  "/:id",
+  validatorHandler(wishListIdSchema, "params"),
+  getWishListController
+);
 
 /**
  * Serving get task by id
  * @openapi
  * /wishList/:id:
- *    get:
+ *    post:
  *      tags:
  *        - wishList
  *      summary: "user id by id "
@@ -69,9 +75,9 @@ router.get("/", getWishListController);
  *      security:
  *       - bearerAuth: []
  */
-router.get(
+router.post(
   "/:id",
-  validatorHandler(wishListIdSchema, "params"),
+  validatorHandler(userIdSchema, "params"),
   createWishListServiceController
 );
 
@@ -97,7 +103,7 @@ router.get(
  *      security:
  *       - bearerAuth: []
  */
-router.patch(
+router.post(
   "/add/product",
   validatorHandler(addOrRemoveProductWishListSchema, "body"),
   addProductController
@@ -125,7 +131,7 @@ router.patch(
  *      security:
  *       - bearerAuth: []
  */
-router.patch(
+router.delete(
   "/remove/product",
   validatorHandler(addOrRemoveProductWishListSchema, "body"),
   removeProductController
