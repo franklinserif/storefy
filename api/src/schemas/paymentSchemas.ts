@@ -9,42 +9,36 @@ import { IPayment } from "../index.type";
 /**
  * payment id uuid
  * @const
- * @type {joi.StringSchema<string>}
  */
 const id = joi.string().uuid();
 
 /**
  * payment provider
  * @const
- * @type {joi.StringSchema<string>}
  */
 const provider = joi.string();
 
 /**
  * payment account number
  * @const
- * @type {joi.StringSchema<string>}
  */
 const accountNumber = joi.number();
 
 /**
  * payment expiry date
  * @const
- * @type {joi.DateSchema<Date>}
  */
 const expiryDate = joi.date();
 
 /**
  * payment type
  * @const
- * @type {joi.DateSchema<string>}
  */
 const paymentType = joi.string();
 
 /**
  * payment creation validatation schema
  * @const
- * @type {joi.ObjectSchema<IPayment>}
  */
 export const paymentCreateSchema = joi.object<IPayment>({
   provider,
@@ -56,7 +50,6 @@ export const paymentCreateSchema = joi.object<IPayment>({
 /**
  * payment update data validation schema
  * @const
- * @type {joi.ObjectSchema<IPayment>}
  */
 export const paymentUpdateSchema = joi.object<IPayment>({
   provider,
@@ -68,7 +61,6 @@ export const paymentUpdateSchema = joi.object<IPayment>({
 /**
  * payment id validation schema
  * @const
- * @type {joi.ObjectSchema<IPayment>}
  */
 export const paymentIdSchema = joi.object<IPayment>({
   id: id.required(),
