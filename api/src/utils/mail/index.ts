@@ -31,6 +31,6 @@ export default async function sendMail(mail: IMail) {
     from: '"Storefy 👻" <franklinserif@gmail.com>', // sender address
     to: mail.to.join(","), // list of receivers
     subject: mail.subject,
-    html: `<div style="display: flex; justify-content: center; flex-direction: column"> <h2>${mail.html}</h2>`,
+    html: `<div style="display: flex; justify-content: center; flex-direction: column" style="display: block"> <h1> ${mail.subject}</h1>  <h2>${mail.html}</h2>`,
   });
 }
