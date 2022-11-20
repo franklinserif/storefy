@@ -4,7 +4,7 @@
  */
 
 import joi from "joi";
-import { IProductModel } from "../index.type";
+import { IProductModel, IProductModelCreate } from "../index.type";
 
 /**
  * product model id uuid
@@ -25,16 +25,21 @@ const qty = joi.number();
 const price = joi.number();
 
 /**
- * product model sizes
+ * variation options
  * @const
  */
-const sizes = joi.array().items(joi.string());
+const variationOptions = joi.array().items(joi.string());
 
 /**
- * product model colors
+ * variation
  * @const
  */
-const colors = joi.array().items(joi.string());
+const variation = joi.array().items(
+  joi.object({
+    name: joi.string(),
+    values: variationOptions,
+  })
+);
 
 /**
  * product model creation validation schema
@@ -43,8 +48,11 @@ const colors = joi.array().items(joi.string());
 export const productModelCreateSchema = joi.object<IProductModel>({
   qty: qty.required(),
   price: price.required(),
-  sizes: sizes.required(),
-  colors: colors.required(),
+});
+
+export const productModelFullCreateSchema = joi.object<IProductModelCreate>({
+  productModel: productModelCreateSchema,
+  variations: variation,
 });
 
 /**
@@ -54,8 +62,6 @@ export const productModelCreateSchema = joi.object<IProductModel>({
 export const productModelUpdateSchema = joi.object<IProductModel>({
   qty,
   price,
-  sizes,
-  colors,
 });
 
 /**
