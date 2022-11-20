@@ -70,8 +70,8 @@ export async function createShoppingCartItemController(
   try {
     const { productId, shoppingCartId, ...data } = req.body;
     const shoppinCartItem = await shoppingCartItemService.create(
-      productId as unknown as string,
-      shoppingCartId as unknown as string,
+      productId,
+      shoppingCartId,
       data as unknown as Omit<
         IShoppingCartItem,
         "id" | "productId" | "shoppinCartId"
@@ -123,12 +123,8 @@ export async function shoppingCartItemDeleteController(
   next: NextFunction
 ) {
   try {
-    const { id: shoppingCartItemId } = req.params;
-    const { id: shoppingCartId } = req.body;
-    const rta = await shoppingCartItemService.delete(
-      shoppingCartId,
-      shoppingCartItemId
-    );
+    const { id } = req.params;
+    const rta = await shoppingCartItemService.delete(id);
 
     res.status(201).json(rta);
   } catch (error) {
