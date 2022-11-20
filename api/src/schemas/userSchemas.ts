@@ -39,10 +39,7 @@ const email = joi.string().email();
  * @const
  * @type {joi.StringSchema<string>}
  */
-const phoneNumber = joi
-  .string()
-  .regex(/^[0-9]{10}$/)
-  .messages({ "string.pattern.base": "Phone number must have 10 digits" });
+const phoneNumber = joi.string();
 
 /**
  * user password
@@ -123,13 +120,13 @@ export const userCreateSchema = joi.object<IUser>({
   email: email.required(),
   password: password.required(),
   roles: roles.required(),
-  streetNumber: streetNumber.required(),
-  addressLine1: addressLine1.required(),
-  addressLine2: addressLine2.required(),
-  phoneNumber: phoneNumber.required(),
+  streetNumber,
+  addressLine1,
+  addressLine2,
+  phoneNumber,
   city: city.required(),
   region: region.required(),
-  postalCode: postalCode.required(),
+  postalCode,
 });
 
 /**
