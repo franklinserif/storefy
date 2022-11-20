@@ -17,17 +17,17 @@ export class Payment extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   provider: string;
 
-  @Column({ name: "account_number" })
+  @Column({ name: "account_number", nullable: true })
   accountNumber: number;
 
-  @Column({ name: "expire_date" })
+  @Column({ name: "expire_date", nullable: true })
   expiryDate: Date;
 
-  @Column({ name: "payment_type" })
-  paymentType: String;
+  @Column({ name: "payment_type", nullable: true })
+  paymentType: string;
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;
