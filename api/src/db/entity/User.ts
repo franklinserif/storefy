@@ -27,46 +27,46 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   firstName: string;
 
-  @Column()
+  @Column({ nullable: true })
   lastName: string;
 
-  @Column({ name: "email_address" })
-  email: string;
-
-  @Column({ name: "phone_number" })
-  phoneNumber: string;
-
-  @Column()
+  @Column({ select: false })
   password: string;
 
-  @Column()
-  role: string;
+  @Column({ nullable: true })
+  roles: string;
 
-  @Column({ name: "is_active" })
+  @Column({ name: "email_address", unique: true })
+  email: string;
+
+  @Column({ name: "phone_number", nullable: true })
+  phoneNumber: string;
+
+  @Column({ name: "is_active", default: false })
   isActive: boolean;
 
-  @Column({ name: "confirm_code" })
+  @Column({ name: "confirm_code", nullable: true, default: 0 })
   confirmCode: number;
 
-  @Column({ name: "street_number" })
+  @Column({ name: "street_number", nullable: true })
   streetNumber: Number;
 
-  @Column({ name: "address_line1" })
-  addressLine1: Number;
+  @Column({ name: "address_line1", nullable: true })
+  addressLine1: string;
 
-  @Column({ name: "address_line2" })
-  addressLine2: Number;
+  @Column({ name: "address_line2", nullable: true })
+  addressLine2: string;
 
-  @Column()
+  @Column({ nullable: true })
   city: String;
 
-  @Column()
+  @Column({ nullable: true })
   region: String;
 
-  @Column({ name: "postal_code" })
+  @Column({ name: "postal_code", nullable: true })
   postalCode: Number;
 
   @OneToMany(() => Product, (product) => product.user, {
