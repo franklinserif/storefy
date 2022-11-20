@@ -11,12 +11,15 @@ import {
   shoppingCartUpdateSchema,
 } from "../schemas/shoppingCartSchemas";
 
+import { userIdSchema } from "../schemas/userSchemas";
+
 import {
   getShoppingCartsController,
   getShoppingCartController,
   createShoppingCartController,
   shoppingCartUpdateController,
   shoppingCartDeleteController,
+  getShoppingCartTotalController,
 } from "../controllers/shoppingCart.controller";
 
 import express from "express";
@@ -77,6 +80,36 @@ router.get(
 );
 
 /**
+ * Serving get shoppingCart total by id
+ * @openapi
+ * /shoppingCart/total/:id:
+ *    get:
+ *      tags:
+ *        - shoppingCart
+ *      summary: "get shoppingCart total by id "
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: id of the shoppingCart
+ *      description: get shoppingCart by id
+ *      responses:
+ *        '200':
+ *          description: get shoppingCart total by id.
+ *        '401':
+ *          description: shoppingCart not found or unauthorized.
+ *      security:
+ *       - bearerAuth: []
+ */
+router.get(
+  "/total/:id",
+  validatorHandler(shoppingCartIdSchema, "params"),
+  getShoppingCartTotalController
+);
+
+/**
  * Serving creation shoppingCart endpoint
  * @openapi
  * /shoppingCart/:id:
@@ -86,7 +119,7 @@ router.get(
  *      summary: "create a shoppingCart"
  *      parameters:
  *        - in: path
- *          name: productId
+ *          name: user id
  *          schema:
  *            type: string
  *          required: true
@@ -107,7 +140,7 @@ router.get(
  */
 router.post(
   "/:id",
-  validatorHandler(shoppingCartIdSchema, "params"),
+  validatorHandler(userIdSchema, "params"),
   validatorHandler(shoppingCartCreateSchema, "body"),
   createShoppingCartController
 );
