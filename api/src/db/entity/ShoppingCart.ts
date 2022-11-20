@@ -29,7 +29,8 @@ export class ShoppingCart extends BaseEntity {
 
   @OneToMany(
     () => ShoppingCartItem,
-    (shoppingCartItem) => shoppingCartItem.shoppingCart
+    (shoppingCartItem) => shoppingCartItem.shoppingCart,
+    { eager: true }
   )
   shoppingCartItems: ShoppingCartItem[];
 
