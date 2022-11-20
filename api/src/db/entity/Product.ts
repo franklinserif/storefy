@@ -35,21 +35,24 @@ export class Product extends BaseEntity {
   description: string;
 
   @OneToMany(() => ProductModel, (productModel) => productModel.product, {
+    eager: true,
     cascade: ["remove"],
   })
   productsModels: ProductModel[];
 
-  @OneToMany(() => Review, (review) => review.product)
+  @OneToMany(() => Review, (review) => review.product, { eager: true })
   reviews: Review[];
 
-  @ManyToMany(() => Category)
+  @ManyToMany(() => Category, { eager: true })
   @JoinTable()
   categories: Category[];
 
-  @OneToMany(() => ProductRating, (productRating) => productRating.product)
+  @OneToMany(() => ProductRating, (productRating) => productRating.product, {
+    eager: true,
+  })
   productsRating: ProductRating[];
 
-  @ManyToOne(() => WishList, (wishList) => wishList.products)
+  @ManyToOne(() => WishList, (wishList) => wishList.products, { eager: true })
   wishList: WishList;
 
   @ManyToOne(() => User, (user) => user.products)
