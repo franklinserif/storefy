@@ -70,28 +70,34 @@ export class User extends BaseEntity {
   postalCode: Number;
 
   @OneToMany(() => Product, (product) => product.user, {
+    eager: true,
     cascade: ["remove"],
   })
   products: Product[];
 
-  @OneToMany(() => ProductRating, (ProductRating) => ProductRating.user)
+  @OneToMany(() => ProductRating, (ProductRating) => ProductRating.user, {
+    eager: true,
+  })
   productRating: ProductRating[];
 
-  @OneToMany(() => Review, (review) => review.user)
+  @OneToMany(() => Review, (review) => review.user, { eager: true })
   reviews: Review[];
 
   @OneToMany(() => ShoppingCart, (shopingCart) => shopingCart.user, {
+    eager: true,
     cascade: ["remove"],
   })
   shoppingCarts: ShoppingCart[];
 
   @OneToOne(() => WishList, {
+    eager: true,
     cascade: ["remove"],
   })
   @JoinColumn()
   wishList: WishList;
 
   @OneToOne(() => Payment, {
+    eager: true,
     cascade: ["remove"],
   })
   @JoinColumn()
