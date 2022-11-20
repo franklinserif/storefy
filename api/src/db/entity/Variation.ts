@@ -22,10 +22,7 @@ export class Variation extends BaseEntity {
 
   @OneToMany(
     () => VariationOption,
-    (variationOption) => variationOption.variation,
-    {
-      cascade: ["remove"],
-    }
+    (variationOption) => variationOption.variation
   )
   variationOptions: VariationOption[];
 }
