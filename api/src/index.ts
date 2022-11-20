@@ -41,7 +41,6 @@ app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerSetup));
  */
 
 if (!CONFIG.PRODUCTION) {
-  console.log("entro");
   app.use(express.static(path.join(__dirname, "client")));
 
   /**
@@ -51,7 +50,7 @@ if (!CONFIG.PRODUCTION) {
     res.sendFile(path.join(__dirname, "client", "index.html"));
   });
 } else {
-  app.use("/", (_req: Request, res: Response) => {
+  app.use("/home", (_req: Request, res: Response) => {
     res.send("dev server");
   });
 }
