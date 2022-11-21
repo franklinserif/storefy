@@ -1,16 +1,23 @@
 import UserService from "./services/user.service";
 import joi from "joi";
-import { productModelFullCreateSchema } from "./schemas/ProductModelSchemas";
 
 export type UserRolesTypes = "customer" | "seller";
 
 export type TUser = typeof UserService;
 
-export interface IUser {
+interface IBaseEntity {
   id: string;
+  name: string;
+  qty: number;
+  description: string;
+  email: string;
+  price: number;
+  total: number;
+}
+
+export interface IUser extends Pick<IBaseEntity, "id" | "email"> {
   firstName: string;
   lastName: string;
-  email: string;
   password: string;
   roles: "admin" | "seller" | "client";
   city: string;
@@ -22,74 +29,7 @@ export interface IUser {
   streetNumber?: string;
   addressLine1?: string;
   addressLine2?: string;
-}
-
-export interface ICategory {
-  id: string;
-  name: string;
-  image: string;
-  Parent: ICategory;
-  children: ICategory[];
-}
-
-export interface IAddOrRemoveCategoryParent {
-  parentCategoryId: string;
-  childCategoryId: string;
-}
-
-export interface IPayment {
-  id: string;
-  provider?: string;
-  accountNumber?: number;
-  expiryDate?: Date;
-  paymentType?: string;
-}
-
-export interface IProduct {
-  id: string;
-  name: string;
-  description: string;
-}
-
-export interface IProductRating {
-  id: string;
-  productId: string;
-  userId: string;
-  rating: number;
-}
-
-export interface IPromotion {
-  id: string;
-  name: string;
-  description: string;
-  discountRate: number;
-  startDate: Date;
-  endDate: Date;
-}
-
-export interface IReview {
-  id: string;
-  productId: string;
-  userId: string;
-  comments: string;
-}
-
-export interface IShoppingCart {
-  id: string;
-  total: number;
-}
-
-export interface IProductModel {
-  id: string;
-  price: number;
-  qty: number;
-}
-
-export interface IShoppingCartItem {
-  id: string;
-  productId: string;
-  shoppingCartId: string;
-  qty: number;
+  payment: IPayment;
 }
 
 export interface ISignTokens {
@@ -115,29 +55,73 @@ export interface IConfirmCode {
   email: string;
 }
 
+export interface IPayment extends Pick<IBaseEntity, "id"> {
+  provider?: string;
+  accountNumber?: number;
+  expiryDate?: Date;
+  paymentType?: string;
+}
+
 export interface IWishList {
   productId: string;
   wishListId: string;
 }
 
-export interface IVariation {
-  id: string;
-  name: string;
+export interface IShoppingCart extends Pick<IBaseEntity, "id"> {
+  total: number;
 }
 
-export interface IVariationOption {
-  id: string;
+export interface IProduct extends Pick<IBaseEntity, "id" | "description"> {
+  name: string;
+  productsModels: IProduct;
+}
+
+export interface IProductModel extends Pick<IBaseEntity, "id" | "qty"> {
+  price: number;
+  variations: IVariation[];
+}
+
+export interface IVariation extends Pick<IBaseEntity, "id" | "name"> {
+  variationOptions: IVariationOption[];
+}
+
+export interface IVariationOption extends Pick<IBaseEntity, "id"> {
   value: string;
 }
 
-export interface IVariationCreate {
-  name: string;
-  values: string[];
+export interface IShoppingCartItem extends Pick<IBaseEntity, "id" | "qty"> {
+  productId: string;
+  shoppingCartId: string;
 }
 
-export interface IProductModelCreate {
-  productModel: IProductModel;
-  variations: IVariationCreate[];
+export interface IProductRating extends Pick<IBaseEntity, "id"> {
+  productId: string;
+  userId: string;
+  rating: number;
+}
+
+export interface IReview extends Pick<IBaseEntity, "id"> {
+  productId: string;
+  userId: string;
+  comments: string;
+}
+
+export interface ICategory extends Pick<IBaseEntity, "id" | "name"> {
+  image: string;
+  Parent: ICategory;
+  children: ICategory[];
+}
+
+export interface IAddOrRemoveCategoryParent {
+  parentCategoryId: string;
+  childCategoryId: string;
+}
+
+export interface IPromotion
+  extends Pick<IBaseEntity, "id" | "description" | "name"> {
+  discountRate: number;
+  startDate: Date;
+  endDate: Date;
 }
 
 export type TSchemas =
@@ -155,7 +139,6 @@ export type TSchemas =
   | joi.ObjectSchema<IChangeUserPassword>
   | joi.ObjectSchema<IWishList>
   | joi.ObjectSchema<{ id: string }>
-  | joi.ObjectSchema<IAddOrRemoveCategoryParent>
-  | typeof productModelFullCreateSchema;
+  | joi.ObjectSchema<IAddOrRemoveCategoryParent>;
 
 export type TProperty = "body" | "params";
