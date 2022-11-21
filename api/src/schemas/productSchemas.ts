@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import { productModelCreateSchema } from "./ProductModelSchemas";
 import { IProduct } from "../index.type";
 
 /**
@@ -25,12 +26,19 @@ const name = joi.string();
 const description = joi.string();
 
 /**
+ * product model array of items
+ * @const
+ */
+const productsModels = joi.array().items(productModelCreateSchema);
+
+/**
  * product creation validatation schema
  * @const
  */
 export const productCreateSchema = joi.object<IProduct>({
   name: name.required(),
   description: description.required(),
+  productsModels: productsModels.required(),
 });
 
 /**
