@@ -30,7 +30,7 @@ export class ShoppingCart extends BaseEntity {
   @OneToMany(
     () => ShoppingCartItem,
     (shoppingCartItem) => shoppingCartItem.shoppingCart,
-    { eager: true }
+    { eager: true, onDelete: "CASCADE" }
   )
   shoppingCartItems: ShoppingCartItem[];
 
