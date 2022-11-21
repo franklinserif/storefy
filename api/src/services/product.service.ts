@@ -30,9 +30,9 @@ export default class ProductService {
    * @param data
    * @returns Promise
    */
-  async create(userId: string, data: Omit<IProduct, "id">) {
+  async create(userId: string, data: Product) {
     const user = await userService.findOne(userId);
-    const product = Product.create(data as Product);
+    const product = Product.create(data);
 
     const newProduct = await product.save();
     user.products.push(product);
@@ -82,7 +82,7 @@ export default class ProductService {
    * @param data to update
    * @returns Promise
    */
-  async update(id: string, data: Partial<IProduct>) {
+  async update(id: string, data: Partial<Omit<IProduct, "productsModels">>) {
     const updatedProduct = await Product.update(id, data);
 
     if (updatedProduct.affected === 0) throw boom.notFound();
