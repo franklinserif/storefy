@@ -6,7 +6,7 @@
 import validatorHandler from "../middlewares/validator.handler";
 
 import {
-  productModelFullCreateSchema,
+  productModelCreateSchema,
   productModelUpdateSchema,
   productModelIdSchema,
 } from "../schemas/ProductModelSchemas";
@@ -103,7 +103,7 @@ router.get(
 router.post(
   "/:id",
   validatorHandler(productIdSchema, "params"),
-  validatorHandler(productModelFullCreateSchema, "body"),
+  validatorHandler(productModelCreateSchema, "body"),
   createProductModelController
 );
 
