@@ -34,13 +34,13 @@ export class ProductModel extends BaseEntity {
 
   @OneToMany(
     () => ShoppingCartItem,
-    (shoppingCartItem) => shoppingCartItem.productModel,
-    { eager: true }
+    (shoppingCartItem) => shoppingCartItem.productModel
   )
   shoppingCartItems: ShoppingCartItem[];
 
   @OneToMany(() => Variation, (variation) => variation.productModel, {
     eager: true,
+    cascade: true,
   })
   variations: Variation[];
 
