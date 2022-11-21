@@ -22,7 +22,8 @@ export class Variation extends BaseEntity {
 
   @OneToMany(
     () => VariationOption,
-    (variationOption) => variationOption.variation
+    (variationOption) => variationOption.variation,
+    { eager: true, cascade: true }
   )
   variationOptions: VariationOption[];
 }
