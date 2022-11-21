@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import { variationOptionCreateSchema } from "./variationOptionSchemas";
 import { IVariation } from "../index.type";
 
 /**
@@ -19,11 +20,18 @@ const id = joi.string().uuid();
 const name = joi.string();
 
 /**
+ * variation options list
+ * @const
+ */
+const variationOptions = joi.array().items(variationOptionCreateSchema);
+
+/**
  * variation creation validation schema
  * @const
  */
 export const variationCreateSchema = joi.object<IVariation>({
   name: name.required(),
+  variationOptions: variationOptions.required(),
 });
 
 /**
