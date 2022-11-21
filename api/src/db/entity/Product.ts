@@ -36,11 +36,14 @@ export class Product extends BaseEntity {
 
   @OneToMany(() => ProductModel, (productModel) => productModel.product, {
     eager: true,
-    cascade: ["remove"],
+    cascade: true,
   })
   productsModels: ProductModel[];
 
-  @OneToMany(() => Review, (review) => review.product, { eager: true })
+  @OneToMany(() => Review, (review) => review.product, {
+    eager: true,
+    onDelete: "CASCADE",
+  })
   reviews: Review[];
 
   @ManyToMany(() => Category, { eager: true })
@@ -49,10 +52,11 @@ export class Product extends BaseEntity {
 
   @OneToMany(() => ProductRating, (productRating) => productRating.product, {
     eager: true,
+    onDelete: "CASCADE",
   })
   productsRating: ProductRating[];
 
-  @ManyToOne(() => WishList, (wishList) => wishList.products, { eager: true })
+  @ManyToOne(() => WishList, (wishList) => wishList.products)
   wishList: WishList;
 
   @ManyToOne(() => User, (user) => user.products)
