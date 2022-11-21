@@ -31,7 +31,8 @@ export class ShoppingCartItem extends BaseEntity {
 
   @ManyToOne(
     () => ProductModel,
-    (productModel) => productModel.shoppingCartItems
+    (productModel) => productModel.shoppingCartItems,
+    { eager: true }
   )
   productModel: ProductModel;
 
