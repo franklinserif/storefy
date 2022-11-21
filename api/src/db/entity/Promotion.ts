@@ -8,7 +8,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Column,
-  ManyToMany,
+  OneToMany,
   JoinTable,
   PrimaryGeneratedColumn,
   BaseEntity,
@@ -35,7 +35,7 @@ export class Promotion extends BaseEntity {
   @Column({ name: "end_date" })
   endDate: Date;
 
-  @ManyToMany(() => Category, { eager: true })
+  @OneToMany(() => Category, (category) => category.promotion, { eager: true })
   @JoinTable()
   categories: Category[];
 
