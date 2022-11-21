@@ -25,6 +25,7 @@ export default class PaymentService {
    */
   async create(userId: string, data: Omit<IPayment, "id">) {
     const user = await userService.findOne(userId);
+
     const payment = Payment.create(data as Payment);
 
     await payment.save();
