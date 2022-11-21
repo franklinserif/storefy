@@ -11,8 +11,11 @@ import {
   Column,
   TreeParent,
   TreeChildren,
+  ManyToOne,
   BaseEntity,
 } from "typeorm";
+
+import { Promotion } from "./Promotion";
 
 @Entity()
 export class Category extends BaseEntity {
@@ -30,6 +33,9 @@ export class Category extends BaseEntity {
 
   @TreeChildren()
   children: Category[];
+
+  @ManyToOne(() => Promotion, (promotion) => promotion.categories)
+  promotion: Promotion;
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;
