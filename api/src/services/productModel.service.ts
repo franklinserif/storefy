@@ -4,10 +4,10 @@
  */
 
 import { ProductModel } from "../db/entity/ProductModel";
-import { IProductModel, IProductModelCreate } from "../index.type";
+import { IProductModel } from "../index.type";
 import ProductService from "../services/product.service";
-import VariationService from "./variation.service";
-import VariationOptionService from "./variationOption.service";
+// import VariationService from "./variation.service";
+// import VariationOptionService from "./variationOption.service";
 import boom from "@hapi/boom";
 
 /**
@@ -20,13 +20,13 @@ const productServide = new ProductService();
  * variation service for crud operations
  * @const
  */
-const variationServide = new VariationService();
+//const variationServide = new VariationService();
 
 /**
  * variation option service for crud operations
  * @const
  */
-const variationOptionService = new VariationOptionService();
+//const variationOptionService = new VariationOptionService();
 
 export default class ProductModelService {
   /**
@@ -36,40 +36,13 @@ export default class ProductModelService {
    * @param data
    * @return Promise
    */
-  async create(productId: string, data: IProductModelCreate) {
+  async create(productId: string, data: ProductModel) {
     const product = await productServide.findOne(productId);
-    const productModel = new ProductModel();
+    const productModel = ProductModel.create(data);
 
-    productModel.price = data.productModel.price;
-    productModel.qty = data.productModel.qty;
-
-    const variations = [];
-
-    for (const variation of data.variations) {
-      const variationOptionArray = [];
-      const newVariation = await variationServide.create({
-        name: variation.name,
-      });
-      await newVariation.save();
-      variations.push(newVariation);
-
-      for (const variationOption of variation.values) {
-        const newVariationOption = await variationOptionService.create({
-          value: variationOption,
-        });
-
-        await newVariationOption.save();
-        variationOptionArray.push(newVariationOption);
-      }
-
-      newVariation.variationOptions = variationOptionArray;
-      await newVariation.save();
-    }
-
-    productModel.variations = variations;
-    await productModel.save();
     product.productsModels.push(productModel);
-    const newProductModel = await product.save();
+    await product.save();
+    const newProductModel = productModel.save();
 
     return newProductModel;
   }
