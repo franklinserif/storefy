@@ -44,7 +44,7 @@ export default class CategoryService {
   async findOne(id: string) {
     const category = await Category.findOne({
       where: { id },
-      relations: ["children"],
+      relations: ["children", "promotion"],
     });
 
     if (!category) throw boom.notFound();
