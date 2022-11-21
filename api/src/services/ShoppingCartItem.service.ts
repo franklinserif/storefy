@@ -43,11 +43,19 @@ export default class ShoppingCartItemService {
     const shoppingCartItem = ShoppingCartItem.create();
 
     shoppingCartItem.qty = data.qty;
-
-    shoppingCartItem.shoppingCart = shoppingCart;
-    shoppingCartItem.productModel = productModel;
-
     const newShoppingCartItem = await shoppingCartItem.save();
+
+    shoppingCart.shoppingCartItems.push(newShoppingCartItem);
+    productModel.shoppingCartItems.push(newShoppingCartItem);
+    await shoppingCart.save();
+    await productModel.save();
+
+    const total = shoppingCart.shoppingCartItems
+      .filter((item) => item?.productModel?.price !== undefined)
+      .reduce((total, item) => total + item.productModel.price * item.qty, 0);
+
+    shoppingCart.total = total;
+    await shoppingCart.save();
 
     return newShoppingCartItem;
   }
@@ -104,8 +112,15 @@ export default class ShoppingCartItemService {
    */
   async delete(shoppinCartItemId: string) {
     const shoppinCartItem = await this.findOne(shoppinCartItemId);
+    const shoppingCart = await shoppingCartService.findOne(
+      shoppinCartItem.shoppingCart.id
+    );
 
-    shoppinCartItem.remove();
+    shoppingCart.total -=
+      shoppinCartItem.qty * shoppinCartItem.productModel.price;
+    await shoppingCart.save();
+
+    await shoppinCartItem.remove();
 
     return true;
   }
