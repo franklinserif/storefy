@@ -27,7 +27,7 @@ export async function createProductController(
 ) {
   try {
     const { id: userId } = req.params;
-    const data: Omit<IProduct, "id"> = req.body;
+    const data = req.body;
     const product = await productService.create(userId, data);
 
     res.status(200).json(product);
