@@ -3,6 +3,7 @@
  * @module schemas/userSchema
  */
 
+import { paymentCreateSchema } from "./paymentSchemas";
 import joi from "joi";
 import { IUser, IChangeUserPassword, IConfirmCode } from "../index.type";
 
@@ -57,7 +58,6 @@ const roles = joi.string().valid("seller", "client");
 /**
  * user's street number
  * @const
- * @type {joi.NumberSchema<number>}
  */
 const streetNumber = joi.number();
 
@@ -100,7 +100,6 @@ const code = joi.number();
 /**
  * user create schema validation
  * @const
- * @type {joi.ObjectSchema<IUser>}
  */
 export const userCreateSchema = joi.object<IUser>({
   firstName: firstName.required(),
@@ -108,6 +107,7 @@ export const userCreateSchema = joi.object<IUser>({
   email: email.required(),
   password: password.required(),
   roles: roles.required(),
+  payment: paymentCreateSchema.required(),
   streetNumber,
   addressLine1,
   addressLine2,
