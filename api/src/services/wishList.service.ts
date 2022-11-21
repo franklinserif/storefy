@@ -28,6 +28,11 @@ export default class CategoryService {
    * @returns Promise
    */
   async create(userId: string) {
+    const wishListExist = await WishList.find();
+
+    if (wishListExist.length > 0)
+      throw boom.conflict("wish list already exist");
+
     const user = await userService.findOne(userId);
     const wishList = WishList.create();
 
