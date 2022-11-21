@@ -24,6 +24,10 @@ export default class PromotionService {
    */
   async create(categoryId: string, data: Omit<IPromotion, "id">) {
     const category = await categoryService.findOne(categoryId);
+
+    if (!category?.promotion?.id)
+      boom.conflict("category alread has a promotion");
+
     const promotion = Promotion.create(data);
 
     promotion.categories = [category];
