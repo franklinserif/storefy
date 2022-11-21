@@ -71,7 +71,7 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Product, (product) => product.user, {
     eager: true,
-    cascade: ["remove"],
+    onDelete: "CASCADE",
   })
   products: Product[];
 
@@ -85,20 +85,20 @@ export class User extends BaseEntity {
 
   @OneToMany(() => ShoppingCart, (shopingCart) => shopingCart.user, {
     eager: true,
-    cascade: ["remove"],
+    onDelete: "CASCADE",
   })
   shoppingCarts: ShoppingCart[];
 
   @OneToOne(() => WishList, {
     eager: true,
-    cascade: ["remove"],
+    onDelete: "CASCADE",
   })
   @JoinColumn()
   wishList: WishList;
 
   @OneToOne(() => Payment, {
     eager: true,
-    cascade: ["remove"],
+    cascade: true,
   })
   @JoinColumn()
   payment: Payment;
