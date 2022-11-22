@@ -3,7 +3,7 @@
  * @module utils/variation
  */
 
-import { Variation } from "../db/entity/Variation";
+import { Variation } from "../db/entity/Variation.entity";
 import { IVariation } from "../index.type";
 import boom from "@hapi/boom";
 
