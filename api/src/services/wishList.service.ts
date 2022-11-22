@@ -3,7 +3,7 @@
  * @module utils/wishList
  */
 
-import { WishList } from "../db/entity/WishList";
+import { WishList } from "../db/entity/WishList.entity";
 import boom from "@hapi/boom";
 import UserService from "./user.service";
 import ProductService from "./product.service";
