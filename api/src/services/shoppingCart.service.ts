@@ -3,7 +3,7 @@
  * @module utils/shoppingCart
  */
 
-import { ShoppingCart } from "../db/entity/ShoppingCart";
+import { ShoppingCart } from "../db/entity/ShoppingCart.entity";
 import { IShoppingCart } from "../index.type";
 import boom from "@hapi/boom";
 import UserService from "./user.service";
