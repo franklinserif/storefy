@@ -3,7 +3,7 @@
  * @module services/userService
  */
 import { AppDataSource } from "../data-source";
-import { User } from "../db/entity/User";
+import { User } from "../db/entity/User.entity";
 import { IUser } from "../index.type";
 import boom from "@hapi/boom";
 
