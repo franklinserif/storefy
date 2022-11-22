@@ -3,7 +3,7 @@
  * @module utils/product
  */
 
-import { Product } from "../db/entity/Product";
+import { Product } from "../db/entity/Product.entity";
 import { IProduct } from "../index.type";
 import CategoryService from "./category.service";
 import UserService from "./user.service";
