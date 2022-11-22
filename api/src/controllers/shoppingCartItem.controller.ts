@@ -5,7 +5,7 @@
 
 import { Request, Response, NextFunction } from "express";
 import { IShoppingCartItem } from "../index.type";
-import ShoppingCartItemService from "../services/ShoppingCartItem.service";
+import ShoppingCartItemService from "../services/shoppingCartItem.service";
 
 /**
  * shopping cart item services for all crud operation in db
