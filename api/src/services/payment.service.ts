@@ -4,7 +4,7 @@
  */
 
 import { AppDataSource } from "../data-source";
-import { Payment } from "../db/entity/Payment";
+import { Payment } from "../db/entity/Payment.entity";
 import { IPayment } from "../index.type";
 import boom from "@hapi/boom";
 import UserService from "./user.service";
