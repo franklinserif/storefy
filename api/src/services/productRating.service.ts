@@ -3,7 +3,7 @@
  * @module utils/ProductRating
  */
 
-import { ProductRating } from "../db/entity/ProductRating";
+import { ProductRating } from "../db/entity/ProductRating.entity";
 import { IProductRating } from "../index.type";
 import boom from "@hapi/boom";
 import UserService from "./user.service";

@@ -3,7 +3,7 @@
  * @module utils/promotion
  */
 
-import { Promotion } from "../db/entity/Promotion";
+import { Promotion } from "../db/entity/Promotion.entity";
 import { IPromotion } from "../index.type";
 import boom from "@hapi/boom";
 import CategoryService from "./category.service";
