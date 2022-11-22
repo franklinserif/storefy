@@ -5,7 +5,7 @@
  */
 
 import { IUser } from "../index.type";
-import { User } from "../db/entity/User";
+import { User } from "../db/entity/User.entity";
 import boom from "@hapi/boom";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
