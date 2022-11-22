@@ -3,7 +3,7 @@
  * @module utils/review
  */
 
-import { Review } from "../db/entity/Review";
+import { Review } from "../db/entity/Review.entity";
 import { IReview } from "../index.type";
 import boom from "@hapi/boom";
 import ProductService from "./product.service";
