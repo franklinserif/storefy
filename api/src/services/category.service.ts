@@ -4,7 +4,7 @@
  */
 
 import { AppDataSource } from "../data-source";
-import { Category } from "../db/entity/Category";
+import { Category } from "../db/entity/Category.entity";
 import { ICategory } from "../index.type";
 import boom from "@hapi/boom";
 
