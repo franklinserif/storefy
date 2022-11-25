@@ -83,11 +83,12 @@ export class User extends BaseEntity {
   @OneToMany(() => Review, (review) => review.user, { eager: true })
   reviews: Review[];
 
-  @OneToMany(() => ShoppingCart, (shopingCart) => shopingCart.user, {
+  @OneToOne(() => ShoppingCart, (shopingCart) => shopingCart.user, {
     eager: true,
     onDelete: "CASCADE",
   })
-  shoppingCarts: ShoppingCart[];
+  @JoinColumn()
+  shoppingCart: ShoppingCart;
 
   @OneToOne(() => WishList, {
     eager: true,

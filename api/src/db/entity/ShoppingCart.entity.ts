@@ -24,7 +24,7 @@ export class ShoppingCart extends BaseEntity {
   @Column({ type: "real" })
   total: number;
 
-  @ManyToOne(() => User, (user) => user.shoppingCarts)
+  @ManyToOne(() => User, (user) => user.shoppingCart)
   user: User;
 
   @OneToMany(
