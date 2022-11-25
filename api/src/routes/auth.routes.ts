@@ -109,7 +109,7 @@ router.post(
 );
 
 /**
- * Serving forgot forgot/password and new/code route
+ * Serving forgot/password and new/code route
  * @openapi
  * /auth/forgot/password:
  *    post:
