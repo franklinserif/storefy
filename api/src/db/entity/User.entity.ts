@@ -110,10 +110,4 @@ export class User extends BaseEntity {
 
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
-
-  @AfterInsert()
-  async userSetup() {
-    this.shoppingCart = new ShoppingCart();
-    this.wishList = new WishList();
-  }
 }
