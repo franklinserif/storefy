@@ -13,6 +13,7 @@ import {
   OneToOne,
   JoinColumn,
   BaseEntity,
+  AfterInsert,
 } from "typeorm";
 
 import { ProductRating } from "./ProductRating.entity";
@@ -109,4 +110,10 @@ export class User extends BaseEntity {
 
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
+
+  @AfterInsert()
+  async userSetup() {
+    this.shoppingCart = new ShoppingCart();
+    this.wishList = new WishList();
+  }
 }
