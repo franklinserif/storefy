@@ -5,14 +5,7 @@
 
 import { WishList } from "../db/entity/WishList.entity";
 import boom from "@hapi/boom";
-import UserService from "./user.service";
 import ProductService from "./product.service";
-
-/**
- * user service for crud operations
- * @const
- */
-const userService = new UserService();
 
 /**
  * user service for crud operations
@@ -21,28 +14,6 @@ const userService = new UserService();
 const productService = new ProductService();
 
 export default class CategoryService {
-  /**
-   * Create a wishList
-   * @async
-   * @param userId
-   * @returns Promise
-   */
-  async create(userId: string) {
-    const wishListExist = await WishList.find();
-
-    if (wishListExist.length > 0)
-      throw boom.conflict("wish list already exist");
-
-    const user = await userService.findOne(userId);
-    const wishList = WishList.create();
-
-    const newWishList = await wishList.save();
-    user.wishList = wishList;
-    await user.save();
-
-    return newWishList;
-  }
-
   /**
    * Find wishList
    * @async
