@@ -42,8 +42,8 @@ export default class AuthService {
     const shoppingCart = ShoppingCart.create();
     const wishList = WishList.create();
 
-    user.shoppingCart = shoppingCart;
-    user.wishList = wishList;
+    user.shoppingCart = await shoppingCart.save();
+    user.wishList = await wishList.save();
 
     /**
      * insert record in db
