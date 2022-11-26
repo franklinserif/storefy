@@ -6,33 +6,19 @@
 import { ShoppingCart } from "../db/entity/ShoppingCart.entity";
 import { IShoppingCart } from "../index.type";
 import boom from "@hapi/boom";
-import UserService from "./user.service";
-
-/**
- * user service for crud operations related to users
- * @const
- */
-const userService = new UserService();
 
 export default class ShoppingCartService {
   /**
    * Create a shopping cart
    * @async
-   * @param userId
-   * @param data
    * @returns Promise
    */
-  async create(userId: string, data: Omit<IShoppingCart, "id">) {
-    const user = await userService.findOne(userId);
+  async create() {
     const shoppingCart = ShoppingCart.create();
 
-    shoppingCart.total = data.total;
-    user.shoppingCarts.push(shoppingCart);
+    const newShoppingCart = await shoppingCart.save();
 
-    await shoppingCart.save();
-    await user.save();
-
-    return shoppingCart;
+    return newShoppingCart;
   }
 
   /**
@@ -41,11 +27,9 @@ export default class ShoppingCartService {
    * @returns Promise
    */
   async findAll() {
-    const shoppingCart = await ShoppingCart.find({
-      relations: ["shoppingCartItems", "shoppingCartItems.productModel"],
-    });
+    const shoppingCarts = await ShoppingCart.find();
 
-    return shoppingCart;
+    return shoppingCarts;
   }
 
   /**
@@ -66,25 +50,6 @@ export default class ShoppingCartService {
   }
 
   /**
-   * get shopping cart total price to paid
-   * @param id
-   * @returns Promise
-   */
-  async getTotal(id: string) {
-    const shoppingCart = await this.findOne(id);
-
-    const total = shoppingCart.shoppingCartItems
-      .filter((item) => item?.productModel?.price !== undefined)
-      .reduce((total, item) => total + item.productModel.price * item.qty, 0);
-
-    shoppingCart.total = +total;
-
-    const updatedShoppingCart = await shoppingCart.save();
-
-    return updatedShoppingCart;
-  }
-
-  /**
    * Update shopping cart data
    * @async
    * @param id shopping cart id
@@ -92,11 +57,14 @@ export default class ShoppingCartService {
    * @returns Promise
    */
   async update(id: string, data: Partial<IShoppingCart>) {
-    const updatedShoppingCart = await ShoppingCart.update(id, data);
+    const updatedShoppingCart = await ShoppingCart.save({
+      id: id,
+      total: data.total,
+    });
 
-    if (updatedShoppingCart.affected === 0) throw boom.notFound();
+    if (!updatedShoppingCart?.id) throw boom.notFound();
 
-    return { message: "shopping cart updated" };
+    return updatedShoppingCart;
   }
 
   /**
