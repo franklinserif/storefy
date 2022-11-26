@@ -36,28 +36,6 @@ export async function getWishListController(
 }
 
 /**
- * create wishList controller
- * @async
- * @param req
- * @param res
- * @param next
- */
-export async function createWishListServiceController(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    const { id } = req.params;
-    const wishList = await wishListService.create(id);
-
-    res.status(200).json(wishList);
-  } catch (error) {
-    next(error);
-  }
-}
-
-/**
  * wishList add product controller
  * @async
  * @param req
