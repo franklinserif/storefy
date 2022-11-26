@@ -1,4 +1,4 @@
-import { User } from "../db/entity/User";
+import { User } from "../db/entity/User.entity";
 
 /**
  * remove password from User object
