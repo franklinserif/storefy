@@ -12,7 +12,6 @@ import boom from "@hapi/boom";
 /**
  * contain all methods related to category services
  * @const
- * @type {CategoryService}
  */
 const categoryService = new CategoryService();
 
