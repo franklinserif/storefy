@@ -13,7 +13,7 @@ import ProductService from "./product.service";
  */
 const productService = new ProductService();
 
-export default class CategoryService {
+export default class WishListService {
   /**
    * Find wishList
    * @async
@@ -41,6 +41,9 @@ export default class CategoryService {
   async addProduct(productId: string, wishListId: string) {
     const product = await productService.findOne(productId);
     const wishList = await this.findOne(wishListId);
+
+    if (wishList.products.find((item) => item?.id === product?.id))
+      throw boom.conflict("product is already added");
 
     wishList.products.push(product);
     await wishList.save();
