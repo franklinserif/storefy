@@ -10,11 +10,8 @@ import {
   wishListIdSchema,
 } from "../schemas/wishList.schemas";
 
-import { userIdSchema } from "../schemas/userSchemas";
-
 import {
   getWishListController,
-  createWishListServiceController,
   addProductController,
   removeProductController,
   wishListDeleteController,
@@ -49,36 +46,6 @@ router.get(
   "/:id",
   validatorHandler(wishListIdSchema, "params"),
   getWishListController
-);
-
-/**
- * Serving get task by id
- * @openapi
- * /wishList/:id:
- *    post:
- *      tags:
- *        - wishList
- *      summary: "user id by id "
- *      parameters:
- *        - in: path
- *          name: id
- *          schema:
- *            type: string
- *          required: true
- *          description: user wishList owner
- *      description: create wishList
- *      responses:
- *        '200':
- *          description: create wish List.
- *        '401':
- *          description: wishList not found or unauthorized.
- *      security:
- *       - bearerAuth: []
- */
-router.post(
-  "/:id",
-  validatorHandler(userIdSchema, "params"),
-  createWishListServiceController
 );
 
 /**
