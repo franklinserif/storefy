@@ -6,17 +6,13 @@
 import validatorHandler from "../middlewares/validator.handler";
 
 import {
-  paymentCreateSchema,
   paymentUpdateSchema,
   paymentIdSchema,
 } from "../schemas/paymentSchemas";
 
-import { userIdSchema } from "../schemas/userSchemas";
-
 import {
   getPaymentController,
   getPaymentsController,
-  createPaymentController,
   paymentUpdateController,
   paymentDeleteController,
 } from "../controllers/payment.controller";
@@ -26,7 +22,6 @@ import express from "express";
 /**
  * Express route to mount payment related endpoints
  * @const
- * @type {Router}
  */
 const router = express.Router();
 
@@ -77,35 +72,6 @@ router.get(
   "/:id",
   validatorHandler(paymentIdSchema, "params"),
   getPaymentController
-);
-
-/**
- * Serving creation payment endpoint
- * @openapi
- * /payment:
- *    post:
- *      tags:
- *        - payment
- *      summary: "create a payment"
- *      description: create a new payment
- *      requestBody:
- *          content:
- *            application/json:
- *              schema:
- *                $ref: "#/components/schemas/paymentCreateSchema"
- *      responses:
- *        '200':
- *          description: response with the payment information .
- *        '401':
- *          description: payment not found or unauthorized.
- *      security:
- *       - bearerAuth: []
- */
-router.post(
-  "/:id",
-  validatorHandler(userIdSchema, "params"),
-  validatorHandler(paymentCreateSchema, "body"),
-  createPaymentController
 );
 
 /**
