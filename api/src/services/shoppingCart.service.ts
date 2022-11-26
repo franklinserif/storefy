@@ -9,19 +9,6 @@ import boom from "@hapi/boom";
 
 export default class ShoppingCartService {
   /**
-   * Create a shopping cart
-   * @async
-   * @returns Promise
-   */
-  async create() {
-    const shoppingCart = ShoppingCart.create();
-
-    const newShoppingCart = await shoppingCart.save();
-
-    return newShoppingCart;
-  }
-
-  /**
    * Find all a shopping cart
    * @async
    * @returns Promise
