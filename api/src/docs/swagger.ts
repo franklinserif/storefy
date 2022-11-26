@@ -1,68 +1,81 @@
 import swaggerJSDoc, { OAS3Definition, OAS3Options } from "swagger-jsdoc";
 import {
-  createUserSchema,
-  userUpdateSchema,
-  userIdSchema,
-} from "./user.swagger.schemas";
+  userCreateSchemaSwagger,
+  userUpdateSchemaSwagger,
+  userIdSchemaSwagger,
+  userEmailSchemaSwagger,
+  userConfirmCodeSchemaSwagger,
+  userChangePasswordSchemaSwagger,
+} from "../schemas/userSchemas";
 import {
-  categoryCreateSchema,
-  categoryUpdateSchema,
-  categoryIdSchema,
-  addOrRemoveCategorySchema,
-} from "./category.swagger.shemas";
+  productModelCreateSchemaSwagger,
+  productModelUpdateSchemaSwagger,
+  productModelIdSchemaSwagger,
+} from "../schemas/ProductModelSchemas";
 import {
-  paymentCreateSchema,
-  paymentUpdateSchema,
-  paymentIdSchema,
-} from "./payment.swagger.schemas";
+  categoryCreateSchemaSwagger,
+  categoryUpdateSchemaSwagger,
+  categoryIdSchemaSwagger,
+  addOrRemoveCategoryParentSwagger,
+} from "../schemas/categorySchemas";
+import {
+  paymentCreateSchemaSwagger,
+  paymentUpdateSchemaSwagger,
+  paymentIdSchemaSwagger,
+} from "../schemas/paymentSchemas";
 
 import {
-  productRatingCreateSchema,
-  productRatingUpdateSchema,
-  productRatingIdSchema,
-} from "./productRating.swagger.schemas";
+  productRatingCreateSchemaSwagger,
+  productRatingUpdateSchemaSwagger,
+  productRatingIdSchemaSwagger,
+} from "../schemas/productRatingSchemas";
 
 import {
-  promotionCreateSchema,
-  promotionUpdateSchema,
-  promotionIdSchema,
-} from "./promotion.swagger.schemas";
+  promotionCreateSchemaSwagger,
+  promotionUpdateSchemaSwagger,
+  promotionIdSchemaSwagger,
+} from "../schemas/promotionSchemas";
 
 import {
-  reviewCreateSchema,
-  reviewUpdateSchema,
-  reviewIdSchema,
-} from "./review.swagger.schemas";
+  reviewCreateSchemaSwagger,
+  reviewUpdateSchemaSwagger,
+  reviewIdSchemaSwagger,
+} from "../schemas/reviewSchemas";
 
 import {
-  shoppingCartCreateSchema,
-  shoppingCartUpdateSchema,
-  shoppingCartIdSchema,
-} from "./shoppingCart.swagger.schemas";
+  shoppingCartCreateSchemaSwagger,
+  shoppingCartUpdateSchemaSwagger,
+  shoppingCartIdSchemaSwagger,
+} from "../schemas/shoppingCartSchemas";
 
 import {
-  shoppingCartItemCreateSchema,
-  shoppingCartItemUpdateSchema,
-  shoppingCartItemIdSchema,
-} from "./shoppingCartItem.swagger.schemas";
+  shoppinCartItemCreateSchemaSwagger,
+  shoppinCartItemUpdateSchemaSwagger,
+  shoppinCartItemIdSchemaSwagger,
+} from "../schemas/shoppingCartItemSchemas";
 
 import {
-  productCreateSchema,
-  productUpdateSchema,
-  productIdSchema,
-} from "./product.swagger.schemas";
+  productCreateSchemaSwagger,
+  productUpdateSchemaSwagger,
+  productIdSchemaSwagger,
+} from "../schemas/productSchemas";
 
 import {
-  variationCreateSchema,
-  variationUpdateSchema,
-} from "./variation.swagger.schemas";
+  variationOptionCreateSchemaSwagger,
+  variationOptionUpdateSchemaSwagger,
+  variationOptionIdSchemaSwagger,
+} from "../schemas/variationOptionSchemas";
 
 import {
-  variationOptionCreateSchema,
-  variationOptionUpdateSchema,
-} from "./variationOption.swagger.schemas";
+  variationCreateSchemaSwagger,
+  variationUpdateSchemaSwagger,
+  variationIdSchemaSwagger,
+} from "../schemas/variationSchemas";
 
-import { addOrRemoveProductSchema } from "./wishList.swagger.schemas";
+import {
+  addOrRemoveProductWishListSchemaSwagger,
+  wishListIdSchemaSwagger,
+} from "../schemas/wishList.schemas";
 
 const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.0",
@@ -85,59 +98,48 @@ const swaggerDefinition: OAS3Definition = {
       },
     },
     schemas: {
-      productCreateSchema,
-      productUpdateSchema,
-      productIdSchema,
-      createUserSchema,
-      userUpdateSchema,
-      userIdSchema,
-      categoryCreateSchema,
-      categoryUpdateSchema,
-      categoryIdSchema,
-      paymentCreateSchema,
-      paymentUpdateSchema,
-      paymentIdSchema,
-      productRatingCreateSchema,
-      productRatingUpdateSchema,
-      productRatingIdSchema,
-      promotionCreateSchema,
-      promotionUpdateSchema,
-      promotionIdSchema,
-      reviewCreateSchema,
-      reviewUpdateSchema,
-      reviewIdSchema,
-      shoppingCartCreateSchema,
-      shoppingCartUpdateSchema,
-      shoppingCartIdSchema,
-      shoppingCartItemCreateSchema,
-      shoppingCartItemUpdateSchema,
-      shoppingCartItemIdSchema,
-      addOrRemoveProductSchema,
-      variationCreateSchema,
-      variationUpdateSchema,
-      variationOptionCreateSchema,
-      variationOptionUpdateSchema,
-      addOrRemoveCategorySchema,
-
-      /*   createUserSchema: {
-        type: "object",
-        required: [
-          "firstName",
-          "lastName",
-          "email",
-          "password",
-          "roles",
-          "streetNumber",
-        ],
-        properties: {
-          email: {
-            type: "string",
-          },
-          password: {
-            type: "string",
-          },
-        },
-      }, */
+      userCreateSchemaSwagger,
+      userUpdateSchemaSwagger,
+      userIdSchemaSwagger,
+      userEmailSchemaSwagger,
+      userConfirmCodeSchemaSwagger,
+      userChangePasswordSchemaSwagger,
+      productModelCreateSchemaSwagger,
+      productModelUpdateSchemaSwagger,
+      productModelIdSchemaSwagger,
+      categoryCreateSchemaSwagger,
+      categoryUpdateSchemaSwagger,
+      categoryIdSchemaSwagger,
+      addOrRemoveCategoryParentSwagger,
+      paymentCreateSchemaSwagger,
+      paymentUpdateSchemaSwagger,
+      paymentIdSchemaSwagger,
+      productRatingCreateSchemaSwagger,
+      productRatingUpdateSchemaSwagger,
+      productRatingIdSchemaSwagger,
+      promotionCreateSchemaSwagger,
+      promotionUpdateSchemaSwagger,
+      promotionIdSchemaSwagger,
+      reviewCreateSchemaSwagger,
+      reviewUpdateSchemaSwagger,
+      reviewIdSchemaSwagger,
+      shoppingCartCreateSchemaSwagger,
+      shoppingCartUpdateSchemaSwagger,
+      shoppingCartIdSchemaSwagger,
+      shoppinCartItemCreateSchemaSwagger,
+      shoppinCartItemUpdateSchemaSwagger,
+      shoppinCartItemIdSchemaSwagger,
+      productCreateSchemaSwagger,
+      productUpdateSchemaSwagger,
+      productIdSchemaSwagger,
+      variationOptionCreateSchemaSwagger,
+      variationOptionUpdateSchemaSwagger,
+      variationOptionIdSchemaSwagger,
+      variationCreateSchemaSwagger,
+      variationUpdateSchemaSwagger,
+      variationIdSchemaSwagger,
+      addOrRemoveProductWishListSchemaSwagger,
+      wishListIdSchemaSwagger,
     },
   },
 };
