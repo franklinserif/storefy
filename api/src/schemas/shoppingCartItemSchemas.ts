@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import j2s from "joi-to-swagger";
 import { IShoppingCartItem } from "../index.type";
 
 /**
@@ -55,3 +56,12 @@ export const shoppinCartItemUpdateSchema = joi.object<IShoppingCartItem>({
 export const shoppinCartItemIdSchema = joi.object<IShoppingCartItem>({
   id: id.required(),
 });
+
+/**
+ * convert joi to swagger valid schemas
+ */
+export const shoppinCartItemCreateSchemaSwagger = j2s(
+  shoppinCartItemCreateSchema
+);
+export const shoppinCartItemUpdateSchemaSwagger = j2s(shoppinCartItemIdSchema);
+export const shoppinCartItemIdSchemaSwagger = j2s(shoppinCartItemIdSchema);

@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import j2s from "joi-to-swagger";
 import { ICategory, IAddOrRemoveCategoryParent } from "../index.type";
 
 /**
@@ -61,3 +62,11 @@ export const addOrRemoveCategoryParent = joi.object<IAddOrRemoveCategoryParent>(
     childCategoryId: id.required(),
   }
 );
+
+/**
+ * convert joi schemas to swagger valid schemas
+ */
+export const categoryCreateSchemaSwagger = j2s(categoryCreateSchema);
+export const categoryUpdateSchemaSwagger = j2s(categoryUpdateSchema);
+export const categoryIdSchemaSwagger = j2s(categoryIdSchema);
+export const addOrRemoveCategoryParentSwagger = j2s(addOrRemoveCategoryParent);

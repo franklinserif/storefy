@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import j2s from "joi-to-swagger";
 import { IPayment } from "../index.type";
 
 /**
@@ -65,3 +66,10 @@ export const paymentUpdateSchema = joi.object<IPayment>({
 export const paymentIdSchema = joi.object<IPayment>({
   id: id.required(),
 });
+
+/**
+ * convert joi to swagger schemas validation
+ */
+export const paymentCreateSchemaSwagger = j2s(paymentCreateSchema);
+export const paymentUpdateSchemaSwagger = j2s(paymentUpdateSchema);
+export const paymentIdSchemaSwagger = j2s(paymentIdSchema);

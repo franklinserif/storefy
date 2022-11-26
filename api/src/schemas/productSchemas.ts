@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import j2s from "joi-to-swagger";
 import { productModelCreateSchema } from "./ProductModelSchemas";
 import { IProduct } from "../index.type";
 
@@ -57,3 +58,10 @@ export const productUpdateSchema = joi.object<IProduct>({
 export const productIdSchema = joi.object<IProduct>({
   id: id.required(),
 });
+
+/**
+ * convert joi schemas in swagger valid schemas
+ */
+export const productCreateSchemaSwagger = j2s(productCreateSchema);
+export const productUpdateSchemaSwagger = j2s(productUpdateSchema);
+export const productIdSchemaSwagger = j2s(productIdSchema);

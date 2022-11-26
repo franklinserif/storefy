@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import j2s from "joi-to-swagger";
 import { IShoppingCart } from "../index.type";
 
 /**
@@ -41,3 +42,10 @@ export const shoppingCartUpdateSchema = joi.object<IShoppingCart>({
 export const shoppingCartIdSchema = joi.object<IShoppingCart>({
   id: id.required(),
 });
+
+/**
+ * convert joi to swagger valid schemas
+ */
+export const shoppingCartCreateSchemaSwagger = j2s(shoppingCartCreateSchema);
+export const shoppingCartUpdateSchemaSwagger = j2s(shoppingCartUpdateSchema);
+export const shoppingCartIdSchemaSwagger = j2s(shoppingCartIdSchema);

@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import j2s from "joi-to-swagger";
 import { variationOptionCreateSchema } from "./variationOptionSchemas";
 import { IVariation } from "../index.type";
 
@@ -49,3 +50,10 @@ export const variationUpdateSchema = joi.object<IVariation>({
 export const variationIdSchema = joi.object<IVariation>({
   id: id.required(),
 });
+
+/**
+ * convert joi schema for swagger validation
+ */
+export const variationCreateSchemaSwagger = j2s(variationCreateSchema);
+export const variationUpdateSchemaSwagger = j2s(variationUpdateSchema);
+export const variationIdSchemaSwagger = j2s(variationIdSchema);

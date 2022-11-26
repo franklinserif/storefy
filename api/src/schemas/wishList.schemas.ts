@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import j2s from "joi-to-swagger";
 import { IWishList } from "../index.type";
 
 /**
@@ -40,3 +41,11 @@ export const addOrRemoveProductWishListSchema = joi.object<IWishList>({
 export const wishListIdSchema = joi.object<{ id: string }>({
   id: id.required(),
 });
+
+/**
+ * convert joi schema to swagger validation schema
+ */
+export const addOrRemoveProductWishListSchemaSwagger = j2s(
+  addOrRemoveProductWishListSchema
+);
+export const wishListIdSchemaSwagger = j2s(wishListIdSchema);

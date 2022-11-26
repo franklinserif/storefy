@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import j2s from "joi-to-swagger";
 import { IPromotion } from "../index.type";
 
 /**
@@ -73,3 +74,10 @@ export const promotionUpdateSchema = joi.object<IPromotion>({
 export const promotionIdSchema = joi.object<IPromotion>({
   id: id.required(),
 });
+
+/**
+ * convert joi schemas in swagger valid schemas
+ */
+export const promotionCreateSchemaSwagger = j2s(promotionCreateSchema);
+export const promotionUpdateSchemaSwagger = j2s(promotionUpdateSchema);
+export const promotionIdSchemaSwagger = j2s(promotionIdSchema);

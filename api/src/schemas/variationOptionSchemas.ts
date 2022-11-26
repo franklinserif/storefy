@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import j2s from "joi-to-swagger";
 import { IVariationOption } from "../index.type";
 
 /**
@@ -41,3 +42,11 @@ export const variationOptionUpdateSchema = joi.object<IVariationOption>({
 export const variationOptionIdSchema = joi.object<IVariationOption>({
   id: id.required(),
 });
+
+export const variationOptionCreateSchemaSwagger = j2s(
+  variationOptionCreateSchema
+);
+export const variationOptionUpdateSchemaSwagger = j2s(
+  variationOptionUpdateSchema
+);
+export const variationOptionIdSchemaSwagger = j2s(variationOptionIdSchema);

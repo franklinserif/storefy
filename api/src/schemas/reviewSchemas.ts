@@ -4,6 +4,7 @@
  */
 
 import joi from "joi";
+import j2s from "joi-to-swagger";
 import { IReview } from "../index.type";
 
 /**
@@ -43,3 +44,10 @@ export const reviewUpdateSchema = joi.object<IReview>({
 export const reviewIdSchema = joi.object<IReview>({
   id,
 });
+
+/**
+ * convert joi schemas in swagger valid schemas
+ */
+export const reviewCreateSchemaSwagger = j2s(reviewCreateSchema);
+export const reviewUpdateSchemaSwagger = j2s(reviewUpdateSchema);
+export const reviewIdSchemaSwagger = j2s(reviewIdSchema);

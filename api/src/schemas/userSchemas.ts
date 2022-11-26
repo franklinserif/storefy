@@ -5,6 +5,7 @@
 
 import { paymentCreateSchema } from "./paymentSchemas";
 import joi from "joi";
+import j2s from "joi-to-swagger";
 import { IUser, IChangeUserPassword, IConfirmCode } from "../index.type";
 
 /**
@@ -170,3 +171,13 @@ export const userChangePasswordSchema = joi.object<IChangeUserPassword>({
   code: code.required(),
   password: password.required(),
 });
+
+/**
+ * convert joi to swagger valid schemas
+ */
+export const userCreateSchemaSwagger = j2s(userCreateSchema);
+export const userUpdateSchemaSwagger = j2s(userUpdateSchema);
+export const userIdSchemaSwagger = j2s(userIdSchema);
+export const userEmailSchemaSwagger = j2s(userEmailSchema);
+export const userConfirmCodeSchemaSwagger = j2s(userConfirmCodeSchema);
+export const userChangePasswordSchemaSwagger = j2s(userChangePasswordSchema);
