@@ -21,7 +21,7 @@ export class ShoppingCart extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ type: "real" })
+  @Column({ type: "real", default: 0 })
   total: number;
 
   @ManyToOne(() => User, (user) => user.shoppingCart)
