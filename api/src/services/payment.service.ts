@@ -7,34 +7,8 @@ import { AppDataSource } from "../data-source";
 import { Payment } from "../db/entity/Payment.entity";
 import { IPayment } from "../index.type";
 import boom from "@hapi/boom";
-import UserService from "./user.service";
-
-/**
- * User service for crud operations
- * @const
- */
-const userService = new UserService();
 
 export default class PaymentService {
-  /**
-   * Create a payment
-   * @async
-   * @param userId
-   * @param data
-   * @returns Promise
-   */
-  async create(userId: string, data: Omit<IPayment, "id">) {
-    const user = await userService.findOne(userId);
-
-    const payment = Payment.create(data as Payment);
-
-    await payment.save();
-    user.payment = payment;
-    await user.save();
-
-    return payment;
-  }
-
   /**
    * Find all a payment
    * @async
