@@ -56,51 +56,6 @@ export async function getShoppingCartController(
 }
 
 /**
- * get shoppingCart total controller
- * @async
- * @param req
- * @param res
- * @param next
- */
-export async function getShoppingCartTotalController(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    const { id } = req.params;
-    const shoppingCart = await shoppingCartService.getTotal(id);
-
-    res.status(200).json(shoppingCart);
-  } catch (error) {
-    next(error);
-  }
-}
-
-/**
- * create shopping cart controller
- * @async
- * @param req
- * @param res
- * @param next
- */
-export async function createShoppingCartController(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    const { id } = req.params;
-    const data: Omit<IShoppingCart, "id"> = req.body;
-    const shoppingCart = await shoppingCartService.create(id, data);
-
-    res.status(200).json(shoppingCart);
-  } catch (error) {
-    next(error);
-  }
-}
-
-/**
  * shoppingCart update controller
  * @async
  * @param req
