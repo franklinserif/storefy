@@ -40,24 +40,39 @@ export default class ShoppingCartItemService {
     if (productModel.qty === 0) throw boom.conflict("sold out");
 
     const shoppingCart = await shoppingCartService.findOne(shoppingCartId);
-    const shoppingCartItem = ShoppingCartItem.create();
+    console.log(shoppingCart);
+    const itemFounded = shoppingCart.shoppingCartItems?.find(
+      (item) => item?.productModel?.id === productModelId
+    );
+
+    let shoppingCartItem = {} as ShoppingCartItem;
+
+    if (itemFounded?.id) {
+      shoppingCartItem = itemFounded;
+    } else {
+      shoppingCartItem = ShoppingCartItem.create();
+    }
 
     shoppingCartItem.qty = data.qty;
+
+    if (!itemFounded?.id) {
+      shoppingCartItem.productModel = productModel;
+    }
+
     const newShoppingCartItem = await shoppingCartItem.save();
 
-    shoppingCart.shoppingCartItems.push(newShoppingCartItem);
-    productModel.shoppingCartItems.push(newShoppingCartItem);
-    await shoppingCart.save();
-    await productModel.save();
+    if (!itemFounded?.id) {
+      shoppingCart.shoppingCartItems.push(newShoppingCartItem);
+    }
 
     const total = shoppingCart.shoppingCartItems
       .filter((item) => item?.productModel?.price !== undefined)
       .reduce((total, item) => total + item.productModel.price * item.qty, 0);
 
     shoppingCart.total = total;
-    await shoppingCart.save();
+    const newShoppingCart = await shoppingCart.save();
 
-    return newShoppingCartItem;
+    return newShoppingCart;
   }
 
   /**
