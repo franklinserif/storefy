@@ -33,7 +33,7 @@ export default class UserService {
         "productRating",
         "productRating.product",
         "reviews",
-        "shoppingCarts",
+        "shoppingCart",
         "wishList",
       ],
     });
