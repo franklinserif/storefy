@@ -6,6 +6,8 @@
 
 import { IUser } from "../index.type";
 import { User } from "../db/entity/User.entity";
+import { ShoppingCart } from "../db/entity/ShoppingCart.entity";
+import { WishList } from "../db/entity/WishList.entity";
 import boom from "@hapi/boom";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -33,11 +35,25 @@ export default class AuthService {
     const encryptedPassword = await bcrypt.hash(data.password, 10);
     const userData = { ...data, password: encryptedPassword, isActive: false };
 
+    /**
+     * Setup user related entities
+     */
     const user = User.create(userData);
+    const shoppingCart = ShoppingCart.create();
+    const wishList = WishList.create();
 
+    user.shoppingCart = shoppingCart;
+    user.wishList = wishList;
+
+    /**
+     * insert record in db
+     */
     const newUser = await user.save();
     await this.createCode(data.email);
 
+    /**
+     * return user without password field
+     */
     const userWithoutPassword = removePassword(newUser);
     return userWithoutPassword;
   }
