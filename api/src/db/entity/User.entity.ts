@@ -13,7 +13,6 @@ import {
   OneToOne,
   JoinColumn,
   BaseEntity,
-  AfterInsert,
 } from "typeorm";
 
 import { ProductRating } from "./ProductRating.entity";
@@ -84,16 +83,16 @@ export class User extends BaseEntity {
   @OneToMany(() => Review, (review) => review.user, { eager: true })
   reviews: Review[];
 
-  @OneToOne(() => ShoppingCart, (shopingCart) => shopingCart.user, {
+  @OneToOne(() => ShoppingCart, (shoppingCart) => shoppingCart.user, {
     eager: true,
-    onDelete: "CASCADE",
+    cascade: true,
   })
   @JoinColumn()
   shoppingCart: ShoppingCart;
 
   @OneToOne(() => WishList, {
     eager: true,
-    onDelete: "CASCADE",
+    cascade: true,
   })
   @JoinColumn()
   wishList: WishList;
