@@ -1,3 +1,8 @@
+/**
+ * Module of the entity Variation
+ * @module entity/variation
+ */
+
 import {
   Column,
   PrimaryGeneratedColumn,
