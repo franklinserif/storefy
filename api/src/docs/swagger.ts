@@ -77,6 +77,12 @@ import {
   wishListIdSchemaSwagger,
 } from "../schemas/wishList.schemas";
 
+import {
+  createImageSchemaSwagger,
+  updateImageSchemaSwagger,
+  idImageSchemaSwagger,
+} from "../schemas/image.schemas";
+
 const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.0",
   info: {
@@ -140,6 +146,9 @@ const swaggerDefinition: OAS3Definition = {
       variationIdSchemaSwagger,
       addOrRemoveProductWishListSchemaSwagger,
       wishListIdSchemaSwagger,
+      createImageSchemaSwagger,
+      updateImageSchemaSwagger,
+      idImageSchemaSwagger,
     },
   },
 };
