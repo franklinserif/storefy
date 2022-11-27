@@ -1,6 +1,6 @@
 /**
- * Module of the entity Product
- * @module entity/Product
+ * Module of the entity Product model
+ * @module entity/ProductModel
  */
 
 import {
