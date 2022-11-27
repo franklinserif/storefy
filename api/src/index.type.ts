@@ -74,6 +74,7 @@ export interface IShoppingCart extends Pick<IBaseEntity, "id"> {
 export interface IProduct extends Pick<IBaseEntity, "id" | "description"> {
   name: string;
   productsModels: IProduct;
+  image: string[];
 }
 
 export interface IProductModel extends Pick<IBaseEntity, "id" | "qty"> {
@@ -122,6 +123,11 @@ export interface IPromotion
   discountRate: number;
   startDate: Date;
   endDate: Date;
+}
+
+export interface IImage extends Pick<IBaseEntity, "id"> {
+  imageUrl: string;
+  size: number;
 }
 
 export type TSchemas =
