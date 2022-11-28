@@ -63,13 +63,13 @@ router.post(
  *    post:
  *      tags:
  *        - auth
- *      summary: "Signun"
- *      description: Signun auth user register
+ *      summary: "Signup"
+ *      description: register user
  *      requestBody:
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/createUserSchema"
+ *                $ref: "#/components/schemas/userCreateSchemaSwagger"
  *      responses:
  *        '200':
  *          description: it will response with the user information.
@@ -83,22 +83,22 @@ router.post(
 );
 
 /**
- * Serving code confirmation route
+ * Serving confirmation code route
  * @openapi
  * /auth/confirm/code:
  *    post:
  *      tags:
  *        - auth
  *      summary: "code confirmation"
- *      description: code confirmation for verify user or user activation
+ *      description: verify if code is valid
  *      requestBody:
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/confirmCodeSchema"
+ *                $ref: "#/components/schemas/userConfirmCodeSchemaSwagger"
  *      responses:
  *        '200':
- *          description: it response with complete true
+ *          description: return user information
  *        '401':
  *          description: unauthorized, invalid code/email.
  */
@@ -115,16 +115,16 @@ router.post(
  *    post:
  *      tags:
  *        - auth
- *      summary: "forgot password"
- *      description: User can request to change password if he forgot the password he have
+ *      summary: "forgot password / new code"
+ *      description: User can request to change password if he forgot the password
  *      requestBody:
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/createCodeUserSchema"
+ *                $ref: "#/components/schemas/userEmailSchemaSwagger"
  *      responses:
  *        '200':
- *          description: it response true
+ *          description: it response with a message
  *        '401':
  *          description: unauthorized, invalid email.
  */
@@ -142,12 +142,12 @@ router.post(
  *      tags:
  *        - auth
  *      summary: "create new password"
- *      description: User create a new password
+ *      description: User change his password
  *      requestBody:
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/changeUserPasswordSchema"
+ *                $ref: "#/components/schemas/userChangePasswordSchemaSwagger"
  *      responses:
  *        '200':
  *          description: it response true
