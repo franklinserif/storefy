@@ -128,6 +128,7 @@ export interface IPromotion
 export interface IImage extends Pick<IBaseEntity, "id"> {
   imageUrl: string;
   size: number;
+  file: Express.Multer.File;
 }
 
 export type TSchemas =
