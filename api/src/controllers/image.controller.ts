@@ -19,7 +19,7 @@ const imageService = new ImageService();
  * @param res
  * @param next
  */
-export async function addImageToProductController(
+export async function addImageToProductModelController(
   req: Request,
   res: Response,
   next: NextFunction
