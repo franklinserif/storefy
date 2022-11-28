@@ -2,23 +2,41 @@
  * module for uploads middlewares
  * @module middlewares/uploads
  */
-
+import path from "path";
 import multer from "multer";
 
 /**
  * Setup for handler file and name the file
  */
 const storage = multer.diskStorage({
-  destination: function (_req, _file, cb) {
+  destination: function (_req, file, cb) {
+    console.log("file", typeof file?.originalname);
+    if (typeof file?.fieldname === "undefined") {
+      cb(new Error("image is required"), "");
+    }
+
     cb(null, "temp");
   },
   filename: function (req, file, cb) {
-    file.originalname = `${Date.now()}-${file.originalname}`;
+    file.originalname = `${Date.now()}-${file?.originalname}`;
     req.file = file;
     cb(null, file?.originalname);
   },
 });
 
-const upload = multer({ storage: storage });
+/**
+ * setup storage and extension name, only image
+ */
+const upload = multer({
+  storage: storage,
+  fileFilter: function (_req, file, callback) {
+    var ext = path.extname(file?.originalname);
+    if (ext !== ".png" && ext !== ".jpg" && ext !== ".gif" && ext !== ".jpeg") {
+      return callback(new Error("Only images are allowed"));
+    }
+    callback(null, true);
+  },
+});
+
 const uploadHandler = upload.single("image");
 export default uploadHandler;
