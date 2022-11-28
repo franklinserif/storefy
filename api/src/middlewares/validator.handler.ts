@@ -32,3 +32,15 @@ export default function validatorHandler(
     }
   };
 }
+
+export const validateImage = (
+  req: Request,
+  _res: Response,
+  next: NextFunction
+) => {
+  if (!req.file?.originalname) {
+    next(boom.notFound("image is required"));
+  }
+
+  next();
+};
