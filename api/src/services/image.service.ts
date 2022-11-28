@@ -4,9 +4,9 @@
  */
 
 import { Image } from "../db/entity/Image.entity";
-import { IImage } from "../index.type";
 import boom from "@hapi/boom";
 import ProductService from "./product.service";
+import uploadS3 from "../utils/uploadS3";
 
 /**
  * product service
@@ -21,14 +21,21 @@ export default class CategoryService {
    * @param data
    * @returns Promise
    */
-  async addImageToProduct(productId: string, data: Omit<IImage, "id">) {
+  async addImageToProduct(productId: string, file: Express.Multer.File) {
     const product = await productService.findOne(productId);
-    const image = Image.create(data as Image);
 
+    const rta = await uploadS3(file);
+
+    const image = Image.create();
+
+    image.imageUrl = rta.Location;
+    image.size = file.size;
     const newImage = await image.save();
-    await product?.images.push(image);
 
-    return newImage;
+    product?.images.push(newImage);
+    const productUpdated = await product.save();
+
+    return productUpdated;
   }
 
   /**
