@@ -4,6 +4,8 @@
  */
 
 import validatorHandler from "../middlewares/validator.handler";
+import uploadHandler from "../middlewares/uploadFile.handler";
+import { validateImage } from "../middlewares/validator.handler";
 
 import {
   productModelCreateSchema,
@@ -20,6 +22,11 @@ import {
   productModelUpdateController,
   productModelDeleteController,
 } from "../controllers/productModel.controller";
+
+import {
+  addImageToProductModelController,
+  imageDeleteController,
+} from "../controllers/image.controller";
 
 import express from "express";
 
@@ -172,5 +179,62 @@ router.delete(
   validatorHandler(productModelIdSchema, "params"),
   productModelDeleteController
 );
+
+/**
+ * Serving add image to product model information route
+ * @openapi
+ * /productmodel/:id/add/image:
+ *    post:
+ *      tags:
+ *        - product
+ *      summary: "add image to product model"
+ *      description: add image to product model route
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: id of the product model
+ *      responses:
+ *        '201':
+ *          description: response with product model information .
+ *        '401':
+ *          description: product model not found or unauthorized.
+ *      security:
+ *       - bearerAuth: []
+ */
+router.post(
+  "/:id/add/image",
+  uploadHandler,
+  validateImage,
+  addImageToProductModelController
+);
+
+/**
+ * Serving remove image from product model
+ * @openapi
+ * /productmodel/:id/remove/image:
+ *    delete:
+ *      tags:
+ *        - product model
+ *      summary: "remove image from product model"
+ *      description: remove one image from product model
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: id of the product model to update
+ *      responses:
+ *        '201':
+ *          description: response with product information .
+ *        '401':
+ *          description: product model not found or unauthorized.
+ *      security:
+ *       - bearerAuth: []
+ */
+router.post("/:id/remove/image", imageDeleteController);
 
 export default router;
