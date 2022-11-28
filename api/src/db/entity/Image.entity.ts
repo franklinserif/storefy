@@ -11,7 +11,7 @@ import {
   ManyToOne,
   CreateDateColumn,
 } from "typeorm";
-import { Product } from "./Product.entity";
+import { ProductModel } from "./ProductModel.entity";
 
 @Entity()
 export class Image extends BaseEntity {
@@ -22,10 +22,13 @@ export class Image extends BaseEntity {
   imageUrl: string;
 
   @Column()
+  name: string;
+
+  @Column()
   size: number;
 
-  @ManyToOne(() => Product, (product) => product.images)
-  product: Product;
+  @ManyToOne(() => ProductModel, (productModel) => productModel.images)
+  productModel: ProductModel;
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;
