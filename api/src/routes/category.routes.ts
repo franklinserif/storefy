@@ -31,7 +31,7 @@ import express from "express";
 const router = express.Router();
 
 /**
- * Serving get all categories route
+ * Serving all categories route
  * @openapi
  * /category/:
  *    get:
@@ -41,16 +41,16 @@ const router = express.Router();
  *      description: get all categories route
  *      responses:
  *        '200':
- *          description: response with a lit of category.
+ *          description: response with a list of categories.
  *        '401':
- *          description: category not found or unauthorized.
+ *          description: categories not found.
  *      security:
  *       - bearerAuth: []
  */
 router.get("/", getCategoriesController);
 
 /**
- * Serving get task by id
+ * Serving a category founded by his id
  * @openapi
  * /category/:id:
  *    get:
@@ -92,10 +92,10 @@ router.get(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/categoryCreateSchema"
+ *                $ref: "#/components/schemas/categoryCreateSchemaSwagger"
  *      responses:
  *        '200':
- *          description: response with the category information .
+ *          description: response with the category information.
  *        '401':
  *          description: category not found or unauthorized.
  *      security:
@@ -108,7 +108,7 @@ router.post(
 );
 
 /**
- * Serving category update information route
+ * Serving category update route
  * @openapi
  * /category/:id:
  *    patch:
@@ -127,10 +127,10 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/categoryUpdateSchema"
+ *                $ref: "#/components/schemas/categoryUpdateSchemaSwagger"
  *      responses:
  *        '201':
- *          description: response with category information .
+ *          description: response with message.
  *        '401':
  *          description: category not found or unauthorized.
  *      security:
@@ -186,7 +186,7 @@ router.delete(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/addOrRemoveCategorySchema"
+ *                $ref: "#/components/schemas/addOrRemoveCategoryParentSwagger"
  *      responses:
  *        '200':
  *          description: response with the category information .
@@ -214,7 +214,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/addOrRemoveCategorySchema"
+ *                $ref: "#/components/schemas/addOrRemoveCategoryParentSwagger"
  *      responses:
  *        '200':
  *          description: response with the category information .
