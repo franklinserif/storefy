@@ -26,8 +26,11 @@ export async function addImageToProductController(
 ) {
   try {
     const { id } = req.params;
-    const data = req.body;
-    const image = await imageService.addImageToProduct(id, data);
+    const file = req.file;
+    const image = await imageService.addImageToProduct(
+      id,
+      file as Express.Multer.File
+    );
 
     res.status(200).json(image);
   } catch (error) {
