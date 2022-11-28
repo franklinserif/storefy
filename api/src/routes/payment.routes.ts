@@ -26,14 +26,14 @@ import express from "express";
 const router = express.Router();
 
 /**
- * Serving get all payments route
+ * Serving all payments route
  * @openapi
  * /payment/:
  *    get:
  *      tags:
  *        - payments
  *      summary: "get all payments"
- *      description: get all payments route
+ *      description: get a list of payments route
  *      responses:
  *        '200':
  *          description: response with a lit of payment.
