@@ -30,6 +30,7 @@ import {
 } from "../controllers/image.controller";
 
 import uploadHandler from "../middlewares/uploadFile.handler";
+import { validateImage } from "../middlewares/validator.handler";
 
 import express from "express";
 
@@ -279,7 +280,12 @@ router.delete(
  *      security:
  *       - bearerAuth: []
  */
-router.post("/:id/add/image", uploadHandler, addImageToProductController);
+router.post(
+  "/:id/add/image",
+  uploadHandler,
+  validateImage,
+  addImageToProductController
+);
 
 /**
  * Serving remove product category information route
