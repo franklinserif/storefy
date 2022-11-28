@@ -18,7 +18,7 @@ const s3 = new S3({
  * @param file
  * @returns Promise
  */
-export default function (file: Express.Multer.File) {
+export const uploadS3 = (file: Express.Multer.File) => {
   const fileStream = fs.createReadStream(file.path);
 
   const uploadParams = {
@@ -28,4 +28,15 @@ export default function (file: Express.Multer.File) {
   };
 
   return s3.upload(uploadParams).promise();
-}
+};
+
+/**
+ * Delete image from aws s3
+ * @param filename
+ * @returns
+ */
+export const deleteImageFromS3 = (filename: string) => {
+  const params = { Bucket: CONFIG.AWS_BUCKET_NAME as string, Key: filename };
+
+  return s3.deleteObject(params).promise();
+};
