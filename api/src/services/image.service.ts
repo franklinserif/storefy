@@ -5,16 +5,16 @@
 
 import { Image } from "../db/entity/Image.entity";
 import boom from "@hapi/boom";
-import ProductService from "./product.service";
-import uploadS3 from "../utils/uploadS3";
+import ProductModelService from "./productModel.service";
+import { uploadS3, deleteImageFromS3 } from "../utils/uploadS3";
 
 /**
  * product service
  * @const
  */
-const productService = new ProductService();
+const productModelService = new ProductModelService();
 
-export default class CategoryService {
+export default class ImageService {
   /**
    * add image to product
    * @async
@@ -22,20 +22,20 @@ export default class CategoryService {
    * @returns Promise
    */
   async addImageToProduct(productId: string, file: Express.Multer.File) {
-    const product = await productService.findOne(productId);
+    const productModel = await productModelService.findOne(productId);
 
     const rta = await uploadS3(file);
 
     const image = Image.create();
-
     image.imageUrl = rta.Location;
     image.size = file.size;
+    image.name = file.originalname;
     const newImage = await image.save();
 
-    product?.images.push(newImage);
-    const productUpdated = await product.save();
+    productModel?.images.push(newImage);
+    const productModelUpdated = await productModel.save();
 
-    return productUpdated;
+    return productModelUpdated;
   }
 
   /**
@@ -49,6 +49,10 @@ export default class CategoryService {
     const image = await Image.findOne({ where: { id } });
 
     if (!image) throw boom.notFound("image doesn't exist");
+
+    const rta = await deleteImageFromS3(image.name);
+    if (!rta?.VersionId)
+      throw boom.conflict("there is a problem deleting the image");
 
     await image.remove();
 
