@@ -6,7 +6,7 @@
 import { Image } from "../db/entity/Image.entity";
 import boom from "@hapi/boom";
 import ProductModelService from "./productModel.service";
-import { uploadS3, deleteImageFromS3 } from "../utils/uploadS3";
+import { uploadS3, deleteImageFromS3 } from "../utils/S3";
 
 /**
  * product service
