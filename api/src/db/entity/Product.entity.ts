@@ -22,7 +22,6 @@ import { ProductRating } from "./ProductRating.entity";
 import { Review } from "./Review.entity";
 import { WishList } from "./WishList.entity";
 import { User } from "./User.entity";
-import { Image } from "./Image.entity";
 
 @Entity()
 export class Product extends BaseEntity {
@@ -59,9 +58,6 @@ export class Product extends BaseEntity {
 
   @ManyToOne(() => WishList, (wishList) => wishList.products)
   wishList: WishList;
-
-  @OneToMany(() => Image, (images) => images.product)
-  images: Image[];
 
   @ManyToOne(() => User, (user) => user.products)
   user: User;
