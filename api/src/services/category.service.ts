@@ -6,6 +6,7 @@
 import { AppDataSource } from "../data-source";
 import { Category } from "../db/entity/Category.entity";
 import { ICategory } from "../index.type";
+import { uploadS3 } from "../utils/S3";
 import boom from "@hapi/boom";
 
 export default class CategoryService {
@@ -130,5 +131,22 @@ export default class CategoryService {
     await parentCategory.save();
 
     return parentCategory;
+  }
+
+  /**
+   * upload image to s3
+   * @param id
+   * @param file
+   * @returns
+   */
+  async addImage(id: string, file: Express.Multer.File) {
+    const category = await this.findOne(id);
+    const rta = await uploadS3(file);
+
+    category.image = rta.Location;
+
+    const categoryUpdated = await category.save();
+
+    return categoryUpdated;
   }
 }
