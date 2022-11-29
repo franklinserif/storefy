@@ -43,7 +43,7 @@ const router = express.Router();
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/signinUserSchema"
+ *                $ref: "#/components/schemas/userSigninSwagger"
  *      responses:
  *        '200':
  *          description: it will response with the access token and refresh token.
@@ -57,7 +57,7 @@ router.post(
 );
 
 /**
- * Serving signun route
+ * Serving signup route
  * @openapi
  * /auth/signup:
  *    post:
