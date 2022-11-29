@@ -75,14 +75,14 @@ router.get(
 );
 
 /**
- * Serving payment update information route
+ * Serving payment update route
  * @openapi
  * /payment/:id:
  *    patch:
  *      tags:
  *        - payment
  *      summary: "update payment"
- *      description: update payment information route
+ *      description: update payment route
  *      parameters:
  *        - in: path
  *          name: id
@@ -94,10 +94,10 @@ router.get(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/paymentUpdateSchema"
+ *                $ref: "#/components/schemas/paymentUpdateSchemaSwagger"
  *      responses:
  *        '201':
- *          description: response with payment information .
+ *          description: response message .
  *        '401':
  *          description: payment not found or unauthorized.
  *      security:
