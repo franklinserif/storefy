@@ -50,4 +50,3 @@ export const reviewIdSchema = joi.object<IReview>({
  */
 export const reviewCreateSchemaSwagger = j2s(reviewCreateSchema);
 export const reviewUpdateSchemaSwagger = j2s(reviewUpdateSchema);
-export const reviewIdSchemaSwagger = j2s(reviewIdSchema);
