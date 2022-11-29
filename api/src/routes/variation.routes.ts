@@ -47,7 +47,7 @@ const router = express.Router();
 router.get("/", getVariationsController);
 
 /**
- * Serving get task by id
+ * Serving variaton founded by id
  * @openapi
  * /variation/:id:
  *    get:
@@ -89,7 +89,7 @@ router.get(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/variationCreateSchema"
+ *                $ref: "#/components/schemas/variationCreateSchemaSwagger"
  *      responses:
  *        '200':
  *          description: response with the variation information .
@@ -124,7 +124,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/variationUpdateSchema"
+ *                $ref: "#/components/schemas/variationUpdateSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with variation information .
