@@ -28,14 +28,14 @@ import express from "express";
 const router = express.Router();
 
 /**
- * Serving get all productsRatings route
+ * Serving a list of reviews route
  * @openapi
  * /review/:
  *    get:
  *      tags:
- *        - productsRatings
- *      summary: "get all productsRatings"
- *      description: get all productsRatings route
+ *        - review
+ *      summary: "get all reviews"
+ *      description: get a list of review route
  *      responses:
  *        '200':
  *          description: response with a lit of review.
@@ -47,7 +47,7 @@ const router = express.Router();
 router.get("/", getReviewsController);
 
 /**
- * Serving get review by id
+ * Serving review founded by id
  * @openapi
  * /review/:id:
  *    get:
@@ -89,7 +89,7 @@ router.get(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/reviewCreateSchema"
+ *                $ref: "#/components/schemas/reviewCreateSchemaSwagger"
  *      responses:
  *        '200':
  *          description: response with the review information .
@@ -124,7 +124,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/reviewUpdateSchema"
+ *                $ref: "#/components/schemas/reviewUpdateSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with review information .
