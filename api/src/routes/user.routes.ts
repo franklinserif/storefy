@@ -23,13 +23,13 @@ import express from "express";
 const router = express.Router();
 
 /**
- * Serving get all users route
+ * Serving a list of users route
  * @openapi
  * /user/:
  *    get:
  *      tags:
  *        - users
- *      summary: "get all users"
+ *      summary: "get a list of users"
  *      description: get all users route
  *      responses:
  *        '200':
@@ -42,7 +42,7 @@ const router = express.Router();
 router.get("/", getUsersController);
 
 /**
- * Serving get user by id
+ * Serving user founded by id
  * @openapi
  * /user/:id:
  *    get:
@@ -91,7 +91,7 @@ router.get(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/userUpdateSchema"
+ *                $ref: "#/components/schemas/userUpdateSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with user information .
