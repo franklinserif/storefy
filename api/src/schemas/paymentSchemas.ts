@@ -70,6 +70,4 @@ export const paymentIdSchema = joi.object<IPayment>({
 /**
  * convert joi to swagger schemas validation
  */
-export const paymentCreateSchemaSwagger = j2s(paymentCreateSchema);
 export const paymentUpdateSchemaSwagger = j2s(paymentUpdateSchema);
-export const paymentIdSchemaSwagger = j2s(paymentIdSchema);
