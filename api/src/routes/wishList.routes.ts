@@ -89,7 +89,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/addOrRemoveProductSchema"
+ *                $ref: "#/components/schemas/addOrRemoveProductWishListSchema"
  *      responses:
  *        '200':
  *          description: wishList .
