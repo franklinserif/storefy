@@ -170,3 +170,28 @@ export async function removeParentCategoryController(
     next(error);
   }
 }
+
+/**
+ * add image controller
+ * @param req
+ * @param res
+ * @param next
+ */
+export async function addImageToCategoryController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { id } = req.params;
+    const file = req.file;
+    const category = await categoryService.addImage(
+      id,
+      file as Express.Multer.File
+    );
+
+    res.status(201).json(category);
+  } catch (error) {
+    next(error);
+  }
+}
