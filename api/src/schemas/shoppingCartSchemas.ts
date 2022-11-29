@@ -1,5 +1,5 @@
 /**
- * ShoppingCart schemas for validate shoppinCart CRUD operation data
+ * Shopping cart schemas for validate shoppin cart CRUD operation data
  * @module schemas/shoppinCartSchemas
  */
 
@@ -8,19 +8,19 @@ import j2s from "joi-to-swagger";
 import { IShoppingCart } from "../index.type";
 
 /**
- * shoppingCart id uuid
+ * shopping cart id uuid
  * @const
  */
 const id = joi.string().uuid();
 
 /**
- * shoppingCart id uuid
+ * shopping cart id uuid
  * @const
  */
 const total = joi.number();
 
 /**
- * shoppingcart create schema validation
+ * shopping cart create schema validation
  * @const
  */
 export const shoppingCartCreateSchema = joi.object<IShoppingCart>({
@@ -28,7 +28,7 @@ export const shoppingCartCreateSchema = joi.object<IShoppingCart>({
 });
 
 /**
- * shoppingcart update schema validation
+ * shopping cart update schema validation
  * @const
  */
 export const shoppingCartUpdateSchema = joi.object<IShoppingCart>({
@@ -36,7 +36,7 @@ export const shoppingCartUpdateSchema = joi.object<IShoppingCart>({
 });
 
 /**
- * shoppingcart id schema validation
+ * shopping cart id schema validation
  * @const
  */
 export const shoppingCartIdSchema = joi.object<IShoppingCart>({
