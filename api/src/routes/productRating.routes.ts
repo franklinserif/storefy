@@ -28,7 +28,7 @@ import express from "express";
 const router = express.Router();
 
 /**
- * Serving get all productsRatings route
+ * Serving a list of  products ratings route
  * @openapi
  * /productRating:
  *    get:
@@ -47,13 +47,13 @@ const router = express.Router();
 router.get("/", getProductsRatingsController);
 
 /**
- * Serving get task by id
+ * Serving a product rating founded by id
  * @openapi
  * /productRating/:id:
  *    get:
  *      tags:
  *        - productRating
- *      summary: "get productRating by id "
+ *      summary: "get product rating by id "
  *      parameters:
  *        - in: path
  *          name: id
@@ -77,7 +77,7 @@ router.get(
 );
 
 /**
- * Serving creation productRating endpoint
+ * Serving creation product rating endpoint
  * @openapi
  * /productRating:
  *    post:
@@ -89,7 +89,7 @@ router.get(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/productRatingCreateSchema"
+ *                $ref: "#/components/schemas/productRatingCreateSchemaSwagger"
  *      responses:
  *        '200':
  *          description: response with the productRating information .
@@ -105,7 +105,7 @@ router.post(
 );
 
 /**
- * Serving productRating update information route
+ * Serving productRating update route
  * @openapi
  * /productRating/:id:
  *    patch:
@@ -124,7 +124,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/productRatingUpdateSchema"
+ *                $ref: "#/components/schemas/productRatingUpdateSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with productRating information .
@@ -143,7 +143,7 @@ router.patch(
 /**
  * Serving productRating delete route
  * @openapi
- * /productRating/:id:
+ * /productrating/:id:
  *    delete:
  *      tags:
  *        - productRating
