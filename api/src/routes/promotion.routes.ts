@@ -32,7 +32,7 @@ import express from "express";
 const router = express.Router();
 
 /**
- * Serving get all promotions route
+ * Serving a list of promotions route
  * @openapi
  * /promotion:
  *    get:
@@ -57,7 +57,7 @@ router.get("/", getPromotionsController);
  *    get:
  *      tags:
  *        - promotion
- *      summary: "get promotion by id "
+ *      summary: "get promotion by id"
  *      parameters:
  *        - in: path
  *          name: id
@@ -100,7 +100,7 @@ router.get(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/promotionCreateSchema"
+ *                $ref: "#/components/schemas/promotionCreateSchemaSwagger"
  *      responses:
  *        '200':
  *          description: response with the promotion information .
@@ -136,7 +136,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/promotionUpdateSchema"
+ *                $ref: "#/components/schemas/promotionUpdateSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with promotion information .
@@ -172,7 +172,7 @@ router.patch(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/categoryIdSchema"
+ *                $ref: "#/components/schemas/categoryIdSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with promotion information .
