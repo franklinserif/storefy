@@ -1,5 +1,5 @@
 /**
- * shoppingCartItem routes module
+ * shopping cart item routes module
  * @module routes/shoppingCartItem
  */
 
@@ -22,15 +22,15 @@ import {
 import express from "express";
 
 /**
- * Express route to mount payment related endpoints
+ * Express route to mount shopping cart item related endpoints
  * @const
  */
 const router = express.Router();
 
 /**
- * Serving get all shoppingCartsItems route
+ * Serving a list of shopping cart items route
  * @openapi
- * /shoppingCartItem/:
+ * /shoppingcartitem/:
  *    get:
  *      tags:
  *        - shoppingCartsItems
@@ -47,20 +47,20 @@ const router = express.Router();
 router.get("/", getShoppingCartItemsController);
 
 /**
- * Serving get task by id
+ * Serving shopping cart item founded by id
  * @openapi
  * /payment/:id:
  *    get:
  *      tags:
  *        - payment
- *      summary: "get payment by id "
+ *      summary: "get shopping cart item by id "
  *      parameters:
  *        - in: path
  *          name: id
  *          schema:
  *            type: string
  *          required: true
- *          description: id of the shoppingCartItem
+ *          description: id of the shopping cart item
  *      description: get shoppingCartItem by id
  *      responses:
  *        '200':
@@ -77,9 +77,9 @@ router.get(
 );
 
 /**
- * Serving creation shoppingCartItem endpoint
+ * Serving creation shopping cart item endpoint
  * @openapi
- * /shoppingCartItem:
+ * /shoppingcartitem:
  *    post:
  *      tags:
  *        - shoppingCartItem
@@ -89,7 +89,7 @@ router.get(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/shoppingCartItemCreateSchema"
+ *                $ref: "#/components/schemas/shoppinCartItemCreateSchemaSwagger"
  *      responses:
  *        '200':
  *          description: response with the shoppingCartItem information .
@@ -105,7 +105,7 @@ router.post(
 );
 
 /**
- * Serving shoppingCartItem update information route
+ * Serving shopping cart item update information route
  * @openapi
  * /shoppingCartItem/:id:
  *    patch:
@@ -124,7 +124,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/shoppingCartItemUpdateSchema"
+ *                $ref: "#/components/schemas/shoppinCartItemUpdateSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with shoppingCartItem information .
@@ -141,26 +141,26 @@ router.patch(
 );
 
 /**
- * Serving shoppingCartItem delete route
+ * Serving shopping cart item delete route
  * @openapi
- * /shoppingCartItem/:id:
+ * /shoppingcaritem/:id:
  *    delete:
  *      tags:
- *        - shoppingCartItem
- *      summary: "shoppingCartItem delete route"
+ *        - shopping cart item
+ *      summary: "shopping cart item delete route"
  *      parameters:
  *        - in: path
  *          name: id
  *          schema:
  *            type: string
  *          required: true
- *          description: id of the shoppingCartItem to delete
+ *          description: id of the shopping cart item to delete
  *      description: delete shoppingCartItem from db
  *      responses:
  *        '200':
- *          description: response with true .
+ *          description: response with true.
  *        '401':
- *          description: shoppingCartItem not found or unauthorized.
+ *          description: shopping cart item not found or unauthorized.
  *      security:
  *       - bearerAuth: []
  */
