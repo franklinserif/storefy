@@ -6,6 +6,7 @@ import {
   userEmailSchemaSwagger,
   userConfirmCodeSchemaSwagger,
   userChangePasswordSchemaSwagger,
+  userSigninSwagger,
 } from "../schemas/userSchemas";
 import {
   productModelCreateSchemaSwagger,
@@ -18,11 +19,7 @@ import {
   categoryIdSchemaSwagger,
   addOrRemoveCategoryParentSwagger,
 } from "../schemas/categorySchemas";
-import {
-  paymentCreateSchemaSwagger,
-  paymentUpdateSchemaSwagger,
-  paymentIdSchemaSwagger,
-} from "../schemas/paymentSchemas";
+import { paymentUpdateSchemaSwagger } from "../schemas/paymentSchemas";
 
 import {
   productRatingCreateSchemaSwagger,
@@ -39,7 +36,6 @@ import {
 import {
   reviewCreateSchemaSwagger,
   reviewUpdateSchemaSwagger,
-  reviewIdSchemaSwagger,
 } from "../schemas/reviewSchemas";
 
 import {
@@ -109,6 +105,7 @@ const swaggerDefinition: OAS3Definition = {
       userIdSchemaSwagger,
       userEmailSchemaSwagger,
       userConfirmCodeSchemaSwagger,
+      userSigninSwagger,
       userChangePasswordSchemaSwagger,
       productModelCreateSchemaSwagger,
       productModelUpdateSchemaSwagger,
@@ -117,9 +114,7 @@ const swaggerDefinition: OAS3Definition = {
       categoryUpdateSchemaSwagger,
       categoryIdSchemaSwagger,
       addOrRemoveCategoryParentSwagger,
-      paymentCreateSchemaSwagger,
       paymentUpdateSchemaSwagger,
-      paymentIdSchemaSwagger,
       productRatingCreateSchemaSwagger,
       productRatingUpdateSchemaSwagger,
       productRatingIdSchemaSwagger,
@@ -128,7 +123,6 @@ const swaggerDefinition: OAS3Definition = {
       promotionIdSchemaSwagger,
       reviewCreateSchemaSwagger,
       reviewUpdateSchemaSwagger,
-      reviewIdSchemaSwagger,
       shoppingCartCreateSchemaSwagger,
       shoppingCartUpdateSchemaSwagger,
       shoppingCartIdSchemaSwagger,
