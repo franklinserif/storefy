@@ -30,7 +30,7 @@ import express from "express";
 const router = express.Router();
 
 /**
- * Serving get all variations route
+ * Serving a list of  variations option route
  * @openapi
  * /variationoption:
  *    get:
@@ -91,7 +91,7 @@ router.get(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/variationOptionCreateSchema"
+ *                $ref: "#/components/schemas/variationOptionCreateSchemaSwagger"
  *      responses:
  *        '200':
  *          description: response with the variation option information .
@@ -119,7 +119,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/variationOptionUpdateSchema"
+ *                $ref: "#/components/schemas/variationOptionUpdateSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with variation option information .
