@@ -37,7 +37,7 @@ import express from "express";
 const router = express.Router();
 
 /**
- * Serving get all product model route
+ * Serving list of product model route
  * @openapi
  * /productModel/:
  *    get:
@@ -56,7 +56,7 @@ const router = express.Router();
 router.get("/", getProductsModelsController);
 
 /**
- * Serving get product model by id
+ * Serving product model by id
  * @openapi
  * /productmodel/:id:
  *    get:
@@ -115,7 +115,7 @@ router.post(
 );
 
 /**
- * Serving product model update information route
+ * Serving product model update route
  * @openapi
  * /productmodel/:id:
  *    patch:
@@ -134,7 +134,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/paymentUpdateSchema"
+ *                $ref: "#/components/schemas/productModelUpdateSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with product model information .
@@ -214,7 +214,7 @@ router.post(
 /**
  * Serving remove image from product model
  * @openapi
- * /productmodel/:id/remove/image:
+ * /productmodel/remove/image/:id:
  *    delete:
  *      tags:
  *        - product model
