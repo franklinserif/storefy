@@ -26,7 +26,7 @@ import express from "express";
 const router = express.Router();
 
 /**
- * Serving get all shoppingCarts route
+ * Serving get a list of  shopping carts route
  * @openapi
  * /shoppingCart:
  *    get:
