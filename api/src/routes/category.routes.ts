@@ -12,6 +12,9 @@ import {
   addOrRemoveCategoryParent,
 } from "../schemas/categorySchemas";
 
+import uploadHandler from "../middlewares/uploadFile.handler";
+import { validateImage } from "../middlewares/validator.handler";
+
 import {
   getCategoryController,
   getCategoriesController,
@@ -20,6 +23,7 @@ import {
   categoryDeleteController,
   addParentCategoryController,
   removeParentCategoryController,
+  addImageToCategoryController,
 } from "../controllers/category.controller";
 
 import express from "express";
@@ -227,6 +231,30 @@ router.delete(
   "/remove/child",
   validatorHandler(addOrRemoveCategoryParent, "body"),
   removeParentCategoryController
+);
+
+/**
+ * Serving image category
+ * @openapi
+ * /category/:id/add/image:
+ *    post:
+ *      tags:
+ *        - category
+ *      summary: "add image category decendent"
+ *      description: add image category
+ *      responses:
+ *        '200':
+ *          description: response with the category information .
+ *        '401':
+ *          description: bad request
+ *      security:
+ *       - bearerAuth: []
+ */
+router.post(
+  "/:id/add/image",
+  uploadHandler,
+  validateImage,
+  addImageToCategoryController
 );
 
 export default router;
