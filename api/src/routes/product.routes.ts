@@ -52,7 +52,7 @@ const router = express.Router();
 router.get("/", getProductsController);
 
 /**
- * Serving get task by id
+ * Serving product by id
  * @openapi
  * /product/:id:
  *    get:
@@ -94,7 +94,7 @@ router.get(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/productCreateSchema"
+ *                $ref: "#/components/schemas/productCreateSchemaSwagger"
  *      responses:
  *        '200':
  *          description: response with the product information .
@@ -111,14 +111,14 @@ router.post(
 );
 
 /**
- * Serving product update information route
+ * Serving product update route
  * @openapi
  * /product/:id:
  *    patch:
  *      tags:
  *        - product
  *      summary: "update product"
- *      description: update product information route
+ *      description: update product  route
  *      parameters:
  *        - in: path
  *          name: id
@@ -130,7 +130,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/productUpdateSchema"
+ *                $ref: "#/components/schemas/productUpdateSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with product information .
@@ -196,7 +196,7 @@ router.delete(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/categoryIdchema"
+ *                $ref: "#/components/schemas/categoryIdSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with product information .
@@ -213,7 +213,7 @@ router.post(
 );
 
 /**
- * Serving remove product category information route
+ * Serving remove product from category route
  * @openapi
  * /product/remove/category/:id:
  *    delete:
@@ -232,7 +232,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/categoryIdchema"
+ *                $ref: "#/components/schemas/categoryIdSchemaSwagger"
  *      responses:
  *        '201':
  *          description: response with product information .
