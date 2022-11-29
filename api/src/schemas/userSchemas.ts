@@ -172,6 +172,11 @@ export const userChangePasswordSchema = joi.object<IChangeUserPassword>({
   password: password.required(),
 });
 
+export const userSignin = joi.object({
+  email: email.required(),
+  password: password.required(),
+});
+
 /**
  * convert joi to swagger valid schemas
  */
@@ -181,3 +186,4 @@ export const userIdSchemaSwagger = j2s(userIdSchema);
 export const userEmailSchemaSwagger = j2s(userEmailSchema);
 export const userConfirmCodeSchemaSwagger = j2s(userConfirmCodeSchema);
 export const userChangePasswordSchemaSwagger = j2s(userChangePasswordSchema);
+export const userSigninSwagger = j2s(userSignin);
