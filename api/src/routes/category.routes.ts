@@ -2,7 +2,7 @@
  * category routes module
  * @module routes/category
  */
-
+import passport from "passport";
 import validatorHandler from "../middlewares/validator.handler";
 
 import {
@@ -40,7 +40,7 @@ const router = express.Router();
  * /category/:
  *    get:
  *      tags:
- *        - categories
+ *        - category
  *      summary: "get all categories"
  *      description: get all categories route
  *      responses:
@@ -107,6 +107,7 @@ router.get(
  */
 router.post(
   "/",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(categoryCreateSchema, "body"),
   createCategoryController
 );
@@ -142,6 +143,7 @@ router.post(
  */
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(categoryIdSchema, "params"),
   validatorHandler(categoryUpdateSchema, "body"),
   categoryUpdateController
@@ -173,6 +175,7 @@ router.patch(
  */
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(categoryIdSchema, "params"),
   categoryDeleteController
 );
@@ -201,6 +204,7 @@ router.delete(
  */
 router.post(
   "/add/child",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(addOrRemoveCategoryParent, "body"),
   addParentCategoryController
 );
@@ -229,6 +233,7 @@ router.post(
  */
 router.delete(
   "/remove/child",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(addOrRemoveCategoryParent, "body"),
   removeParentCategoryController
 );
@@ -252,6 +257,7 @@ router.delete(
  */
 router.post(
   "/:id/add/image",
+  passport.authenticate("jwt", { session: false }),
   uploadHandler,
   validateImage,
   addImageToCategoryController
