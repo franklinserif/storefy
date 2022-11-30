@@ -28,7 +28,34 @@ export async function signinController(
     const { user } = req;
     const tokens = await authService.signTokens(user as IUser);
 
-    res.status(200).json(tokens);
+    res.cookie("refreshToken", tokens.refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
+    res.status(200).json(tokens.accessToken);
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * refresh token
+ * @param req
+ * @param res
+ * @param next
+ */
+export async function refreshTokenController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const refreshToken = req.cookies["refreshToken"];
+
+    const newAccessToken = await authService.refreshToken(refreshToken);
+
+    res.status(201).json(newAccessToken);
   } catch (error) {
     next(error);
   }
