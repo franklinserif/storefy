@@ -2,7 +2,6 @@
  * payment routes module
  * @module routes/payment
  */
-
 import validatorHandler from "../middlewares/validator.handler";
 
 import {
@@ -31,7 +30,7 @@ const router = express.Router();
  * /payment/:
  *    get:
  *      tags:
- *        - payments
+ *        - payment
  *      summary: "get all payments"
  *      description: get a list of payments route
  *      responses:
