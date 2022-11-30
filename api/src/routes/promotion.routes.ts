@@ -3,6 +3,7 @@
  * @module routes/promotion
  */
 
+import passport from "passport";
 import validatorHandler from "../middlewares/validator.handler";
 
 import {
@@ -37,7 +38,7 @@ const router = express.Router();
  * /promotion:
  *    get:
  *      tags:
- *        - promotions
+ *        - promotion
  *      summary: "get all promotions"
  *      description: get all promotions route
  *      responses:
@@ -111,6 +112,7 @@ router.get(
  */
 router.post(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(categoryIdSchema, "params"),
   validatorHandler(promotionCreateSchema, "body"),
   createPromotionController
@@ -147,6 +149,7 @@ router.post(
  */
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(promotionIdSchema, "params"),
   validatorHandler(promotionUpdateSchema, "body"),
   promotionUpdateController
@@ -183,6 +186,7 @@ router.patch(
  */
 router.post(
   "/add/category/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(categoryIdSchema, "params"),
   validatorHandler(promotionIdSchema, "body"),
   addCategoryToPromotionController
@@ -219,6 +223,7 @@ router.post(
  */
 router.delete(
   "/remove/category/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(categoryIdSchema, "params"),
   validatorHandler(promotionIdSchema, "body"),
   removeCategoryToPromotionController
@@ -250,6 +255,7 @@ router.delete(
  */
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(promotionIdSchema, "params"),
   promotionDeleteController
 );
