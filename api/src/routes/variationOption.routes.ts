@@ -35,7 +35,7 @@ const router = express.Router();
  * /variationoption:
  *    get:
  *      tags:
- *        - variations
+ *        - variationoption
  *      summary: "get all variation options"
  *      description: get all variation options route
  *      responses:
@@ -54,7 +54,7 @@ router.get("/", getVariationOptionsController);
  * /variationoption/:id:
  *    get:
  *      tags:
- *        - variation
+ *        - variationoption
  *      summary: "get variation option by id "
  *      parameters:
  *        - in: path
@@ -84,7 +84,7 @@ router.get(
  * /variationoption:
  *    post:
  *      tags:
- *        - variation option
+ *        - variationoption
  *      summary: "create a variation option"
  *      description: create a new variation option
  *      requestBody:
@@ -112,7 +112,7 @@ router.post(
  * /variationoption:
  *    patch:
  *      tags:
- *        - variation
+ *        - variationoption
  *      summary: "update variation option"
  *      description: update variation option information route
  *      requestBody:
@@ -141,7 +141,7 @@ router.patch(
  * /variationoption/:id:
  *    delete:
  *      tags:
- *        - variation
+ *        - variationoption
  *      summary: "variation delete route"
  *      parameters:
  *        - in: path
