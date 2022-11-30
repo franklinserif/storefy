@@ -28,10 +28,10 @@ const router = express.Router();
 /**
  * Serving get a list of  shopping carts route
  * @openapi
- * /shoppingCart:
+ * /shoppingcart:
  *    get:
  *      tags:
- *        - shoppingCarts
+ *        - shoppingcart
  *      summary: "get all shoppingCarts"
  *      description: get all shoppingCarts route
  *      responses:
@@ -47,10 +47,10 @@ router.get("/", getShoppingCartsController);
 /**
  * Serving get shoppingCart by id
  * @openapi
- * /shoppingCart/:id:
+ * /shoppingcart/:id:
  *    get:
  *      tags:
- *        - shoppingCart
+ *        - shoppingcart
  *      summary: "get shoppingCart by id "
  *      parameters:
  *        - in: path
@@ -77,10 +77,10 @@ router.get(
 /**
  * Serving shoppingCart update information route
  * @openapi
- * /shoppingCart/:id:
+ * /shoppingcart/:id:
  *    patch:
  *      tags:
- *        - shoppingCart
+ *        - shoppingcart
  *      summary: "update shoppingCart"
  *      description: update shoppingCart information route
  *      parameters:
@@ -113,10 +113,10 @@ router.patch(
 /**
  * Serving shoppingCart delete route
  * @openapi
- * /shoppingCart/:id:
+ * /shoppingcart/:id:
  *    delete:
  *      tags:
- *        - shoppingCart
+ *        - shoppingcart
  *      summary: "shoppingCart delete route"
  *      parameters:
  *        - in: path
