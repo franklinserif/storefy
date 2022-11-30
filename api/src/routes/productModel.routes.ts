@@ -3,6 +3,7 @@
  * @module routes/payment
  */
 
+import passport from "passport";
 import validatorHandler from "../middlewares/validator.handler";
 import uploadHandler from "../middlewares/uploadFile.handler";
 import { validateImage } from "../middlewares/validator.handler";
@@ -42,7 +43,7 @@ const router = express.Router();
  * /productModel/:
  *    get:
  *      tags:
- *        - productModel
+ *        - productmodel
  *      summary: "get all productModel"
  *      description: get all product model route
  *      responses:
@@ -61,7 +62,7 @@ router.get("/", getProductsModelsController);
  * /productmodel/:id:
  *    get:
  *      tags:
- *        - productModel
+ *        - productmodel
  *      summary: "get product model by id "
  *      parameters:
  *        - in: path
@@ -86,29 +87,30 @@ router.get(
 );
 
 /**
- * Serving creation payment endpoint
+ * Serving creation product model endpoint
  * @openapi
  * /productmodel:
  *    post:
  *      tags:
- *        - payment
+ *        - productmodel
  *      summary: "create a payment"
- *      description: create a new payment
+ *      description: create a new product model
  *      requestBody:
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/paymentCreateSchema"
+ *                $ref: "#/components/schemas/productModelCreateSchemaSwagger"
  *      responses:
  *        '200':
- *          description: response with the payment information .
+ *          description: response with the new product model information .
  *        '401':
- *          description: payment not found or unauthorized.
+ *          description: product model not found or unauthorized.
  *      security:
  *       - bearerAuth: []
  */
 router.post(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(productIdSchema, "params"),
   validatorHandler(productModelCreateSchema, "body"),
   createProductModelController
@@ -120,7 +122,7 @@ router.post(
  * /productmodel/:id:
  *    patch:
  *      tags:
- *        - productModel
+ *        - productmodel
  *      summary: "update product model"
  *      description: update product model information route
  *      parameters:
@@ -145,6 +147,7 @@ router.post(
  */
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(productModelIdSchema, "params"),
   validatorHandler(productModelUpdateSchema, "body"),
   productModelUpdateController
@@ -176,6 +179,7 @@ router.patch(
  */
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(productModelIdSchema, "params"),
   productModelDeleteController
 );
@@ -186,7 +190,7 @@ router.delete(
  * /productmodel/:id/add/image:
  *    post:
  *      tags:
- *        - product
+ *        - productmodel
  *      summary: "add image to product model"
  *      description: add image to product model route
  *      parameters:
@@ -206,6 +210,7 @@ router.delete(
  */
 router.post(
   "/:id/add/image",
+  passport.authenticate("jwt", { session: false }),
   uploadHandler,
   validateImage,
   addImageToProductModelController
@@ -217,7 +222,7 @@ router.post(
  * /productmodel/remove/image/:id:
  *    delete:
  *      tags:
- *        - product model
+ *        - productmodel
  *      summary: "remove image from product model"
  *      description: remove one image from product model
  *      parameters:
@@ -235,6 +240,10 @@ router.post(
  *      security:
  *       - bearerAuth: []
  */
-router.post("/:id/remove/image", imageDeleteController);
+router.post(
+  "/:id/remove/image",
+  passport.authenticate("jwt", { session: false }),
+  imageDeleteController
+);
 
 export default router;
