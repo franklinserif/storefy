@@ -2,7 +2,7 @@
  * product routes module
  * @module routes/product
  */
-
+import passport from "passport";
 import validatorHandler from "../middlewares/validator.handler";
 
 import {
@@ -38,7 +38,7 @@ const router = express.Router();
  * /product:
  *    get:
  *      tags:
- *        - products
+ *        - product
  *      summary: "get all products"
  *      description: get all products route
  *      responses:
@@ -105,6 +105,7 @@ router.get(
  */
 router.post(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(userIdSchema, "params"),
   validatorHandler(productCreateSchema, "body"),
   createProductController
@@ -141,6 +142,7 @@ router.post(
  */
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(productIdSchema, "params"),
   validatorHandler(productUpdateSchema, "body"),
   updateProductController
@@ -207,6 +209,7 @@ router.delete(
  */
 router.post(
   "/add/category/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(productIdSchema, "params"),
   validatorHandler(categoryIdSchema, "body"),
   addCategoryToProductController
@@ -243,6 +246,7 @@ router.post(
  */
 router.delete(
   "/remove/category/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(productIdSchema, "params"),
   validatorHandler(categoryIdSchema, "body"),
   removeCategoryToProductController
