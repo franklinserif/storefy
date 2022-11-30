@@ -33,7 +33,7 @@ const router = express.Router();
  * /shoppingcartitem/:
  *    get:
  *      tags:
- *        - shoppingCartsItems
+ *        - shoppingcartitem
  *      summary: "get all shoppingCartsItems"
  *      description: get all shoppingCartsItems route
  *      responses:
@@ -49,10 +49,10 @@ router.get("/", getShoppingCartItemsController);
 /**
  * Serving shopping cart item founded by id
  * @openapi
- * /payment/:id:
+ * /shoppingcartitem/:id:
  *    get:
  *      tags:
- *        - payment
+ *        - shoppingcartitem
  *      summary: "get shopping cart item by id "
  *      parameters:
  *        - in: path
@@ -82,7 +82,7 @@ router.get(
  * /shoppingcartitem:
  *    post:
  *      tags:
- *        - shoppingCartItem
+ *        - shoppingcartitem
  *      summary: "create a shoppingCartItem"
  *      description: create a new shoppingCartItem
  *      requestBody:
@@ -107,10 +107,10 @@ router.post(
 /**
  * Serving shopping cart item update information route
  * @openapi
- * /shoppingCartItem/:id:
+ * /shoppingcartitem/:id:
  *    patch:
  *      tags:
- *        - shoppingCartItem
+ *        - shoppingcartitem
  *      summary: "update shoppingCartItem"
  *      description: update shoppingCartItem information route
  *      parameters:
@@ -143,10 +143,10 @@ router.patch(
 /**
  * Serving shopping cart item delete route
  * @openapi
- * /shoppingcaritem/:id:
+ * /shoppingcartitem/:id:
  *    delete:
  *      tags:
- *        - shopping cart item
+ *        - shoppingcartitem
  *      summary: "shopping cart item delete route"
  *      parameters:
  *        - in: path
