@@ -3,6 +3,7 @@
  * @module routes/user
  */
 
+import passport from "passport";
 import validatorHandler from "../middlewares/validator.handler";
 
 import { userUpdateSchema, userIdSchema } from "../schemas/userSchemas";
@@ -28,7 +29,7 @@ const router = express.Router();
  * /user/:
  *    get:
  *      tags:
- *        - users
+ *        - user
  *      summary: "get a list of users"
  *      description: get all users route
  *      responses:
@@ -102,6 +103,7 @@ router.get(
  */
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(userIdSchema, "params"),
   validatorHandler(userUpdateSchema, "body"),
   userUpdateController
@@ -133,6 +135,7 @@ router.patch(
  */
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(userIdSchema, "params"),
   userDeleteController
 );
