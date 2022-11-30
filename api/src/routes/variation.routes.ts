@@ -33,7 +33,7 @@ const router = express.Router();
  * /variation/:
  *    get:
  *      tags:
- *        - variations
+ *        - variation
  *      summary: "get all variations"
  *      description: get all variations route
  *      responses:
