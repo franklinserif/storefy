@@ -112,6 +112,28 @@ export default class AuthService {
   }
 
   /**
+   * refresh access token
+   * @param refreshToken
+   * @returns
+   */
+  async refreshToken(refreshToken: string) {
+    const payload: any = jwt.verify(
+      refreshToken,
+      CONFIG.REFRESH_TOKEN_SECRET || ""
+    );
+
+    if (!payload) throw boom.unauthorized();
+
+    const accessToken = jwt.sign(
+      { id: payload?.id, email: payload?.email },
+      CONFIG.ACCESS_TOKEN_SECRET as string,
+      { expiresIn: CONFIG.ACCESS_TOKEN_EXPIRE }
+    );
+
+    return accessToken;
+  }
+
+  /**
    * Generate random code for user auth
    * @async
    * @param email user email address
