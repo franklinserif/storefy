@@ -4,7 +4,6 @@
  */
 
 import express, { Application } from "express";
-
 import authRoutes from "./auth.routes";
 import categoryRoutes from "./category.routes";
 import paymentRoutes from "./payment.routes";
