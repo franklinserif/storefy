@@ -15,6 +15,7 @@ import {
   confirmCodeController,
   createConfirmationController,
   changePasswordController,
+  refreshTokenController,
 } from "../controllers/auth.controller";
 
 import validatorHandler from "../middlewares/validator.handler";
@@ -55,6 +56,25 @@ router.post(
   passport.authenticate("local", { session: false }),
   signinController
 );
+
+/**
+ * Serving refresh token
+ * @openapi
+ * /category/:
+ *    get:
+ *      tags:
+ *        - auth
+ *      summary: "get access token"
+ *      description: get all categories route
+ *      responses:
+ *        '201':
+ *          description: response with access token.
+ *        '401':
+ *          description: unauthorized.
+ *      security:
+ *       - bearerAuth: []
+ */
+router.get("/refresh", refreshTokenController);
 
 /**
  * Serving signup route
