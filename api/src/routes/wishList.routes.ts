@@ -28,10 +28,10 @@ const router = express.Router();
 /**
  * Serving get all wishLists route
  * @openapi
- * /wishList/:id:
+ * /wishlist/:id:
  *    get:
  *      tags:
- *        - wishLists
+ *        - wishlist
  *      summary: "get all wishLists"
  *      description: get all wishLists route
  *      responses:
@@ -51,10 +51,10 @@ router.get(
 /**
  * Serving add product to wishList
  * @openapi
- * /wishList/add/product:
+ * /wishlist/add/product:
  *    patch:
  *      tags:
- *        - wishList
+ *        - wishlist
  *      summary: "add product wishList"
  *      description: add a new wishList
  *      requestBody:
@@ -79,10 +79,10 @@ router.post(
 /**
  * Serving add product to wishList
  * @openapi
- * /wishList/remove/product:
+ * /wishlist/remove/product:
  *    patch:
  *      tags:
- *        - wishList
+ *        - wishlist
  *      summary: "remove product wishList"
  *      description: remove a wishList
  *      requestBody:
@@ -107,10 +107,10 @@ router.delete(
 /**
  * Serving wishList delete route
  * @openapi
- * /wishList/:id:
+ * /wishlist/:id:
  *    delete:
  *      tags:
- *        - wishList
+ *        - wishlist
  *      summary: "wishList delete route"
  *      parameters:
  *        - in: path
