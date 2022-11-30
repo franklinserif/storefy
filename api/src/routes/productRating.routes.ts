@@ -1,8 +1,9 @@
 /**
- * productRating routes module
+ * product rating routes module
  * @module routes/productRating
  */
 
+import passport from "passport";
 import validatorHandler from "../middlewares/validator.handler";
 
 import {
@@ -22,7 +23,7 @@ import {
 import express from "express";
 
 /**
- * Express route to mount productRating related endpoints
+ * Express route to mount product rating related endpoints
  * @const
  */
 const router = express.Router();
@@ -33,14 +34,14 @@ const router = express.Router();
  * /productRating:
  *    get:
  *      tags:
- *        - productsRatings
- *      summary: "get all productsRatings"
- *      description: get all productsRatings route
+ *        - productrating
+ *      summary: "get all product ratings"
+ *      description: get all product Ratings route
  *      responses:
  *        '200':
- *          description: response with a lit of productRating.
+ *          description: response with a lit of product rating.
  *        '401':
- *          description: productRating not found or unauthorized.
+ *          description: product rating not found or unauthorized.
  *      security:
  *       - bearerAuth: []
  */
@@ -52,7 +53,7 @@ router.get("/", getProductsRatingsController);
  * /productRating/:id:
  *    get:
  *      tags:
- *        - productRating
+ *        - productrating
  *      summary: "get product rating by id "
  *      parameters:
  *        - in: path
@@ -60,11 +61,11 @@ router.get("/", getProductsRatingsController);
  *          schema:
  *            type: string
  *          required: true
- *          description: id of the productRating
- *      description: get productRating by id
+ *          description: id of the product rating
+ *      description: get product rating by id
  *      responses:
  *        '200':
- *          description: get productRating by id.
+ *          description: get product rating by id.
  *        '401':
  *          description: productRating not found or unauthorized.
  *      security:
@@ -82,9 +83,9 @@ router.get(
  * /productRating:
  *    post:
  *      tags:
- *        - productRating
- *      summary: "create a productRating"
- *      description: create a new productRating
+ *        - productrating
+ *      summary: "create a product rating"
+ *      description: create a new product rating
  *      requestBody:
  *          content:
  *            application/json:
@@ -100,6 +101,7 @@ router.get(
  */
 router.post(
   "/",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(productRatingCreateSchema, "body"),
   createProductRatingController
 );
@@ -110,16 +112,16 @@ router.post(
  * /productRating/:id:
  *    patch:
  *      tags:
- *        - productRating
- *      summary: "update productRating"
- *      description: update productRating information route
+ *        - productrating
+ *      summary: "update product rating"
+ *      description: update product rating information route
  *      parameters:
  *        - in: path
  *          name: id
  *          schema:
  *            type: string
  *          required: true
- *          description: id of the productRating to update
+ *          description: id of the product rating to update
  *      requestBody:
  *          content:
  *            application/json:
@@ -135,37 +137,39 @@ router.post(
  */
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(productRatingIdSchema, "params"),
   validatorHandler(productRatingUpdateSchema, "body"),
   productRatingUpdateController
 );
 
 /**
- * Serving productRating delete route
+ * Serving product rating delete route
  * @openapi
  * /productrating/:id:
  *    delete:
  *      tags:
- *        - productRating
- *      summary: "productRating delete route"
+ *        - productrating
+ *      summary: "product rating delete route"
  *      parameters:
  *        - in: path
  *          name: id
  *          schema:
  *            type: string
  *          required: true
- *          description: id of the productRating to delete
- *      description: delete productRating from db
+ *          description: id of the product rating to delete
+ *      description: delete product rating from db
  *      responses:
  *        '200':
  *          description: response with true .
  *        '401':
- *          description: productRating not found or unauthorized.
+ *          description: product rating not found or unauthorized.
  *      security:
  *       - bearerAuth: []
  */
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(productRatingIdSchema, "params"),
   productRatingDeleteController
 );
