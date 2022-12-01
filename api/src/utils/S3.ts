@@ -20,6 +20,7 @@ const s3 = new S3({
  */
 export const uploadS3 = (file: Express.Multer.File) => {
   const fileStream = fs.createReadStream(file.path);
+  fs.unlinkSync(file.path);
 
   const uploadParams = {
     Bucket: CONFIG.AWS_BUCKET_NAME as string,
