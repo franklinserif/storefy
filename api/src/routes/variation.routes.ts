@@ -3,6 +3,7 @@
  * @module routes/variation
  */
 
+import passport from "passport";
 import validatorHandler from "../middlewares/validator.handler";
 
 import {
@@ -100,6 +101,7 @@ router.get(
  */
 router.post(
   "/",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(variationCreateSchema, "body"),
   createVariationController
 );
@@ -135,6 +137,7 @@ router.post(
  */
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(variationIdSchema, "params"),
   validatorHandler(variationUpdateSchema, "body"),
   variationUpdateController
@@ -166,6 +169,7 @@ router.patch(
  */
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(variationIdSchema, "params"),
   variationDeleteController
 );
