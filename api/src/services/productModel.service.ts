@@ -5,6 +5,7 @@
 
 import { ProductModel } from "../db/entity/ProductModel.entity";
 import { IProductModel } from "../index.type";
+import { deleteImageFromS3 } from "../utils/S3";
 import ProductService from "../services/product.service";
 // import VariationService from "./variation.service";
 // import VariationOptionService from "./variationOption.service";
@@ -108,6 +109,11 @@ export default class ProductModelService {
         await option.remove();
       }
       await variation.remove();
+    }
+
+    for (const image of productModel?.images) {
+      await deleteImageFromS3(image?.imageUrl);
+      await image.remove();
     }
 
     await productModel.remove();
