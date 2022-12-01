@@ -40,7 +40,11 @@ const router = express.Router();
  *      security:
  *       - bearerAuth: []
  */
-router.get("/", getUsersController);
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  getUsersController
+);
 
 /**
  * Serving user founded by id
@@ -68,6 +72,7 @@ router.get("/", getUsersController);
  */
 router.get(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(userIdSchema, "params"),
   getUserProfileController
 );
