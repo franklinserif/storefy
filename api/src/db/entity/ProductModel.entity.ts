@@ -45,7 +45,10 @@ export class ProductModel extends BaseEntity {
   })
   variations: Variation[];
 
-  @OneToMany(() => Image, (images) => images.productModel)
+  @OneToMany(() => Image, (image) => image.productModel, {
+    cascade: true,
+    eager: true,
+  })
   images: Image[];
 
   @CreateDateColumn({ name: "create_at" })
