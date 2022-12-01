@@ -86,14 +86,9 @@ export default class UserService {
    * @returns Promise
    */
   async delete(id: string) {
-    const rta = await AppDataSource.createQueryBuilder()
-      .delete()
-      .from(User)
-      .where("id = :id", { id })
-      .execute();
+    const user = await this.findOne(id);
 
-    if (rta.affected === 0) throw boom.notFound();
-
+    await user.remove();
     return { message: "user was delete from db" };
   }
 }
