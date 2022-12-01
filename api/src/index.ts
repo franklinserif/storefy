@@ -2,8 +2,8 @@ import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import cookie from "cookie-parser";
 import passport from "passport";
-import "./utils/auth/index";
 import { boomErrorHandler } from "./middlewares/error.handler";
 import swaggerUi from "swagger-ui-express";
 import swaggerSetup from "./docs/swagger";
@@ -18,9 +18,12 @@ const app: Application = express();
  * middlewares
  */
 app.use(express.json());
+app.use(cookie());
 app.use(helmet());
 app.use(morgan("combined"));
 app.use(passport.initialize());
+import "./utils/auth/index";
+
 /**
  * Add a list of allowed origins.
  * If you have more origins you would like to add, you can add them to the array below.
