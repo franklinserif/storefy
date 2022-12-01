@@ -3,6 +3,7 @@
  * @module routes/wishList
  */
 
+import passport from "passport";
 import validatorHandler from "../middlewares/validator.handler";
 
 import {
@@ -44,6 +45,7 @@ const router = express.Router();
  */
 router.get(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(wishListIdSchema, "params"),
   getWishListController
 );
@@ -100,6 +102,7 @@ router.post(
  */
 router.delete(
   "/remove/product",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(addOrRemoveProductWishListSchema, "body"),
   removeProductController
 );
@@ -130,6 +133,7 @@ router.delete(
  */
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(wishListIdSchema, "params"),
   wishListDeleteController
 );
