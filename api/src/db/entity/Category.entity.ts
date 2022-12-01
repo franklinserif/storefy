@@ -13,9 +13,11 @@ import {
   TreeChildren,
   ManyToOne,
   BaseEntity,
+  BeforeRemove,
 } from "typeorm";
 
 import { Promotion } from "./Promotion.entity";
+import { deleteImageFromS3 } from "../../utils/S3";
 
 @Entity()
 export class Category extends BaseEntity {
@@ -45,4 +47,9 @@ export class Category extends BaseEntity {
 
   @UpdateDateColumn({ name: "update_at" })
   updateAt: Date;
+
+  @BeforeRemove()
+  async removeImage() {
+    if (this?.imageUrl) await deleteImageFromS3(this.image);
+  }
 }
