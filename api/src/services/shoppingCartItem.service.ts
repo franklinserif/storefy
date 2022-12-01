@@ -40,7 +40,7 @@ export default class ShoppingCartItemService {
     if (productModel.qty === 0) throw boom.conflict("sold out");
 
     const shoppingCart = await shoppingCartService.findOne(shoppingCartId);
-    console.log(shoppingCart);
+
     const itemFounded = shoppingCart.shoppingCartItems?.find(
       (item) => item?.productModel?.id === productModelId
     );
