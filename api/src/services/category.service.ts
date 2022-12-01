@@ -3,10 +3,9 @@
  * @module utils/category
  */
 
-import { AppDataSource } from "../data-source";
 import { Category } from "../db/entity/Category.entity";
 import { ICategory } from "../index.type";
-import { uploadS3 } from "../utils/S3";
+import { uploadS3, deleteImageFromS3 } from "../utils/S3";
 import boom from "@hapi/boom";
 
 export default class CategoryService {
@@ -77,13 +76,11 @@ export default class CategoryService {
    * @returns Promise
    */
   async delete(id: string) {
-    const rta = await AppDataSource.createQueryBuilder()
-      .delete()
-      .from(Category)
-      .where("id = :id", { id })
-      .execute();
+    const category = await this.findOne(id);
 
-    if (rta.affected === 0) throw boom.notFound();
+    if (category.imageUrl) await deleteImageFromS3(category.image);
+
+    await category.remove();
 
     return true;
   }
@@ -141,9 +138,13 @@ export default class CategoryService {
    */
   async addImage(id: string, file: Express.Multer.File) {
     const category = await this.findOne(id);
+
+    if (category.imageUrl) await deleteImageFromS3(category.image);
+
     const rta = await uploadS3(file);
 
-    category.image = rta.Location;
+    category.image = rta.Key;
+    category.imageUrl = rta.Location;
 
     const categoryUpdated = await category.save();
 
