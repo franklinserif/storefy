@@ -49,7 +49,7 @@ export async function addProductController(
 ) {
   try {
     const { productId, wishListId } = req.body;
-    console.log("id's", productId, wishListId);
+
     const categoryUpdated = await wishListService.addProduct(
       productId,
       wishListId
