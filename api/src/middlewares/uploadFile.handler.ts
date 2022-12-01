@@ -10,7 +10,6 @@ import multer from "multer";
  */
 const storage = multer.diskStorage({
   destination: function (_req, file, cb) {
-    console.log("file", typeof file?.originalname);
     if (typeof file?.fieldname === "undefined") {
       cb(new Error("image is required"), "");
     }
