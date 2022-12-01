@@ -3,6 +3,7 @@
  * @module controllers/authenticationControllers
  */
 import { Request, Response, NextFunction } from "express";
+import boom from "@hapi/boom";
 import { IUser } from "../index.type";
 import AuthService from "../services/auth.service";
 
@@ -51,7 +52,8 @@ export async function refreshTokenController(
   next: NextFunction
 ) {
   try {
-    const refreshToken = req.cookies["refreshToken"];
+    const refreshToken = req?.cookies["refreshToken"];
+    if (!refreshToken) next(boom.unauthorized(""));
 
     const newAccessToken = await authService.refreshToken(refreshToken);
 
