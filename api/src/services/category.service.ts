@@ -78,8 +78,6 @@ export default class CategoryService {
   async delete(id: string) {
     const category = await this.findOne(id);
 
-    if (category.imageUrl) await deleteImageFromS3(category.image);
-
     await category.remove();
 
     return true;
