@@ -18,7 +18,8 @@ export default class ImageService {
   /**
    * add image to product
    * @async
-   * @param data
+   * @param productId
+   * @param file
    * @returns Promise
    */
   async addImageToProduct(productId: string, file: Express.Multer.File) {
@@ -32,7 +33,8 @@ export default class ImageService {
     image.name = file.originalname;
     const newImage = await image.save();
 
-    productModel?.images.push(newImage);
+    productModel.images.push(newImage);
+
     const productModelUpdated = await productModel.save();
 
     return productModelUpdated;
@@ -51,8 +53,8 @@ export default class ImageService {
     if (!image) throw boom.notFound("image doesn't exist");
 
     const rta = await deleteImageFromS3(image.name);
-    if (!rta?.VersionId)
-      throw boom.conflict("there is a problem deleting the image");
+
+    if (!rta) throw boom.conflict("there is a problem deleting the image");
 
     await image.remove();
 
