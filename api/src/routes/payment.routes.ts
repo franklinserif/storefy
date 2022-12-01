@@ -2,6 +2,8 @@
  * payment routes module
  * @module routes/payment
  */
+
+import passport from "passport";
 import validatorHandler from "../middlewares/validator.handler";
 
 import {
@@ -104,6 +106,7 @@ router.get(
  */
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(paymentIdSchema, "params"),
   validatorHandler(paymentUpdateSchema, "body"),
   paymentUpdateController
@@ -135,6 +138,7 @@ router.patch(
  */
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(paymentIdSchema, "params"),
   paymentDeleteController
 );
