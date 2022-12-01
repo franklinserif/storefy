@@ -24,6 +24,7 @@ import {
   userConfirmCodeSchema,
   userEmailSchema,
   userChangePasswordSchema,
+  userSigninSchema,
 } from "../schemas/userSchemas";
 /**
  * Express router to mount auth related function on
@@ -53,6 +54,7 @@ const router = express.Router();
  */
 router.post(
   "/signin",
+  validatorHandler(userSigninSchema, "body"),
   passport.authenticate("local", { session: false }),
   signinController
 );
