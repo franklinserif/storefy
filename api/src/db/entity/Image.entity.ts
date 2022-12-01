@@ -10,8 +10,10 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   CreateDateColumn,
+  BeforeRemove,
 } from "typeorm";
 import { ProductModel } from "./ProductModel.entity";
+import { deleteImageFromS3 } from "../../utils/S3";
 
 @Entity()
 export class Image extends BaseEntity {
@@ -35,4 +37,9 @@ export class Image extends BaseEntity {
 
   @CreateDateColumn({ name: "update_at" })
   updateAt: Date;
+
+  @BeforeRemove()
+  async removeImage() {
+    await deleteImageFromS3(this.name);
+  }
 }
