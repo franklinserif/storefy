@@ -240,8 +240,8 @@ router.post(
  *      security:
  *       - bearerAuth: []
  */
-router.post(
-  "/:id/remove/image",
+router.delete(
+  "/remove/image/:id",
   passport.authenticate("jwt", { session: false }),
   imageDeleteController
 );
