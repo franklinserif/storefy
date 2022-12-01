@@ -175,7 +175,6 @@ router.patch(
  */
 router.delete(
   "/:id",
-  passport.authenticate("jwt", { session: false }),
   validatorHandler(categoryIdSchema, "params"),
   categoryDeleteController
 );
@@ -242,7 +241,7 @@ router.delete(
  * Serving image category
  * @openapi
  * /category/:id/add/image:
- *    post:
+ *    patch:
  *      tags:
  *        - category
  *      summary: "add image category decendent"
@@ -255,7 +254,7 @@ router.delete(
  *      security:
  *       - bearerAuth: []
  */
-router.post(
+router.patch(
   "/:id/add/image",
   passport.authenticate("jwt", { session: false }),
   uploadHandler,
