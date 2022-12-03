@@ -91,12 +91,12 @@ export class User extends BaseEntity {
   @JoinColumn()
   shoppingCart: ShoppingCart;
 
-  @OneToOne(() => Order, (order) => order.user, {
+  @OneToMany(() => Order, (order) => order.user, {
     eager: true,
     cascade: true,
   })
   @JoinColumn()
-  order: Order;
+  orders: Order[];
 
   @OneToOne(() => WishList, {
     eager: true,
