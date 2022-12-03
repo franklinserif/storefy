@@ -1,6 +1,6 @@
 /**
  * VariationOption service related to variation option crud operation
- * @module utils/variationOption
+ * @module services/variationOption
  */
 
 import { VariationOption } from "../db/entity/VariationOption.entity";

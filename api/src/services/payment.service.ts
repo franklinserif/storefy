@@ -1,6 +1,6 @@
 /**
  * Payment service related to payment crud operation
- * @module utils/payment
+ * @module services/payment
  */
 
 import { AppDataSource } from "../data-source";

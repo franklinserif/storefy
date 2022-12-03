@@ -1,6 +1,6 @@
 /**
  * Shopping cart item service related to shopping cart item crud operation
- * @module utils/ShoppingCartItem
+ * @module services/ShoppingCartItem
  */
 
 import { ShoppingCartItem } from "../db/entity/ShoppingCartItem.entity";

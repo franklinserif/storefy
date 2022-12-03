@@ -1,6 +1,6 @@
 /**
  *   service related to promotion crud operation
- * @module utils/promotion
+ * @module services/promotion
  */
 
 import { Promotion } from "../db/entity/Promotion.entity";

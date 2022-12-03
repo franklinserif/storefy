@@ -1,14 +1,12 @@
 /**
  * Product model service related to product model crud operation
- * @module utils/productModel
+ * @module services/productModel
  */
 
 import { ProductModel } from "../db/entity/ProductModel.entity";
 import { IProductModel } from "../index.type";
 
 import ProductService from "../services/product.service";
-// import VariationService from "./variation.service";
-// import VariationOptionService from "./variationOption.service";
 import boom from "@hapi/boom";
 
 /**
@@ -16,18 +14,6 @@ import boom from "@hapi/boom";
  * @const
  */
 const productServide = new ProductService();
-
-/**
- * variation service for crud operations
- * @const
- */
-//const variationServide = new VariationService();
-
-/**
- * variation option service for crud operations
- * @const
- */
-//const variationOptionService = new VariationOptionService();
 
 export default class ProductModelService {
   /**

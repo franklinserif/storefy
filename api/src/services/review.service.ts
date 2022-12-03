@@ -1,6 +1,6 @@
 /**
  * Review service related to review crud operation
- * @module utils/review
+ * @module services/review
  */
 
 import { Review } from "../db/entity/Review.entity";

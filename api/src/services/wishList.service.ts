@@ -1,6 +1,6 @@
 /**
  * wishList service related to wishList crud operation
- * @module utils/wishList
+ * @module services/wishList
  */
 
 import { WishList } from "../db/entity/WishList.entity";

@@ -1,6 +1,6 @@
 /**
  * Product rating service related to product rating crud operation
- * @module utils/ProductRating
+ * @module services/ProductRating
  */
 
 import { ProductRating } from "../db/entity/ProductRating.entity";

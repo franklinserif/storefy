@@ -1,6 +1,6 @@
 /**
  * Product service related to product crud operation
- * @module utils/product
+ * @module services/product
  */
 
 import { Product } from "../db/entity/Product.entity";
