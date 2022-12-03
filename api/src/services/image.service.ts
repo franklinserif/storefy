@@ -1,6 +1,6 @@
 /**
  * Image service related to image crud operation
- * @module utils/image
+ * @module services/image
  */
 
 import { Image } from "../db/entity/Image.entity";

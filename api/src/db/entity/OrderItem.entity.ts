@@ -26,7 +26,7 @@ export class OrderItem extends BaseEntity {
   @Column({ type: "real", default: 0 })
   price: number;
 
-  @ManyToOne(() => Order, (order) => order.orderItem)
+  @ManyToOne(() => Order, (order) => order.orderItems)
   order: Order;
 
   @CreateDateColumn({ name: "create_at" })
