@@ -21,6 +21,7 @@ import { ShoppingCart } from "./ShoppingCart.entity";
 import { WishList } from "./WishList.entity";
 import { Product } from "./Product.entity";
 import { Payment } from "./Payment.entity";
+import { Order } from "./Order.entity";
 
 @Entity()
 export class User extends BaseEntity {
@@ -89,6 +90,13 @@ export class User extends BaseEntity {
   })
   @JoinColumn()
   shoppingCart: ShoppingCart;
+
+  @OneToOne(() => Order, (order) => order.user, {
+    eager: true,
+    cascade: true,
+  })
+  @JoinColumn()
+  order: Order;
 
   @OneToOne(() => WishList, {
     eager: true,
