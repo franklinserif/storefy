@@ -29,7 +29,7 @@ export class Order extends BaseEntity {
     cascade: true,
     eager: true,
   })
-  orderItem: OrderItem[];
+  orderItems: OrderItem[];
 
   @CreateDateColumn({ name: "create_at" })
   createAt: Date;
