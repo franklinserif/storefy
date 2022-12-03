@@ -13,6 +13,26 @@ import AuthService from "../services/auth.service";
  */
 const authService = new AuthService();
 
+export async function googleSigninController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { token } = req.body;
+    const tokens = await authService.googleSignin(token);
+
+    res.cookie("refreshToken", tokens.refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
+    res.status(200).json(tokens.accessToken);
+  } catch (error) {
+    next(error);
+  }
+}
+
 /**
  * handle all signin request
  * @async
