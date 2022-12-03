@@ -79,6 +79,16 @@ import {
   idImageSchemaSwagger,
 } from "../schemas/image.schemas";
 
+import {
+  orderItemCreateSchemaSwagger,
+  orderItemUpdateSchemaSwagger,
+} from "../schemas/orderItemSchemas";
+
+import {
+  orderCreateSchemaSwagger,
+  orderUpdateSchemaSwagger,
+} from "../schemas/orderSchemas";
+
 const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.0",
   info: {
@@ -143,6 +153,10 @@ const swaggerDefinition: OAS3Definition = {
       createImageSchemaSwagger,
       updateImageSchemaSwagger,
       idImageSchemaSwagger,
+      orderItemCreateSchemaSwagger,
+      orderItemUpdateSchemaSwagger,
+      orderCreateSchemaSwagger,
+      orderUpdateSchemaSwagger,
     },
   },
 };
