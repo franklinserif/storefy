@@ -18,7 +18,8 @@ import userRoutes from "./user.routes";
 import wishListRoutes from "./wishList.routes";
 import variationRoutes from "./variation.routes";
 import variationOptionRoutes from "./variationOption.routes";
-
+import orderRoutes from "./order.routes";
+import orderItem from "./orderItem.routes";
 /**
  * configure all app routes and mount them in the main app
  * @param app
@@ -43,6 +44,8 @@ export default function routeInit(app: Application) {
   router.use("/wishList", wishListRoutes);
   router.use("/variaiton", variationRoutes);
   router.use("/variationoption", variationOptionRoutes);
+  router.use("/order", orderRoutes);
+  router.use("/orderitem", orderItem);
 
   app.use("/api/v1", router);
 }
