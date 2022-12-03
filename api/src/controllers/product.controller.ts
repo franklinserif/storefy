@@ -1,6 +1,6 @@
 /**
  * Product controllers for handler request
- * @module controllers/categoryControllers
+ * @module controllers/orderControllers
  */
 
 import { Request, Response, NextFunction } from "express";
