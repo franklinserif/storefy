@@ -14,7 +14,7 @@ interface IBaseEntity {
   price: number;
   total: number;
 }
-
+export interface IPayload extends Pick<IBaseEntity, "id" | "email"> {}
 export interface IUser extends Pick<IBaseEntity, "id" | "email"> {
   firstName: string;
   lastName: string;
@@ -155,6 +155,8 @@ export type TSchemas =
   | joi.ObjectSchema<IChangeUserPassword>
   | joi.ObjectSchema<IWishList>
   | joi.ObjectSchema<{ id: string }>
-  | joi.ObjectSchema<IAddOrRemoveCategoryParent>;
+  | joi.ObjectSchema<IAddOrRemoveCategoryParent>
+  | joi.ObjectSchema<IOrder>
+  | joi.ObjectSchema<IOrderItem>;
 
 export type TProperty = "body" | "params";
