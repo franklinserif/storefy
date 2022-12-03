@@ -8,7 +8,7 @@ import {
   Column,
   CreateDateColumn,
   OneToMany,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 
@@ -22,7 +22,7 @@ export class Order extends BaseEntity {
   @Column({ type: "real", default: 0 })
   total: number;
 
-  @OneToOne(() => User, (user) => user.order)
+  @ManyToOne(() => User, (user) => user.orders)
   user: User;
 
   @OneToMany(() => OrderItem, (orderItem) => orderItem.order, {
