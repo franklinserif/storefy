@@ -14,7 +14,10 @@ interface IBaseEntity {
   price: number;
   total: number;
 }
-export interface IPayload extends Pick<IBaseEntity, "id" | "email"> {}
+export interface IPayload extends Pick<IBaseEntity, "id" | "email"> {
+  given_name: string;
+  family_name: string;
+}
 export interface IUser extends Pick<IBaseEntity, "id" | "email"> {
   firstName: string;
   lastName: string;
