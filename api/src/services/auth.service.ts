@@ -4,7 +4,7 @@
  * @module services/authService
  */
 
-import { IUser } from "../index.type";
+import { IPayload, IUser } from "../index.type";
 import { User } from "../db/entity/User.entity";
 import { ShoppingCart } from "../db/entity/ShoppingCart.entity";
 import { WishList } from "../db/entity/WishList.entity";
@@ -16,6 +16,7 @@ import UserService from "./user.service";
 import removePassword from "../utils/removePassword";
 import generateRandomCode from "../utils/generateRandomCode";
 import sendMail from "../utils/mail";
+import { OAuth2Client } from "google-auth-library";
 
 /**
  * user services
@@ -24,6 +25,29 @@ import sendMail from "../utils/mail";
 const userService = new UserService();
 
 export default class AuthService {
+  /**
+   * signin user or create
+   * @param payload
+   * @param password
+   * @returns Promise
+   */
+  async findOrCreate(payload: IPayload, password: string) {
+    const user = await this.getUser(payload.email, password as string);
+
+    if (!user) {
+      const newUser = await this.create({
+        firstName: payload.given_name,
+        lastName: payload.family_name,
+        email: payload.email,
+        password: password as string,
+      } as IUser);
+
+      return newUser;
+    }
+
+    return user;
+  }
+
   /**
    * Insert a new record into the db in the user's table
    * @async
@@ -74,6 +98,29 @@ export default class AuthService {
 
     const userWithoutPassword = removePassword(user);
     return userWithoutPassword;
+  }
+
+  /**
+   * Singin with google
+   * @param token
+   * @returns Promise
+   */
+  async googleSignin(token: string) {
+    const client = new OAuth2Client(CONFIG.GOOGLE_CLIENT_ID);
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: CONFIG.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload() as unknown as IPayload;
+
+    if (!payload) throw boom.unauthorized();
+
+    const user = await this.findOrCreate(payload, token);
+
+    const tokens = await this.signTokens(user as unknown as IUser);
+
+    return tokens;
   }
 
   /**
