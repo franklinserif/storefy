@@ -131,6 +131,15 @@ export interface IImage extends Pick<IBaseEntity, "id"> {
   file: Express.Multer.File;
 }
 
+export interface IOrder extends Pick<IBaseEntity, "id"> {
+  total: number;
+  user: IUser;
+  OrderItem: IOrderItem[];
+}
+
+export interface IOrderItem
+  extends Pick<IBaseEntity, "id" | "name" | "qty" | "total" | "price"> {}
+
 export type TSchemas =
   | joi.ObjectSchema<ICategory>
   | joi.ObjectSchema<IPayment>
