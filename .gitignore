@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-# Created by https://www.toptal.com/developers/gitignore/api/linux,windows,macos,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux,windows,macos,node
-=======
 # Created by https://www.toptal.com/developers/gitignore/api/node,linux,windows,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,linux,windows,macos
->>>>>>> develop
 
 ### Linux ###
 *~
@@ -221,15 +216,11 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-<<<<<<< HEAD
-# Docker
-docker-compose.override.yml
-dockerfile.dev
-# End of https://www.toptal.com/developers/gitignore/api/linux,windows,macos,node
-=======
 # docker volumes data
 postgres_data
 docker-compose.override.yml
 dockerfile.dev
 # End of https://www.toptal.com/developers/gitignore/api/node,linux,windows,macos
->>>>>>> develop
+
+# vscode
+.vscode
