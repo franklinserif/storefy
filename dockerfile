@@ -34,7 +34,7 @@ RUN npm install --only=production
 
 WORKDIR /usr/app
 
-COPY --from=builder ["/usr/src/client/build", "/usr/app/client"]
+COPY --from=builder ["/usr/src/client/build", "/usr/app/"]
 COPY --from=builder ["/usr/src/dist", "/usr/app"]
 
 RUN ls -la
