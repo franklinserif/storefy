@@ -10,11 +10,13 @@ import {
   OneToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Entity,
 } from "typeorm";
 
 import { User } from "./User.entity";
 import { OrderItem } from "./OrderItem.entity";
 
+@Entity()
 export class Order extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;

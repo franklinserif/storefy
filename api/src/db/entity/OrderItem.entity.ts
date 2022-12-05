@@ -7,12 +7,14 @@ import {
   BaseEntity,
   Column,
   CreateDateColumn,
+  Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 
 import { Order } from "./Order.entity";
 
+@Entity()
 export class OrderItem extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
