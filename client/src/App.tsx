@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Button from "./components/Button/Button";
+import "./App.css";
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    setCount((prev) => prev + 1);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Button
+        onClick={handleClick}
+        type="PRIMARY"
+        size={"BG"}
+        rounded={"CIRCLE"}
+      >
+        Click
+      </Button>
+      <h4 className="text-cyan-500">{count}</h4>
     </div>
   );
 }

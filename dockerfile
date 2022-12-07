@@ -9,7 +9,7 @@ RUN npm install
 COPY ["./api/", "/usr/src"]
 RUN npm run build
 
-WORKDIR /usr/src/client
+WORKDIR /usr/src
 
 COPY ["./client/package.json", "/usr/src/client"]
 RUN npm install
@@ -34,12 +34,12 @@ RUN npm install --only=production
 
 WORKDIR /usr/app
 
-COPY --from=builder ["/usr/src/client/build", "/usr/app/"]
-COPY --from=builder ["/usr/src/dist", "/usr/app"]
+COPY --from=builder ["/usr/src/client/build", "/usr/app/client"]
+COPY --from=builder ["/usr/src/dist", "/usr/app/dist"]
 
 RUN ls -la
 RUN npm install pm2 -g
 
-EXPOSE 3000
+EXPOSE 4000
 
 CMD ["pm2-runtime", "start", "/usrs/app/index.js"]
