@@ -21,7 +21,7 @@ const Input: React.FC<IInput> = ({
   type,
   error,
   ...rest
-}) => {
+}: IInput) => {
   return (
     <fieldset>
       <label htmlFor={name} className={`${labelBaseStyle} ${labelSize[size]}`}>
