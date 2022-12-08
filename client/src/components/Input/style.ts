@@ -3,12 +3,12 @@
  */
 
 export const inputBaseStyle =
-  "transition-all text-teal-500 font-weight-medium focus:border-teal-500 outline-none block border-solid border-2";
+  "transition-all text-teal-500 font-weight-medium focus:border-teal-500 outline-none block border-solid border";
 
 export const inputSize = {
   SM: " py-1 px-3 text-xs ",
   MD: " py-2 px-6 text-sm ",
-  BG: " py-4 px-8 text-md ",
+  BG: " py-3 px-8 text-md ",
 };
 
 export const labelBaseStyle =

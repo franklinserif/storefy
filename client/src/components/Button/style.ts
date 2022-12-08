@@ -11,7 +11,7 @@ export const buttonType = {
 export const buttonSize = {
   SM: " py-1 px-3 text-xs ",
   MD: " py-2 px-6 text-sm ",
-  BG: " py-4 px-8 text-md ",
+  BG: " py-3 px-8 text-md ",
 };
 
 export const buttonRounded = {
