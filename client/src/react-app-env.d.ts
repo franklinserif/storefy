@@ -18,3 +18,8 @@ export interface IInput {
   error?: boolean;
   required?: boolean;
 }
+
+export interface ISearch {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  size: "SM" | "MD" | "BG";
+}
