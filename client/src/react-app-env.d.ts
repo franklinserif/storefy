@@ -23,3 +23,9 @@ export interface ISearch {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   size: "SM" | "MD" | "BG";
 }
+
+export interface ICircleButton {
+  color?: string;
+  image?: string;
+  name: string;
+}
