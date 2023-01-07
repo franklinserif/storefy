@@ -2,7 +2,7 @@
 
 export interface IButton {
   children: React.ReactNode;
-  type: "PRIMARY" | "SECONDARY";
+  type: "PRIMARY" | "SECONDARY" | "OUTLINED";
   size: "SM" | "MD" | "BG";
   rounded: "SM" | "MD" | "BG" | "CIRCLE";
   onClick: (e: React.MouseEvent<HTMLElement>) => void;
@@ -28,4 +28,10 @@ export interface ICircleButton {
   color?: string;
   image?: string;
   name: string;
+}
+
+export interface IFavoriteButton {
+  nextFunction: () => void;
+  children: React.ReactNode;
+  icon: React.ReactNode;
 }
