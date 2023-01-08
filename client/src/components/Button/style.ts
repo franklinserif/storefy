@@ -7,7 +7,7 @@ export const buttonType = {
   SECONDARY:
     " bg-white text-teal-500 font-medium hover:bg-teal-500 hover:text-white transition-all ",
   OUTLINED:
-    "bg-white border-teal-500 border border-2 text-teal-500 hover:bg-teal-500 hover:text-white transition-all",
+    "bg-white border-teal-500 border border-1 text-teal-500 hover:bg-teal-500 hover:text-white transition-all duration-500 ",
 };
 
 export const buttonSize = {
