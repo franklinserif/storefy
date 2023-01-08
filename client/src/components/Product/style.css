@@ -1,0 +1,48 @@
+.product:hover {
+  cursor: pointer;
+}
+
+.product:hover a {
+  text-decoration: underline;
+}
+
+.product > .img-custom button {
+  bottom: -50px;
+}
+
+.product:hover > .img-custom > button {
+  bottom: 0px;
+}
+
+.product img {
+  transform: scale(1);
+  transition: transform 0.4s ease;
+}
+
+.product:hover img {
+  transform: scale(1.1);
+  transition: transform 3s linear;
+}
+
+.product section {
+  overflow: hidden;
+}
+.product .expans-btn {
+  transition: all 0.3s;
+  right: -10px;
+}
+
+.product:hover .expans-btn {
+  right: 10px;
+}
+
+.product > .img-custom button,
+.product > .expans-btn {
+  opacity: 0;
+  z-index: 100;
+}
+
+.product:hover > .img-custom > button,
+.product:hover > .expans-btn {
+  opacity: 1;
+}
