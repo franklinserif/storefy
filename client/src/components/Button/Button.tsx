@@ -10,19 +10,22 @@ import { IButton } from "../../react-app-env";
  * @param props.type
  * @param props.size
  * @param props.rounded
+ * @param props.className
  * @returns JSX.Element
  */
 const Button: React.FC<IButton> = ({
   children,
-  onClick,
   type,
   size,
   rounded,
+  onClick,
+  classes,
 }: IButton) => {
   return (
     <button
-      onClick={onClick}
-      className={buttonType[type] + buttonSize[size] + buttonRounded[rounded]}
+      className={
+        buttonType[type] + buttonSize[size] + buttonRounded[rounded] + classes
+      }
     >
       {children}
     </button>
