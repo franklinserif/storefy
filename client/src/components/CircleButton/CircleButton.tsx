@@ -5,35 +5,39 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 
 const CircleButton: React.FC<ICircleButton> = ({
-  color = "",
+  productModel,
+  isActive,
+  parentFunction,
   image,
-  name,
 }: ICircleButton) => {
   const [visible, setVisible] = useState(false);
 
-  const handleClick = () => {
-    setVisible((prev) => !prev);
-  };
-
   return (
     <Tippy
-      onClickOutside={() => {
-        setVisible(false);
-      }}
       visible={visible}
-      content={<span>{name}</span>}
+      content={<span>{productModel.name}</span>}
       placement="top"
     >
       <button
-        onClick={handleClick}
+        onClick={() => parentFunction(productModel.id)}
+        onMouseEnter={() => {
+          setVisible(true);
+        }}
+        onMouseLeave={() => {
+          setVisible(false);
+        }}
         className={`${circleButtonStyle} hover:ring-offset-2 ${
-          visible && "ring-teal-500"
+          isActive && "ring-teal-500"
         }`}
-        style={{ background: `#${color}` }}
-        name={name}
+        style={{ background: `${productModel.color}` }}
+        name={productModel.name}
       >
         {image && (
-          <img src={image} alt={name} className="w-full h-full rounded-full" />
+          <img
+            src={productModel.image}
+            alt={productModel.name}
+            className="w-full h-full rounded-full hover:w-80"
+          />
         )}
       </button>
     </Tippy>
