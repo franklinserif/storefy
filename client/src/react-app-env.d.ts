@@ -1,6 +1,7 @@
 /// <reference types="react-scripts" />
 
 export interface IButton {
+  classes: string;
   children: React.ReactNode;
   type: "PRIMARY" | "SECONDARY" | "OUTLINED";
   size: "SM" | "MD" | "BG";
@@ -25,13 +26,32 @@ export interface ISearch {
 }
 
 export interface ICircleButton {
-  color?: string;
   image?: string;
-  name: string;
+  productModel: IProductModel;
+  isActive: boolean;
+  parentFunction: (id: string) => void;
 }
 
-export interface IFavoriteButton {
+export interface IExpansButton {
   nextFunction: () => void;
   children: React.ReactNode;
   icon: React.ReactNode;
+  check?: boolean;
+  classes: string;
+}
+
+export interface IProductModel {
+  color: string;
+  name: string;
+  image: string;
+  id: string;
+}
+
+export interface IProduct {
+  product: {
+    name: string;
+    seller: string;
+    description: string;
+    productModels: IProductModel[];
+  };
 }
